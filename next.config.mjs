@@ -8,5 +8,14 @@ const nextConfig = {
       { protocol: "https", hostname: "*.r2.cloudflarestorage.com" },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/anunciante/painel/pagamentos",
+        destination: "/anunciante/painel/plano",
+        permanent: true,
+      },
+    ];
+  },
 };
 export default nextConfig;

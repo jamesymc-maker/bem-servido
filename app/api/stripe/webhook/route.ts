@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import { createAdminSupabase } from "@/lib/supabase/admin";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
   const secret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -9,7 +12,7 @@ export async function POST(req: Request) {
   if (!secret || !sig) return NextResponse.json({ received: true, note: "webhook secret not set" });
 
   let event;
-  try { event = stripe.webhooks.constructEvent(body, sig, secret); }
+  try { event = getStripe().webhooks.constructEvent(body, sig, secret); }
   catch (err: any) { return NextResponse.json({ error: `signature: ${err.message}` }, { status: 400 }); }
 
   const supabase = createAdminSupabase();

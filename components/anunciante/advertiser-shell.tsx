@@ -1,14 +1,13 @@
 "use client";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, Image as ImageIcon, Tag, CreditCard, LogOut, ExternalLink } from "lucide-react";
+import { LayoutDashboard, Image as ImageIcon, Tag, LogOut, ExternalLink } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
 const NAV = [
   { href: "/anunciante/painel", label: "Visão geral", Icon: LayoutDashboard },
   { href: "/anunciante/painel/anuncios", label: "Meus anúncios", Icon: ImageIcon },
   { href: "/anunciante/painel/plano", label: "Plano", Icon: Tag },
-  { href: "/anunciante/painel/pagamentos", label: "Pagamentos", Icon: CreditCard },
 ];
 
 const TIER_LABEL: Record<string, string> = { visibilidade: "Visibilidade", destaque: "Destaque", parceiro: "Parceiro Oficial" };

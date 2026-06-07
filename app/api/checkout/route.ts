@@ -1,12 +1,15 @@
 import { NextResponse } from "next/server";
-import { stripe, stripeConfigured } from "@/lib/stripe";
+import { getStripe, isStripeConfigured } from "@/lib/stripe";
 import { priceIdForPlan } from "@/lib/plans";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 // POST /api/checkout  { plan, providerId }
 export async function POST(req: Request) {
   const { plan, providerId } = await req.json().catch(() => ({}));
 
-  if (!stripeConfigured) {
+  if (!isStripeConfigured()) {
     return NextResponse.json(
       { error: "stripe_not_configured", message: "Defina STRIPE_SECRET_KEY e os price IDs no ambiente." },
       { status: 503 },
@@ -17,7 +20,7 @@ export async function POST(req: Request) {
 
   const origin = process.env.NEXT_PUBLIC_SITE_URL || new URL(req.url).origin;
   try {
-    const session = await stripe.checkout.sessions.create({
+    const session = await getStripe().checkout.sessions.create({
       mode: "subscription",
       line_items: [{ price, quantity: 1 }],
       success_url: `${origin}/painel/pagamentos?status=sucesso`,

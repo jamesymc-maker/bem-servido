@@ -1,15 +1,18 @@
 import { NextResponse } from "next/server";
-import { stripe, stripeConfigured } from "@/lib/stripe";
+import { getStripe, isStripeConfigured } from "@/lib/stripe";
 import { adPriceId } from "@/lib/ad-plans";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
   const { tier, advertiserId } = await req.json().catch(() => ({}));
-  if (!stripeConfigured) return NextResponse.json({ error: "not_configured", message: "Stripe não configurado." }, { status: 503 });
+  if (!isStripeConfigured()) return NextResponse.json({ error: "not_configured", message: "Stripe não configurado." }, { status: 503 });
   const price = adPriceId(tier);
-  if (!price) return NextResponse.json({ error: "unknown_tier" }, { status: 400 });
+  if (!price) return NextResponse.json({ error: "unknown_tier", message: "Plano não encontrado. Verifique os price IDs no ambiente." }, { status: 400 });
   const origin = process.env.NEXT_PUBLIC_SITE_URL || new URL(req.url).origin;
   try {
-    const session = await stripe.checkout.sessions.create({
+    const session = await getStripe().checkout.sessions.create({
       mode: "subscription",
       line_items: [{ price, quantity: 1 }],
       success_url: `${origin}/anunciante/painel?status=sucesso`,
