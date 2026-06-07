@@ -4,11 +4,24 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Anchor } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import { resolvePortalRedirect } from "@/lib/actions/auth";
 
-export function AuthForm({ mode, redirectTo }: { mode: "login" | "signup"; redirectTo?: string }) {
+type AccountType = "provider" | "advertiser";
+
+export function AuthForm({
+  mode,
+  redirectTo,
+  accountType = "provider",
+}: {
+  mode: "login" | "signup";
+  redirectTo?: string;
+  accountType?: AccountType;
+}) {
   const router = useRouter();
   const params = useSearchParams();
-  const next = redirectTo || params.get("next") || "/painel";
+  const defaultNext = accountType === "advertiser" ? "/anunciante/painel" : "/painel";
+  const next = redirectTo || params.get("next") || defaultNext;
+  const isAdvertiser = accountType === "advertiser";
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +37,9 @@ export function AuthForm({ mode, redirectTo }: { mode: "login" | "signup"; redir
     try {
       if (mode === "signup") {
         const { data, error } = await supabase.auth.signUp({
-          email, password, options: { data: { full_name: name } },
+          email,
+          password,
+          options: { data: { full_name: name, account_type: accountType } },
         });
         if (error) { setMsg(error.message); setBusy(false); return; }
         if (data.session) { router.push(next); router.refresh(); return; }
@@ -33,7 +48,8 @@ export function AuthForm({ mode, redirectTo }: { mode: "login" | "signup"; redir
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) { setMsg("E-mail ou senha incorretos."); setBusy(false); return; }
-        router.push(next); router.refresh();
+        const dest = (redirectTo || params.get("next")) ? next : await resolvePortalRedirect(next);
+        router.push(dest); router.refresh();
       }
     } catch {
       setMsg("Algo deu errado. Tente novamente."); setBusy(false);
@@ -49,7 +65,9 @@ export function AuthForm({ mode, redirectTo }: { mode: "login" | "signup"; redir
       </div>
       <h1 className="serif text-3xl mb-1" style={{ fontWeight: 600 }}>{isSignup ? "Criar conta" : "Entrar"}</h1>
       <p className="text-sm mb-7" style={{ color: "var(--ink-soft)" }}>
-        {isSignup ? "Anuncie o seu serviço em Ilhabela." : "Acesse o seu painel de profissional."}
+        {isSignup
+          ? (isAdvertiser ? "Crie a conta da sua empresa para anunciar no Bem Servido." : "Anuncie o seu serviço em Ilhabela.")
+          : (isAdvertiser ? "Acesse o painel do anunciante." : "Acesse o seu painel de profissional.")}
       </p>
 
       <div className="flex flex-col gap-3">
@@ -72,9 +90,16 @@ export function AuthForm({ mode, redirectTo }: { mode: "login" | "signup"; redir
 
       <p className="text-sm mt-6 text-center" style={{ color: "var(--ink-soft)" }}>
         {isSignup ? (
-          <>Já tem conta? <Link href="/entrar" className="font-semibold" style={{ color: "var(--sea)" }}>Entrar</Link></>
+          <>Já tem conta? <Link href={isAdvertiser ? "/anunciante/entrar" : "/entrar"} className="font-semibold" style={{ color: "var(--sea)" }}>Entrar</Link></>
         ) : (
-          <>Ainda não tem conta? <Link href="/criar-conta" className="font-semibold" style={{ color: "var(--sea)" }}>Criar conta</Link></>
+          <>Ainda não tem conta? <Link href={isAdvertiser ? "/anunciante/criar-conta" : "/criar-conta"} className="font-semibold" style={{ color: "var(--sea)" }}>Criar conta</Link></>
+        )}
+      </p>
+      <p className="text-xs mt-3 text-center" style={{ color: "var(--ink-soft)" }}>
+        {isAdvertiser ? (
+          <>É profissional de serviços? <Link href="/entrar" className="underline">Entrar no painel de profissional</Link></>
+        ) : (
+          <>Quer anunciar a sua empresa? <Link href="/anunciante/entrar" className="underline">Painel do anunciante</Link></>
         )}
       </p>
     </div>

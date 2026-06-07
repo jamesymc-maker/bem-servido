@@ -10,15 +10,27 @@ async function ctx() {
   return { supabase, user };
 }
 
+const PROVIDER_SELECT = "*, categories(slug,label,icon), provider_gallery(id,url,sort), subscriptions(plan,status,current_period_end,last_payment_at)";
+
+export async function getProvider() {
+  const { supabase, user } = await ctx();
+  const { data } = await supabase.from("providers").select(PROVIDER_SELECT).eq("owner_id", user.id).maybeSingle();
+  return data;
+}
+
 // Returns the current user's provider row, creating a draft if none exists.
 export async function getOrCreateProvider() {
   const { supabase, user } = await ctx();
   const { data: existing } = await supabase
     .from("providers")
-    .select("*, categories(slug,label,icon), provider_gallery(id,url,sort), subscriptions(plan,status,current_period_end,last_payment_at)")
+    .select(PROVIDER_SELECT)
     .eq("owner_id", user.id)
     .maybeSingle();
   if (existing) return existing;
+
+  const accountType = user.user_metadata?.account_type;
+  const { data: advertiser } = await supabase.from("advertisers").select("id").eq("owner_id", user.id).maybeSingle();
+  if (accountType === "advertiser" || (advertiser && accountType !== "provider")) return null;
 
   const { data: profile } = await supabase.from("profiles").select("full_name").eq("id", user.id).single();
   const name = (profile?.full_name || "").trim() || "Novo profissional";

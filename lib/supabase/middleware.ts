@@ -27,8 +27,9 @@ export async function updateSession(request: NextRequest) {
   const needsAuth = PROTECTED.some((p) => path === p || path.startsWith(p + "/"));
   if (needsAuth && !user) {
     const redirectUrl = request.nextUrl.clone();
-    redirectUrl.pathname = "/entrar";
-    redirectUrl.searchParams.set("next", path);
+    const isAdvertiser = path === "/anunciante/painel" || path.startsWith("/anunciante/painel/");
+    redirectUrl.pathname = isAdvertiser ? "/anunciante/entrar" : "/entrar";
+    if (!isAdvertiser) redirectUrl.searchParams.set("next", path);
     return NextResponse.redirect(redirectUrl);
   }
 

@@ -10,14 +10,27 @@ async function ctxAdvertiser() {
   return { supabase, user };
 }
 
+const ADVERTISER_SELECT = "*, advertiser_subscriptions(tier,status,current_period_end,last_payment_at)";
+
+export async function getAdvertiser() {
+  const { supabase, user } = await ctxAdvertiser();
+  const { data } = await supabase.from("advertisers").select(ADVERTISER_SELECT).eq("owner_id", user.id).maybeSingle();
+  return data;
+}
+
 export async function getOrCreateAdvertiser() {
   const { supabase, user } = await ctxAdvertiser();
   const { data: existing } = await supabase
     .from("advertisers")
-    .select("*, advertiser_subscriptions(tier,status,current_period_end,last_payment_at)")
+    .select(ADVERTISER_SELECT)
     .eq("owner_id", user.id)
     .maybeSingle();
   if (existing) return existing;
+
+  const accountType = user.user_metadata?.account_type;
+  const { data: provider } = await supabase.from("providers").select("id").eq("owner_id", user.id).maybeSingle();
+  if (accountType === "provider" || (provider && accountType !== "advertiser")) return null;
+
   const { data: profile } = await supabase.from("profiles").select("full_name,email").eq("id", user.id).single();
   const { data: created } = await supabase.from("advertisers")
     .insert({ owner_id: user.id, company_name: profile?.full_name || "Minha empresa", email: profile?.email || "" })
