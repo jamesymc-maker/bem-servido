@@ -34,8 +34,8 @@ export const DICT: Record<Lang, any> = {
       popular: "Mais popular", perMonth: "/ mês", choose: "Escolher {name}", wait: "Aguarde...",
       notConfigured: "Pagamentos ainda não configurados (Stripe stub).",
       failed: "Não foi possível iniciar o pagamento.",
-      howTitle: "Como começar", howSub: "Do cadastro à publicação em 8 passos.",
-      steps: ["Criar conta", "Escolher plano", "Completar perfil", "Enviar fotos", "Enviar vídeo", "Pagar", "Revisão", "Publicado"],
+      howTitle: "Como começar", howSub: "Do cadastro à publicação em 3 passos.",
+      steps: ["Criar conta", "Completar perfil", "Publicar"],
     },
     plans: {
       standard: { blurb: "Para começar a aparecer.", feats: ["Perfil na lista", "Página de perfil", "Contacto direto", "Galeria de fotos"] },
@@ -135,8 +135,8 @@ export const DICT: Record<Lang, any> = {
       popular: "Most popular", perMonth: "/ mo", choose: "Choose {name}", wait: "Please wait...",
       notConfigured: "Payments not configured yet (Stripe stub).",
       failed: "Could not start the payment.",
-      howTitle: "How to start", howSub: "From signup to live in 8 steps.",
-      steps: ["Create account", "Choose plan", "Complete profile", "Upload photos", "Upload video", "Pay", "Review", "Live"],
+      howTitle: "How to start", howSub: "From signup to live in 3 steps.",
+      steps: ["Create account", "Complete profile", "Publish"],
     },
     plans: {
       standard: { blurb: "Start showing up.", feats: ["Directory listing", "Profile page", "Direct contact", "Photo gallery"] },
