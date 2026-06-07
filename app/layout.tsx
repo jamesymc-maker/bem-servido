@@ -6,6 +6,7 @@ import { LanguageProvider } from "@/components/language-provider";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { JsonLd } from "@/components/json-ld";
+import { Analytics } from "@vercel/analytics/next";
 import { getCategories } from "@/lib/data";
 import type { Lang } from "@/lib/i18n";
 
@@ -61,6 +62,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <main>{children}</main>
           <Footer categories={categories} />
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
