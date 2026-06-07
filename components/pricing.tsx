@@ -85,7 +85,7 @@ export function Pricing() {
         <div className="max-w-5xl mx-auto px-5">
           <h2 className="serif text-3xl text-center mb-2" style={{ fontWeight: 600 }}>{t("pricing.howTitle")}</h2>
           <p className="text-center text-sm mb-9" style={{ color: "var(--ink-soft)" }}>{t("pricing.howSub")}</p>
-          <div className="flex gap-3 overflow-x-auto hide-scroll pb-2">
+          <div className="flex gap-3 overflow-x-auto hide-scroll pb-2 justify-center">
             {steps.map((s, i) => (
               <div key={s} className="shrink-0 w-40 rounded-2xl bg-white p-4" style={{ border: "1px solid var(--line)" }}>
                 <span className="grid place-items-center w-8 h-8 rounded-full font-semibold text-sm text-white mb-3" style={{ background: "var(--sea)" }}>{i + 1}</span>
