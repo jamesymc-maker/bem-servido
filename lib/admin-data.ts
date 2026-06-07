@@ -2,7 +2,9 @@ import "server-only";
 import { createAdminSupabase } from "./supabase/admin";
 import { PLANS } from "./plans";
 
-const SELECT = "*, categories(slug,label), profiles:owner_id(email,full_name), subscriptions(plan,status,current_period_end,last_payment_at)";
+// owner_id has FKs to both auth.users and public.profiles, so embed profiles
+// via the explicit constraint name to avoid an ambiguous-relationship error.
+const SELECT = "*, categories(slug,label), profiles!providers_owner_id_profiles_fkey(email,full_name), subscriptions(plan,status,current_period_end,last_payment_at)";
 
 export async function adminListProviders() {
   const supabase = createAdminSupabase();

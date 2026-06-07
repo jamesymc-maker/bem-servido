@@ -36,10 +36,11 @@ export function AuthForm({
     const supabase = createClient();
     try {
       if (mode === "signup") {
+        const emailRedirectTo = `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`;
         const { data, error } = await supabase.auth.signUp({
           email,
           password,
-          options: { data: { full_name: name, account_type: accountType } },
+          options: { data: { full_name: name, account_type: accountType }, emailRedirectTo },
         });
         if (error) { setMsg(error.message); setBusy(false); return; }
         if (data.session) { router.push(next); router.refresh(); return; }
