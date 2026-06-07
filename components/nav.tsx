@@ -31,7 +31,6 @@ export function Nav() {
               <Link key={href} href={href} className="underline-grow pb-0.5" style={{ color: "var(--ink-soft)" }}>{label}</Link>
             ))}
             <Link href="/entrar" className="underline-grow pb-0.5" style={{ color: "var(--ink-soft)" }}>{t("nav.login")}</Link>
-            <Link href="/entrar" className="text-sm font-medium underline-grow pb-0.5" style={{ color: "var(--ink-soft)" }}>{t("nav.login")}</Link>
             <Link href="/precos" className="rounded-full px-4 py-2 text-white text-sm font-semibold transition active:scale-95"
               style={{ background: "var(--ink)" }}>{t("nav.advertise")}</Link>
           </nav>
