@@ -28,9 +28,7 @@ export async function getOrCreateProvider() {
     .maybeSingle();
   if (existing) return existing;
 
-  const accountType = user.user_metadata?.account_type;
-  const { data: advertiser } = await supabase.from("advertisers").select("id").eq("owner_id", user.id).maybeSingle();
-  if (accountType === "advertiser" || (advertiser && accountType !== "provider")) return null;
+  if (user.user_metadata?.account_type === "advertiser") return null;
 
   const { data: profile } = await supabase.from("profiles").select("full_name").eq("id", user.id).single();
   const name = (profile?.full_name || "").trim() || "Novo profissional";

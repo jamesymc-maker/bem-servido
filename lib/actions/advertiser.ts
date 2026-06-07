@@ -27,9 +27,7 @@ export async function getOrCreateAdvertiser() {
     .maybeSingle();
   if (existing) return existing;
 
-  const accountType = user.user_metadata?.account_type;
-  const { data: provider } = await supabase.from("providers").select("id").eq("owner_id", user.id).maybeSingle();
-  if (accountType === "provider" || (provider && accountType !== "advertiser")) return null;
+  if (user.user_metadata?.account_type === "provider") return null;
 
   const { data: profile } = await supabase.from("profiles").select("full_name,email").eq("id", user.id).single();
   const { data: created } = await supabase.from("advertisers")

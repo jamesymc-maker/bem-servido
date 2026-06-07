@@ -4,9 +4,12 @@ import { getOrCreateAdvertiser } from "@/lib/actions/advertiser";
 import { AdvertiserShell } from "@/components/anunciante/advertiser-shell";
 export const metadata = { title: "Painel do anunciante · Bem Servido", robots: { index: false } };
 export default async function AdvertiserLayout({ children }: { children: React.ReactNode }) {
-  await requireAdvertiserUserOrRedirect();
+  const user = await requireAdvertiserUserOrRedirect();
   const adv: any = await getOrCreateAdvertiser();
-  if (!adv) redirect("/painel");
+  if (!adv) {
+    if (user.user_metadata?.account_type === "provider") redirect("/painel");
+    redirect("/anunciante/criar-conta");
+  }
   const sub = Array.isArray(adv.advertiser_subscriptions) ? adv.advertiser_subscriptions[0] : adv.advertiser_subscriptions;
   return <AdvertiserShell tier={sub?.tier}>{children}</AdvertiserShell>;
 }

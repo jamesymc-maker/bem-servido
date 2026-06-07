@@ -6,9 +6,12 @@ import { PainelShell } from "@/components/painel/painel-shell";
 export const metadata = { title: "Meu painel · Bem Servido", robots: { index: false } };
 
 export default async function PainelLayout({ children }: { children: React.ReactNode }) {
-  await requireUserOrRedirect("/painel");
+  const user = await requireUserOrRedirect("/painel");
   const provider = await getOrCreateProvider();
-  if (!provider) redirect("/anunciante/painel");
+  if (!provider) {
+    if (user.user_metadata?.account_type === "advertiser") redirect("/anunciante/painel");
+    redirect("/criar-conta");
+  }
   return (
     <PainelShell status={provider.status ?? "pending"} slug={provider.slug ?? ""} published={provider.status === "published"}>
       {children}
