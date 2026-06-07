@@ -2,11 +2,10 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Anchor, Menu, X } from "lucide-react";
-import { useLang } from "./language-provider";
+import { t } from "@/lib/i18n";
 import { LocationBar } from "./location-bar";
 
 export function Nav() {
-  const { t } = useLang();
   const [open, setOpen] = useState(false);
   const links: [string, string][] = [
     [t("nav.categories"), "/servicos"],

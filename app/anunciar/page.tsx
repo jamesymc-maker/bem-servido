@@ -65,7 +65,7 @@ export default async function AnunciarPage() {
   const [providers, categories, posts] = await Promise.all([
     getProviders(),
     getCategories(),
-    getAllPosts("pt"),
+    getAllPosts(),
   ]);
   const providersCount = providers.length;
   const categoriesCount = categories.length;

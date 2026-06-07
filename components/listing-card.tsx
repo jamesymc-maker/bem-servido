@@ -4,10 +4,9 @@ import { Globe, BadgeCheck } from "lucide-react";
 import type { Provider } from "@/lib/types";
 import { brl } from "@/lib/utils";
 import { TierBadge, WhatsAppBtn, CatIcon } from "./ui";
-import { useLang } from "./language-provider";
+import { t } from "@/lib/i18n";
 
 export function ListingCard({ p, i = 0 }: { p: Provider; i?: number }) {
-  const { t } = useLang();
   const router = useRouter();
   return (
     <article onClick={() => router.push(`/profissional/${p.slug}`)}

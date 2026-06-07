@@ -2,11 +2,10 @@
 import { useEffect, useRef, useState } from "react";
 import { MapPin, ChevronDown, Check, Lock } from "lucide-react";
 import { LOCATIONS, DEFAULT_LOCATION, getLocation } from "@/lib/locations";
-import { useLang } from "./language-provider";
+import { t } from "@/lib/i18n";
 
 // Location selector. Only Ilhabela is active for now and is always the default.
 export function LocationBar() {
-  const { t } = useLang();
   const [slug, setSlug] = useState(DEFAULT_LOCATION);
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);

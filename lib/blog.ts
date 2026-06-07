@@ -84,9 +84,8 @@ function getFilePosts(): Post[] {
   } catch { return []; }
 }
 
-export async function getAllPosts(lang?: string): Promise<Post[]> {
-  const posts = hasSupabase ? await getDbPosts(true) : getFilePosts();
-  return lang ? posts.filter((p) => p.lang === lang) : posts;
+export async function getAllPosts(): Promise<Post[]> {
+  return hasSupabase ? await getDbPosts(true) : getFilePosts();
 }
 
 export async function getAllPostsAdmin(): Promise<Post[]> {

@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
 import { About } from "@/components/about";
 import { Faq } from "@/components/faq";
 import { JsonLd } from "@/components/json-ld";
-import { DICT, type Lang } from "@/lib/i18n";
+import { DICT } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   title: "Sobre · Bem Servido · Serviços locais de confiança em Ilhabela",
@@ -12,9 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function SobrePage() {
-  const cookieStore = await cookies();
-  const lang: Lang = (cookieStore.get("lang")?.value as Lang) === "en" ? "en" : "pt";
-  const items: { q: string; a: string }[] = DICT[lang].faq.items;
+  const items: { q: string; a: string }[] = DICT.faq.items;
 
   const faqJsonLd = {
     "@context": "https://schema.org",

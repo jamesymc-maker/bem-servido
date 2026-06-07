@@ -2,15 +2,14 @@
 import Link from "next/link";
 import { ArrowLeft, CalendarDays, Clock } from "lucide-react";
 import type { Post } from "@/lib/blog";
-import { useLang } from "./language-provider";
+import { t } from "@/lib/i18n";
 
-function fmt(date: string, lang: string) {
-  try { return new Date(date).toLocaleDateString(lang === "pt" ? "pt-BR" : "en-GB", { day: "numeric", month: "long", year: "numeric" }); }
+function fmt(date: string) {
+  try { return new Date(date).toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" }); }
   catch { return date; }
 }
 
 export function BlogPost({ post, related }: { post: Post; related: Post[] }) {
-  const { t, lang } = useLang();
   return (
     <article className="max-w-3xl mx-auto px-5 py-10">
       <Link href="/blog" className="inline-flex items-center gap-1.5 text-sm font-medium" style={{ color: "var(--ink-soft)" }}>
@@ -20,7 +19,7 @@ export function BlogPost({ post, related }: { post: Post; related: Post[] }) {
       <h1 className="serif text-3xl md:text-5xl mt-6 leading-[1.08]" style={{ fontWeight: 600 }}>{post.title}</h1>
       <div className="flex flex-wrap items-center gap-4 mt-4 text-sm" style={{ color: "var(--ink-soft)" }}>
         <span>{t("blog.by")} {post.author}</span>
-        <span className="inline-flex items-center gap-1"><CalendarDays size={14} /> {fmt(post.date, lang)}</span>
+        <span className="inline-flex items-center gap-1"><CalendarDays size={14} /> {fmt(post.date)}</span>
         <span className="inline-flex items-center gap-1"><Clock size={14} /> {post.minutes} {t("blog.min")}</span>
       </div>
 

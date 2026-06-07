@@ -3,10 +3,9 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import type { Category } from "@/lib/types";
 import { CatIcon } from "./ui";
-import { useLang } from "./language-provider";
+import { t } from "@/lib/i18n";
 
 export function CategoryGrid({ categories }: { categories: Category[] }) {
-  const { t } = useLang();
   return (
     <section className="max-w-6xl mx-auto px-5 py-14">
       <div className="flex items-end justify-between mb-7">

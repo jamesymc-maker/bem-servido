@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
 import { Fraunces, Hanken_Grotesk } from "next/font/google";
-import { cookies } from "next/headers";
 import "./globals.css";
-import { LanguageProvider } from "@/components/language-provider";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { JsonLd } from "@/components/json-ld";
 import { Analytics } from "@vercel/analytics/next";
 import { getCategories } from "@/lib/data";
-import type { Lang } from "@/lib/i18n";
 
 const fraunces = Fraunces({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-fraunces" });
 const hanken = Hanken_Grotesk({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-hanken" });
@@ -27,8 +24,7 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const [categories, cookieStore] = await Promise.all([getCategories(), cookies()]);
-  const lang = (cookieStore.get("lang")?.value as Lang) === "en" ? "en" : "pt";
+  const categories = await getCategories();
 
   const orgJsonLd = {
     "@context": "https://schema.org",
@@ -43,7 +39,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     "@type": "WebSite",
     name: "Bem Servido",
     url: SITE,
-    inLanguage: ["pt-BR", "en"],
+    inLanguage: "pt-BR",
     potentialAction: {
       "@type": "SearchAction",
       target: `${SITE}/servicos?q={query}`,
@@ -52,16 +48,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   };
 
   return (
-    <html lang={lang === "pt" ? "pt-BR" : "en"} className={`${fraunces.variable} ${hanken.variable}`}>
+    <html lang="pt-BR" className={`${fraunces.variable} ${hanken.variable}`}>
       <body>
         <JsonLd data={orgJsonLd} />
         <JsonLd data={siteJsonLd} />
-        <LanguageProvider initialLang={lang}>
-          <div className="grain" />
-          <Nav />
-          <main>{children}</main>
-          <Footer categories={categories} />
-        </LanguageProvider>
+        <div className="grain" />
+        <Nav />
+        <main>{children}</main>
+        <Footer categories={categories} />
         <Analytics />
       </body>
     </html>

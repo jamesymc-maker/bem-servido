@@ -2,10 +2,9 @@
 import Link from "next/link";
 import { Anchor, MapPin } from "lucide-react";
 import type { Category } from "@/lib/types";
-import { useLang } from "./language-provider";
+import { t } from "@/lib/i18n";
 
 export function Footer({ categories }: { categories: Category[] }) {
-  const { t } = useLang();
   return (
     <footer style={{ background: "var(--sea-deep)", color: "rgba(255,255,255,.78)" }}>
       <div className="max-w-6xl mx-auto px-5 py-12 grid grid-cols-2 md:grid-cols-[1.6fr_1fr_1fr_1fr] gap-8">

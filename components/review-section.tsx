@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Star } from "lucide-react";
 import type { Review, ReviewSummary } from "@/lib/types";
-import { useLang } from "./language-provider";
+import { t } from "@/lib/i18n";
 
 function StarsRow({ n, size = 15 }: { n: number; size?: number }) {
   return (
@@ -14,8 +14,8 @@ function StarsRow({ n, size = 15 }: { n: number; size?: number }) {
   );
 }
 
-function fmt(date: string, lang: string) {
-  try { return new Date(date).toLocaleDateString(lang === "pt" ? "pt-BR" : "en-GB", { day: "numeric", month: "short", year: "numeric" }); }
+function fmt(date: string) {
+  try { return new Date(date).toLocaleDateString("pt-BR", { day: "numeric", month: "short", year: "numeric" }); }
   catch { return date; }
 }
 
@@ -24,7 +24,6 @@ export function ReviewSection({
 }: {
   providerSlug: string; providerName: string; reviews: Review[]; summary: ReviewSummary;
 }) {
-  const { t, lang } = useLang();
   const [openForm, setOpenForm] = useState(false);
   const [name, setName] = useState("");
   const [rating, setRating] = useState(0);
@@ -114,7 +113,7 @@ export function ReviewSection({
             <div key={r.id} className="rounded-2xl bg-white p-5" style={{ border: "1px solid var(--line)" }}>
               <div className="flex items-center justify-between">
                 <span className="font-semibold">{r.author_name}</span>
-                <span className="text-[12px]" style={{ color: "var(--ink-soft)" }}>{fmt(r.created_at, lang)}</span>
+                <span className="text-[12px]" style={{ color: "var(--ink-soft)" }}>{fmt(r.created_at)}</span>
               </div>
               <div className="mt-1.5 mb-2"><StarsRow n={r.rating} size={14} /></div>
               <p className="text-[15px] leading-relaxed" style={{ color: "var(--ink)" }}>{r.comment}</p>

@@ -8,10 +8,9 @@ import { IntroVideo } from "./intro-video";
 import { ListingCard } from "./listing-card";
 import { ReviewSection } from "./review-section";
 import { Star } from "lucide-react";
-import { useLang } from "./language-provider";
+import { t } from "@/lib/i18n";
 
 export function ProfileView({ p, related, reviews, summary }: { p: Provider; related: Provider[]; reviews: Review[]; summary: ReviewSummary }) {
-  const { t } = useLang();
   const firstName = p.name.split(" ")[0];
   const catLabel = t(`cats.${p.category_slug}`);
   return (

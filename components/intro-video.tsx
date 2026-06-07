@@ -2,10 +2,9 @@
 import { useState } from "react";
 import { Play, Pause } from "lucide-react";
 import type { Provider } from "@/lib/types";
-import { useLang } from "./language-provider";
+import { t } from "@/lib/i18n";
 
 export function IntroVideo({ p }: { p: Provider }) {
-  const { t } = useLang();
   const [playing, setPlaying] = useState(false);
   return (
     <div className="relative rounded-3xl overflow-hidden aspect-video" style={{ background: "var(--sea-deep)" }}>

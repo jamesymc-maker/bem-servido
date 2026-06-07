@@ -2,10 +2,9 @@
 import { Star } from "lucide-react";
 import type { Provider } from "@/lib/types";
 import { ListingCard } from "./listing-card";
-import { useLang } from "./language-provider";
+import { t } from "@/lib/i18n";
 
 export function FeaturedRail({ providers }: { providers: Provider[] }) {
-  const { t } = useLang();
   return (
     <section className="py-14" style={{ background: "var(--sand)" }}>
       <div className="max-w-6xl mx-auto px-5">

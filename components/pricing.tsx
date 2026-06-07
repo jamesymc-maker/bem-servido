@@ -1,14 +1,13 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Check } from "lucide-react";
+import { Check, Gift } from "lucide-react";
 import { PLANS } from "@/lib/plans";
 import { brl } from "@/lib/utils";
-import { useLang } from "./language-provider";
+import { t } from "@/lib/i18n";
 import { Testimonials } from "./testimonials";
 
 export function Pricing() {
-  const { t } = useLang();
   const router = useRouter();
   const [loading, setLoading] = useState<string | null>(null);
   const [msg, setMsg] = useState<string | null>(null);
@@ -40,7 +39,39 @@ export function Pricing() {
         </div>
       )}
 
-      <section className="max-w-5xl mx-auto px-5 py-10 grid md:grid-cols-3 gap-5 items-stretch">
+      <div className="max-w-3xl mx-auto px-5 -mt-2">
+        <div className="rise flex items-center justify-center gap-2.5 rounded-2xl px-5 py-4 text-center"
+          style={{ background: "var(--coral)", color: "#fff", boxShadow: "0 18px 40px -20px rgba(229,115,87,.7)" }}>
+          <Gift size={20} strokeWidth={2.5} className="shrink-0" />
+          <span className="font-semibold" style={{ fontSize: "clamp(.95rem,2.4vw,1.1rem)" }}>{t("pricing.freeBanner")}</span>
+        </div>
+      </div>
+
+      <section className="max-w-6xl mx-auto px-5 py-10 grid md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
+        <div className="rise rounded-3xl p-7 flex flex-col"
+          style={{ background: "transparent", color: "var(--ink)", border: "2px dashed var(--sea)" }}>
+          <span className="self-start text-[11px] font-semibold uppercase tracking-wide rounded-full px-2.5 py-1 mb-3"
+            style={{ background: "var(--sea)", color: "#fff" }}>{t("pricing.freePeriod")}</span>
+          <h3 className="serif text-2xl" style={{ fontWeight: 600 }}>{t("pricing.freeName")}</h3>
+          <p className="text-sm mt-1" style={{ color: "var(--ink-soft)" }}>{t("pricing.freeBlurb")}</p>
+          <div className="mt-5 mb-1">
+            <span className="serif text-4xl" style={{ fontWeight: 600 }}>{t("pricing.freePrice")}</span>
+            <span className="text-sm" style={{ color: "var(--ink-soft)" }}> {t("pricing.freePeriod")}</span>
+          </div>
+          <ul className="mt-5 flex flex-col gap-2.5 text-sm flex-1">
+            {(t("pricing.freeFeats") as string[]).map((f) => (
+              <li key={f} className="flex items-start gap-2">
+                <Check size={17} strokeWidth={2.5} className="mt-0.5 shrink-0" style={{ color: "var(--sea)" }} />
+                <span style={{ color: "var(--ink-soft)" }}>{f}</span>
+              </li>
+            ))}
+          </ul>
+          <button onClick={() => router.push("/criar-conta")}
+            className="mt-7 rounded-full py-3.5 font-semibold transition active:scale-95"
+            style={{ background: "transparent", color: "var(--sea)", border: "2px solid var(--sea)" }}>
+            {t("pricing.freeCta")}
+          </button>
+        </div>
         {PLANS.map((pl, i) => {
           const feats: string[] = t(`plans.${pl.key}.feats`);
           return (
@@ -61,6 +92,7 @@ export function Pricing() {
                 <span className="serif text-4xl" style={{ fontWeight: 600 }}>{brl(pl.price)}</span>
                 <span className="text-sm" style={{ color: pl.accent ? "rgba(255,255,255,.8)" : "var(--ink-soft)" }}> {t("pricing.perMonth")}</span>
               </div>
+              <p className="text-xs font-medium" style={{ color: pl.accent ? "var(--coral-soft)" : "var(--sea)" }}>{t("pricing.afterTrial")}</p>
               <ul className="mt-5 flex flex-col gap-2.5 text-sm flex-1">
                 {feats.map((f) => (
                   <li key={f} className="flex items-start gap-2">

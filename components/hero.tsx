@@ -2,14 +2,13 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { MapPin, Search } from "lucide-react";
-import { useLang } from "./language-provider";
+import { t } from "@/lib/i18n";
 
 const face = (g: string, n: number) => `https://randomuser.me/api/portraits/${g}/${n}.jpg`;
 const FACES = [face("women", 44), face("men", 45), face("women", 29), face("men", 64), face("women", 12)];
 const QUICK_SLUGS = ["private-chefs", "drivers", "babysitters", "boat-services"];
 
 export function Hero() {
-  const { t } = useLang();
   const router = useRouter();
   const [q, setQ] = useState("");
   const submit = () => router.push(`/servicos?q=${encodeURIComponent(q)}`);

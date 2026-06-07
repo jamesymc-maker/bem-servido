@@ -1,8 +1,7 @@
 "use client";
-import { useLang } from "./language-provider";
+import { t } from "@/lib/i18n";
 
 export function About() {
-  const { t } = useLang();
   const body: string[] = t("sobre.body");
   return (
     <section className="relative overflow-hidden">

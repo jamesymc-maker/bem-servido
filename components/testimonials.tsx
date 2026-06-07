@@ -1,7 +1,7 @@
 "use client";
 import { Star, Quote } from "lucide-react";
 import { CUSTOMER_TESTIMONIALS, PROVIDER_TESTIMONIALS, type Testimonial } from "@/lib/testimonials";
-import { useLang } from "./language-provider";
+import { t } from "@/lib/i18n";
 
 function Stars({ n }: { n: number }) {
   return (
@@ -45,7 +45,6 @@ function Card({ tItem, i, provider }: { tItem: Testimonial; i: number; provider:
 }
 
 export function Testimonials({ kind }: { kind: "customer" | "provider" }) {
-  const { t } = useLang();
   const provider = kind === "provider";
   const items = provider ? PROVIDER_TESTIMONIALS : CUSTOMER_TESTIMONIALS;
   const title = provider ? t("testimonials.providersTitle") : t("testimonials.customersTitle");

@@ -1,10 +1,9 @@
 "use client";
 import Link from "next/link";
 import type { Category } from "@/lib/types";
-import { useLang } from "./language-provider";
+import { t } from "@/lib/i18n";
 
 export function SeoHome({ categories }: { categories: Category[] }) {
-  const { t } = useLang();
   const body: string[] = t("seo.body");
   return (
     <section className="max-w-3xl mx-auto px-5 py-16">

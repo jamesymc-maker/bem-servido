@@ -2,15 +2,14 @@
 import Link from "next/link";
 import { CalendarDays, Clock } from "lucide-react";
 import type { Post } from "@/lib/blog";
-import { useLang } from "./language-provider";
+import { t } from "@/lib/i18n";
 
-function fmt(date: string, lang: string) {
-  try { return new Date(date).toLocaleDateString(lang === "pt" ? "pt-BR" : "en-GB", { day: "numeric", month: "long", year: "numeric" }); }
+function fmt(date: string) {
+  try { return new Date(date).toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" }); }
   catch { return date; }
 }
 
 export function BlogList({ posts }: { posts: Post[] }) {
-  const { t, lang } = useLang();
   return (
     <div className="max-w-5xl mx-auto px-5 py-12">
       <div className="mb-9">
@@ -27,7 +26,7 @@ export function BlogList({ posts }: { posts: Post[] }) {
               {p.cover && <img src={p.cover} alt={p.title} referrerPolicy="no-referrer" className="w-full aspect-[16/9] object-cover" />}
               <div className="p-5 flex flex-col gap-2 flex-1">
                 <div className="flex items-center gap-3 text-[12px]" style={{ color: "var(--ink-soft)" }}>
-                  <span className="inline-flex items-center gap-1"><CalendarDays size={13} /> {fmt(p.date, lang)}</span>
+                  <span className="inline-flex items-center gap-1"><CalendarDays size={13} /> {fmt(p.date)}</span>
                   <span className="inline-flex items-center gap-1"><Clock size={13} /> {p.minutes} {t("blog.min")}</span>
                 </div>
                 <h2 className="serif text-xl leading-snug" style={{ fontWeight: 600 }}>{p.title}</h2>

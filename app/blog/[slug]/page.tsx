@@ -26,7 +26,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = await getPost(slug);
   if (!post) notFound();
-  const related = (await getAllPosts(post.lang)).filter((p) => p.slug !== post.slug).slice(0, 3);
+  const related = (await getAllPosts()).filter((p) => p.slug !== post.slug).slice(0, 3);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -38,7 +38,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     author: { "@type": "Organization", name: post.author },
     publisher: { "@type": "Organization", name: "Bem Servido" },
     mainEntityOfPage: `${SITE}/blog/${post.slug}`,
-    inLanguage: post.lang === "pt" ? "pt-BR" : "en",
+    inLanguage: "pt-BR",
   };
 
   return (
