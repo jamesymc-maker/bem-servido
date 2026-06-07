@@ -21,6 +21,17 @@ export function Footer({ categories }: { categories: Category[] }) {
           <div className="inline-flex items-center gap-1.5 mt-4 text-sm">
             <MapPin size={14} color="var(--coral-soft)" /> Ilhabela · São Paulo · Brasil
           </div>
+          <div className="mt-4">
+            <a
+              href="https://wa.me/5512991353976"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-white transition hover:opacity-90"
+              style={{ background: "#25D366" }}
+            >
+              <MessageCircle size={16} /> Suporte via WhatsApp
+            </a>
+          </div>
         </div>
         <div>
           <div className="text-white font-semibold mb-3 text-sm">{t("footer.categories")}</div>
@@ -47,19 +58,8 @@ export function Footer({ categories }: { categories: Category[] }) {
           </ul>
         </div>
       </div>
-      <div className="flex flex-col items-center gap-3 py-6 px-5" style={{ borderTop: "1px solid rgba(255,255,255,.12)" }}>
-        <a
-          href="https://wa.me/5512991353976"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-white transition hover:opacity-90"
-          style={{ background: "#25D366" }}
-        >
-          <MessageCircle size={16} /> Suporte via WhatsApp
-        </a>
-        <div className="text-center text-xs" style={{ color: "rgba(255,255,255,.6)" }}>
-          Bem Servido · v1.0
-        </div>
+      <div className="text-center text-xs py-5" style={{ borderTop: "1px solid rgba(255,255,255,.12)" }}>
+        Bem Servido · v1.0
       </div>
     </footer>
   );
