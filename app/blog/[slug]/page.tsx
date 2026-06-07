@@ -1,0 +1,50 @@
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { BlogPost } from "@/components/blog-post";
+import { JsonLd } from "@/components/json-ld";
+import { getAllPosts, getPost } from "@/lib/blog";
+
+const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://bemservido.com.br";
+
+export async function generateStaticParams() {
+  return (await getAllPosts()).map((p) => ({ slug: p.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPost(slug);
+  if (!post) return { title: "Artigo não encontrado · Bem Servido" };
+  return {
+    title: `${post.title} · Bem Servido`,
+    description: post.description,
+    alternates: { canonical: `/blog/${post.slug}` },
+    openGraph: { type: "article", title: post.title, description: post.description, images: post.cover ? [post.cover] : [], publishedTime: post.date },
+  };
+}
+
+export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = await getPost(slug);
+  if (!post) notFound();
+  const related = (await getAllPosts(post.lang)).filter((p) => p.slug !== post.slug).slice(0, 3);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    image: post.cover || undefined,
+    datePublished: post.date,
+    author: { "@type": "Organization", name: post.author },
+    publisher: { "@type": "Organization", name: "Bem Servido" },
+    mainEntityOfPage: `${SITE}/blog/${post.slug}`,
+    inLanguage: post.lang === "pt" ? "pt-BR" : "en",
+  };
+
+  return (
+    <>
+      <JsonLd data={jsonLd} />
+      <BlogPost post={post} related={related} />
+    </>
+  );
+}
