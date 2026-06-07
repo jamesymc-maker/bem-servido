@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Anchor } from "lucide-react";
+import { loginWithPassword } from "@/lib/actions/auth";
 import { createClient } from "@/lib/supabase/client";
 
 type AccountType = "provider" | "advertiser";
@@ -45,15 +46,12 @@ export function AuthForm({
         setInfo("Conta criada! Confirme seu e-mail para continuar.");
         setBusy(false);
       } else {
-        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-        if (error) { setMsg("E-mail ou senha incorretos."); setBusy(false); return; }
-        let dest = next;
-        if (!redirectTo && !params.get("next")) {
-          const t = data.user?.user_metadata?.account_type;
-          dest = t === "advertiser" ? "/anunciante/painel" : "/painel";
+        try {
+          const result = await loginWithPassword({ email, password, next, accountType });
+          if (result.error) { setMsg(result.error); setBusy(false); }
+        } catch {
+          // redirect() from the server action — navigation in progress
         }
-        // Full navigation so the server receives the new session cookies.
-        window.location.assign(dest);
       }
     } catch {
       setMsg("Algo deu errado. Tente novamente."); setBusy(false);
