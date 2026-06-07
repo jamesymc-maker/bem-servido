@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Anchor, MapPin } from "lucide-react";
+import { Anchor, MapPin, MessageCircle } from "lucide-react";
 import type { Category } from "@/lib/types";
 import { t } from "@/lib/i18n";
 
@@ -47,8 +47,19 @@ export function Footer({ categories }: { categories: Category[] }) {
           </ul>
         </div>
       </div>
-      <div className="text-center text-xs py-5" style={{ borderTop: "1px solid rgba(255,255,255,.12)" }}>
-        Bem Servido · v1.0
+      <div className="flex flex-col items-center gap-3 py-6 px-5" style={{ borderTop: "1px solid rgba(255,255,255,.12)" }}>
+        <a
+          href="https://wa.me/5512991353976"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-white transition hover:opacity-90"
+          style={{ background: "#25D366" }}
+        >
+          <MessageCircle size={16} /> Suporte via WhatsApp
+        </a>
+        <div className="text-center text-xs" style={{ color: "rgba(255,255,255,.6)" }}>
+          Bem Servido · v1.0
+        </div>
       </div>
     </footer>
   );
