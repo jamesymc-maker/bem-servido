@@ -44,6 +44,7 @@ export function Footer({ categories }: { categories: Category[] }) {
           <ul className="flex flex-col gap-2 text-sm">
             <li><Link href="/precos" className="hover:text-white transition">{t("nav.advertise")}</Link></li>
             <li><Link href="/" className="hover:text-white transition">{t("nav.home")}</Link></li>
+            <li><Link href="/anunciar" className="hover:text-white transition">{t("nav.advertise_link")}</Link></li>
           </ul>
         </div>
       </div>

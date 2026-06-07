@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useState } from "react";
 import { Anchor, Menu, X } from "lucide-react";
 import { useLang } from "./language-provider";
-import { LanguageToggle } from "./language-toggle";
 import { LocationBar } from "./location-bar";
 
 export function Nav() {
@@ -13,7 +12,6 @@ export function Nav() {
     [t("nav.categories"), "/servicos"],
     [t("nav.blog"), "/blog"],
     [t("nav.about"), "/sobre"],
-    [t("nav.advertise_link"), "/anunciar"],
   ];
   const mobileLinks: [string, string][] = [[t("nav.home"), "/"], ...links];
   return (
@@ -33,12 +31,11 @@ export function Nav() {
               <Link key={href} href={href} className="underline-grow pb-0.5" style={{ color: "var(--ink-soft)" }}>{label}</Link>
             ))}
             <Link href="/entrar" className="underline-grow pb-0.5" style={{ color: "var(--ink-soft)" }}>{t("nav.login")}</Link>
-            <LanguageToggle />
+            <Link href="/entrar" className="text-sm font-medium underline-grow pb-0.5" style={{ color: "var(--ink-soft)" }}>{t("nav.login")}</Link>
             <Link href="/precos" className="rounded-full px-4 py-2 text-white text-sm font-semibold transition active:scale-95"
               style={{ background: "var(--ink)" }}>{t("nav.advertise")}</Link>
           </nav>
           <div className="flex items-center gap-2.5 md:hidden">
-            <LanguageToggle />
             <button onClick={() => setOpen((o) => !o)} aria-label={t("nav.menu")} className="p-1">{open ? <X /> : <Menu />}</button>
           </div>
         </div>
