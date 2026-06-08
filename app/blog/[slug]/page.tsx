@@ -3,8 +3,7 @@ import type { Metadata } from "next";
 import { BlogPost } from "@/components/blog-post";
 import { JsonLd } from "@/components/json-ld";
 import { getAllPosts, getPost } from "@/lib/blog";
-
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://bemservido.com.br";
+import { openGraphMetadata, SITE_URL } from "@/lib/site";
 
 export async function generateStaticParams() {
   return (await getAllPosts()).map((p) => ({ slug: p.slug }));
@@ -18,7 +17,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${post.title} · Bem Servido`,
     description: post.description,
     alternates: { canonical: `/blog/${post.slug}` },
-    openGraph: { type: "article", title: post.title, description: post.description, images: post.cover ? [post.cover] : [], publishedTime: post.date },
+    openGraph: openGraphMetadata({
+      type: "article",
+      title: post.title,
+      description: post.description,
+      url: `/blog/${post.slug}`,
+      images: post.cover ? [{ url: post.cover, width: 1200, height: 630, alt: post.title }] : undefined,
+    }),
   };
 }
 
@@ -37,7 +42,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     datePublished: post.date,
     author: { "@type": "Organization", name: post.author },
     publisher: { "@type": "Organization", name: "Bem Servido" },
-    mainEntityOfPage: `${SITE}/blog/${post.slug}`,
+    mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
     inLanguage: "pt-BR",
   };
 

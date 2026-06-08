@@ -3,8 +3,7 @@ import type { Metadata } from "next";
 import { ProfileView } from "@/components/profile-view";
 import { JsonLd } from "@/components/json-ld";
 import { getProvider, getProviders, getReviews, summarise } from "@/lib/data";
-
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://bemservido.com.br";
+import { openGraphMetadata, SITE_URL } from "@/lib/site";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -14,7 +13,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${p.name} · ${p.category_label} em Ilhabela · Bem Servido`,
     description: p.short_desc,
     alternates: { canonical: `/profissional/${p.slug}` },
-    openGraph: { title: `${p.name} · ${p.category_label}`, description: p.short_desc, images: p.photo_url ? [p.photo_url] : [] },
+    openGraph: openGraphMetadata({
+      title: `${p.name} · ${p.category_label}`,
+      description: p.short_desc,
+      url: `/profissional/${p.slug}`,
+      images: p.photo_url
+        ? [{ url: p.photo_url, width: 1200, height: 630, alt: `${p.name} · ${p.category_label} em Ilhabela` }]
+        : undefined,
+    }),
   };
 }
 
@@ -32,7 +38,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ slug: 
     name: p.name,
     image: p.photo_url || undefined,
     description: p.short_desc,
-    url: `${SITE}/profissional/${p.slug}`,
+    url: `${SITE_URL}/profissional/${p.slug}`,
     knowsLanguage: p.languages,
     areaServed: { "@type": "Place", name: `${p.service_area}, Ilhabela, Brasil` },
     address: { "@type": "PostalAddress", addressLocality: "Ilhabela", addressRegion: "SP", addressCountry: "BR" },
