@@ -1,4 +1,5 @@
 import { getProfile } from "@/lib/auth";
+import { ACTIVE_LOCATION_NAME } from "@/lib/locations";
 
 export default async function AdminSettings() {
   const profile = await getProfile();
@@ -7,7 +8,7 @@ export default async function AdminSettings() {
       <h1 className="serif text-2xl mb-5" style={{ fontWeight: 600 }}>Ajustes</h1>
       <div className="rounded-2xl bg-white p-5 flex flex-col gap-3 text-sm" style={{ border: "1px solid var(--line)" }}>
         <div className="flex justify-between"><span style={{ color: "var(--ink-soft)" }}>Conta admin</span><span className="font-medium">{profile?.email}</span></div>
-        <div className="flex justify-between"><span style={{ color: "var(--ink-soft)" }}>Local ativo</span><span className="font-medium">Ilhabela</span></div>
+        <div className="flex justify-between"><span style={{ color: "var(--ink-soft)" }}>Local ativo</span><span className="font-medium">{ACTIVE_LOCATION_NAME}</span></div>
       </div>
       <div className="rounded-2xl p-5 mt-4 text-sm" style={{ background: "var(--sand)", color: "var(--ink-soft)" }}>
         <p className="font-semibold mb-1" style={{ color: "var(--ink)" }}>Tornar alguém admin</p>

@@ -7,7 +7,7 @@ export const DICT = {
   nav: { home: "Início", categories: "Categorias", forProviders: "Para profissionais", advertise: "Anunciar serviço", findPros: "Buscar profissionais", blog: "Blog", about: "Sobre", advertise_link: "Anunciar", login: "Entrar", menu: "Menu" },
   loc: { choose: "Escolha a região", soon: "em breve", current: "Você está vendo" },
   hero: {
-    badge: "Ilhabela · São Paulo, Brasil",
+    badge: "{loc} · São Paulo, Brasil",
     titleA: "As pessoas que", titleB: "tornam {loc}", accent: "mais fácil.",
     sub: "Chefs, motoristas, babás, capitães de barco e mais. Profissionais locais de confiança, gente de verdade com rosto e nome.",
     placeholder: "Chef, motorista, babá, barco...", search: "Buscar",
@@ -87,7 +87,7 @@ export const DICT = {
     ],
   },
   blog: {
-    title: "Blog", sub: "Dicas e guias para aproveitar Ilhabela ao máximo.",
+    title: "Blog", sub: "Dicas e guias para aproveitar {loc} ao máximo.",
     readMore: "Ler mais", by: "por", min: "min de leitura", back: "Voltar ao blog",
     published: "Publicado em", empty: "Em breve, novos artigos.", related: "Veja também",
   },

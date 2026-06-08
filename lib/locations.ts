@@ -1,4 +1,4 @@
-// Location model. Today only Ilhabela is active and is always the default.
+// Location model. Ilhabela and Ubatuba are active; Ilhabela is the default.
 // Future regions are listed as "coming soon" so the selector signals expansion.
 export interface Location {
   slug: string;
@@ -11,7 +11,7 @@ export interface Location {
 export const LOCATIONS: Location[] = [
   { slug: "ilhabela", name: "Ilhabela", region: "São Paulo", country: "Brasil", active: true },
   { slug: "maresias", name: "Maresias", region: "São Paulo", country: "Brasil", active: false },
-  { slug: "ubatuba", name: "Ubatuba", region: "São Paulo", country: "Brasil", active: false },
+  { slug: "ubatuba", name: "Ubatuba", region: "São Paulo", country: "Brasil", active: true },
   { slug: "buzios", name: "Búzios", region: "Rio de Janeiro", country: "Brasil", active: false },
 ];
 
