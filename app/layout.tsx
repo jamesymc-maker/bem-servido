@@ -6,20 +6,30 @@ import { Footer } from "@/components/footer";
 import { JsonLd } from "@/components/json-ld";
 import { Analytics } from "@vercel/analytics/next";
 import { getCategories } from "@/lib/data";
+import { DEFAULT_OG_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL, openGraphMetadata } from "@/lib/site";
 
 const fraunces = Fraunces({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-fraunces" });
 const hanken = Hanken_Grotesk({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-hanken" });
 
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://bemservido.com.br";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE),
-  title: { default: "Bem Servido · Serviços locais de confiança em Ilhabela", template: "%s" },
-  description: "Chefs, motoristas, babás, capitães de barco e mais. Profissionais locais de confiança em Ilhabela.",
-  openGraph: {
-    title: "Bem Servido · Ilhabela",
+  metadataBase: new URL(SITE_URL),
+  title: { default: SITE_TITLE, template: "%s" },
+  description: SITE_DESCRIPTION,
+  alternates: { canonical: "/" },
+  openGraph: openGraphMetadata({
+    title: SITE_TITLE,
     description: "Profissionais locais de confiança em Ilhabela. Gente de verdade, com rosto e nome.",
-    type: "website", locale: "pt_BR", siteName: "Bem Servido",
+    url: "/",
+  }),
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE.url],
+  },
+  verification: {
+    // Replace this with James's Google Search Console verification code from search.google.com/search-console.
+    google: "replace-with-google-search-console-verification-code",
   },
 };
 
@@ -29,20 +39,20 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const orgJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Bem Servido",
-    url: SITE,
+    name: SITE_NAME,
+    url: SITE_URL,
     description: "Diretório de profissionais locais de confiança em Ilhabela, Brasil.",
     areaServed: { "@type": "Place", name: "Ilhabela, São Paulo, Brasil" },
   };
   const siteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Bem Servido",
-    url: SITE,
+    name: SITE_NAME,
+    url: SITE_URL,
     inLanguage: "pt-BR",
     potentialAction: {
       "@type": "SearchAction",
-      target: `${SITE}/servicos?q={query}`,
+      target: `${SITE_URL}/servicos?q={query}`,
       "query-input": "required name=query",
     },
   };

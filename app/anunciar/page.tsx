@@ -8,12 +8,17 @@ import { AD_PLANS } from "@/lib/ad-plans";
 import { brl } from "@/lib/utils";
 import { getProviders, getCategories } from "@/lib/data";
 import { getAllPosts } from "@/lib/blog";
+import { openGraphMetadata } from "@/lib/site";
+
+const title = "Anuncie no Bem Servido · Alcance turistas em Ilhabela";
+const description =
+  "Leve a sua marca até os turistas, donos de casa de temporada e visitantes de Ilhabela no momento em que planeiam a estadia. Planos a partir de R$149/mês.";
 
 export const metadata: Metadata = {
-  title: "Anuncie no Bem Servido · Alcance turistas em Ilhabela",
-  description:
-    "Leve a sua marca até os turistas, donos de casa de temporada e visitantes de Ilhabela no momento em que planeiam a estadia. Planos a partir de R$149/mês.",
+  title,
+  description,
   alternates: { canonical: "/anunciar" },
+  openGraph: openGraphMetadata({ title, description, url: "/anunciar" }),
 };
 
 const AUDIENCE = [

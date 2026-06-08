@@ -1,23 +1,23 @@
 import type { MetadataRoute } from "next";
 import { getCategories, getProviders } from "@/lib/data";
 import { getAllPosts } from "@/lib/blog";
-
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://bemservido.com.br";
+import { SITE_URL } from "@/lib/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [categories, providers] = await Promise.all([getCategories(), getProviders()]);
   const posts = await getAllPosts();
 
   const staticUrls: MetadataRoute.Sitemap = [
-    { url: `${SITE}/`, changeFrequency: "daily", priority: 1 },
-    { url: `${SITE}/servicos`, changeFrequency: "daily", priority: 0.9 },
-    { url: `${SITE}/precos`, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${SITE}/sobre`, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${SITE}/blog`, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${SITE_URL}/`, changeFrequency: "daily", priority: 1 },
+    { url: `${SITE_URL}/servicos`, changeFrequency: "daily", priority: 0.9 },
+    { url: `${SITE_URL}/precos`, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${SITE_URL}/sobre`, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${SITE_URL}/anunciar`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${SITE_URL}/blog`, changeFrequency: "weekly", priority: 0.7 },
   ];
-  const catUrls = categories.map((c) => ({ url: `${SITE}/servicos/${c.slug}`, changeFrequency: "weekly" as const, priority: 0.8 }));
-  const provUrls = providers.map((p) => ({ url: `${SITE}/profissional/${p.slug}`, changeFrequency: "weekly" as const, priority: 0.7 }));
-  const postUrls = posts.map((p) => ({ url: `${SITE}/blog/${p.slug}`, lastModified: p.date || undefined, changeFrequency: "monthly" as const, priority: 0.6 }));
+  const catUrls = categories.map((c) => ({ url: `${SITE_URL}/servicos/${c.slug}`, changeFrequency: "weekly" as const, priority: 0.8 }));
+  const provUrls = providers.map((p) => ({ url: `${SITE_URL}/profissional/${p.slug}`, changeFrequency: "weekly" as const, priority: 0.7 }));
+  const postUrls = posts.map((p) => ({ url: `${SITE_URL}/blog/${p.slug}`, lastModified: p.date || undefined, changeFrequency: "monthly" as const, priority: 0.6 }));
 
   return [...staticUrls, ...catUrls, ...provUrls, ...postUrls];
 }
