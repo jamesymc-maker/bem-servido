@@ -19,7 +19,17 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Bem Servido · Ilhabela",
     description: "Profissionais locais de confiança em Ilhabela. Gente de verdade, com rosto e nome.",
-    type: "website", locale: "pt_BR", siteName: "Bem Servido",
+    type: "website", locale: "pt_BR", siteName: "Bem Servido", url: SITE,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bem Servido · Ilhabela",
+    description: "Profissionais locais de confiança em Ilhabela. Gente de verdade, com rosto e nome.",
+  },
+  verification: {
+    // TODO(James): replace with your verification code from search.google.com/search-console
+    // (Settings → Ownership verification → HTML tag → copy the content="..." value)
+    google: "REPLACE_WITH_GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE",
   },
 };
 
@@ -28,11 +38,20 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   const orgJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "LocalBusiness",
+    "@id": `${SITE}/#business`,
     name: "Bem Servido",
     url: SITE,
     description: "Diretório de profissionais locais de confiança em Ilhabela, Brasil.",
+    image: `${SITE}/opengraph-image`,
     areaServed: { "@type": "Place", name: "Ilhabela, São Paulo, Brasil" },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Ilhabela",
+      addressRegion: "SP",
+      addressCountry: "BR",
+    },
+    priceRange: "R$",
   };
   const siteJsonLd = {
     "@context": "https://schema.org",
