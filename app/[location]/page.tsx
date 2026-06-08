@@ -39,9 +39,9 @@ export default async function HomePage({
   return (
     <>
       <Hero />
+      <FeaturedRail providers={featured} />
       <CategoryGrid categories={categories} />
       <AdSlot labelKey="home" locationSlug={location} />
-      <FeaturedRail providers={featured} />
       <Testimonials kind="customer" />
       <SeoHome categories={categories} />
     </>

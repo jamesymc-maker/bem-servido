@@ -16,8 +16,8 @@ export const DICT = {
     quick: ["Chef", "Motorista", "Babá", "Barco"],
     statLabel: "profissionais locais",
   },
-  grid: { heading: "O que você precisa?", seeAll: "Ver tudo" },
-  featured: { tag: "Em destaque", heading: "Profissionais premium" },
+  grid: { heading: "O que você precisa em {loc}", seeAll: "Ver tudo" },
+  featured: { tag: "Em destaque", heading: "Profissionais premium em {loc}" },
   ads: { label: "Publicidade", home: "Banner da página inicial", category: "Banner da categoria" },
   card: { from: "A partir de", halfDay: "/ meio dia" },
   results: {
