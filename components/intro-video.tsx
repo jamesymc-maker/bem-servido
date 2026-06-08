@@ -2,10 +2,11 @@
 import { useState } from "react";
 import { Play, Pause } from "lucide-react";
 import type { Provider } from "@/lib/types";
-import { t } from "@/lib/i18n";
+import { useT } from "./location-provider";
 
 export function IntroVideo({ p }: { p: Provider }) {
   const [playing, setPlaying] = useState(false);
+  const t = useT();
   return (
     <div className="relative rounded-3xl overflow-hidden aspect-video" style={{ background: "var(--sea-deep)" }}>
       <img src={p.photo_url} alt="" referrerPolicy="no-referrer" className="absolute inset-0 w-full h-full object-cover"

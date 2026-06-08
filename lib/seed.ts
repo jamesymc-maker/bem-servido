@@ -19,7 +19,7 @@ export const SEED_CATEGORIES: Category[] = [
 const face = (g: string, n: number) => `https://randomuser.me/api/portraits/${g}/${n}.jpg`;
 const gal = (seed: string) => `https://picsum.photos/seed/ilha-${seed}/800/600`;
 
-type Raw = Omit<Provider, "category_label" | "category_icon"> & { category_slug: string };
+type Raw = Omit<Provider, "category_label" | "category_icon" | "location_slug"> & { category_slug: string };
 
 const RAW: Raw[] = [
   { slug:"maria-santos", name:"Maria Santos", category_slug:"private-chefs", tier:"premium", verified:true,
@@ -115,4 +115,6 @@ export const SEED_PROVIDERS: Provider[] = RAW.map((r) => ({
   id: r.slug,
   category_label: CAT_BY_SLUG[r.category_slug]?.label ?? r.category_slug,
   category_icon: CAT_BY_SLUG[r.category_slug]?.icon ?? "concierge",
+  // Seed providers are all Ilhabela, so they only surface on /ilhabela.
+  location_slug: "ilhabela",
 }));

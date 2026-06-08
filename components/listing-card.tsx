@@ -4,12 +4,14 @@ import { Globe, BadgeCheck } from "lucide-react";
 import type { Provider } from "@/lib/types";
 import { brl } from "@/lib/utils";
 import { TierBadge, WhatsAppBtn, CatIcon } from "./ui";
-import { t } from "@/lib/i18n";
+import { useActiveLocation, useT } from "./location-provider";
 
 export function ListingCard({ p, i = 0 }: { p: Provider; i?: number }) {
   const router = useRouter();
+  const t = useT();
+  const { slug } = useActiveLocation();
   return (
-    <article onClick={() => router.push(`/profissional/${p.slug}`)}
+    <article onClick={() => router.push(`/${slug}/profissional/${p.slug}`)}
       className="lift rise cursor-pointer rounded-[26px] overflow-hidden bg-white flex flex-col"
       style={{ border: "1px solid var(--line)", animationDelay: `${i * 60}ms` }}>
       <div className="relative px-6 pt-7 pb-5 flex flex-col items-center text-center"

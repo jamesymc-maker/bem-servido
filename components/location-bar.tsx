@@ -1,29 +1,36 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { MapPin, ChevronDown, Check, Lock } from "lucide-react";
-import { LOCATIONS, DEFAULT_LOCATION, getLocation } from "@/lib/locations";
-import { t } from "@/lib/i18n";
+import { LOCATIONS, isActiveLocationSlug } from "@/lib/locations";
+import { useActiveLocation, useT } from "./location-provider";
 
-// Location selector. Only Ilhabela is active for now and is always the default.
+// Location selector. The active location is driven entirely by the URL; picking
+// a region swaps the location segment of the current path and navigates there.
 export function LocationBar() {
-  const [slug, setSlug] = useState(DEFAULT_LOCATION);
+  const pathname = usePathname();
+  const router = useRouter();
+  const current = useActiveLocation();
+  const t = useT();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const current = getLocation(slug);
 
-  useEffect(() => {
-    const m = document.cookie.match(/(?:^|; )location=([^;]+)/);
-    if (m) setSlug(getLocation(decodeURIComponent(m[1])).slug);
-  }, []);
   useEffect(() => {
     const onClick = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false); };
     document.addEventListener("mousedown", onClick);
     return () => document.removeEventListener("mousedown", onClick);
   }, []);
 
-  const pick = (s: string) => {
-    setSlug(s);
-    document.cookie = `location=${s};path=/;max-age=31536000;samesite=lax`;
+  const pick = (slug: string) => {
+    const parts = (pathname ?? "/").split("/");
+    // parts[1] is the first path segment. If it's already a location, replace
+    // it (keeping the rest of the path); otherwise go to the location home.
+    if (isActiveLocationSlug(parts[1])) {
+      parts[1] = slug;
+      router.push(parts.join("/") || `/${slug}`);
+    } else {
+      router.push(`/${slug}`);
+    }
     setOpen(false);
   };
 
@@ -53,7 +60,7 @@ export function LocationBar() {
                     <span className="text-[12px]" style={{ color: "var(--ink-soft)" }}>{l.region}</span>
                   </span>
                   {l.active
-                    ? (l.slug === slug && <Check size={15} style={{ color: "var(--sea)" }} />)
+                    ? (l.slug === current.slug && <Check size={15} style={{ color: "var(--sea)" }} />)
                     : <span className="text-[11px] rounded-full px-2 py-0.5" style={{ background: "var(--sand-deep)", color: "var(--ink-soft)" }}>{t("loc.soon")}</span>}
                 </button>
               ))}

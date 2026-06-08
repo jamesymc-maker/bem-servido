@@ -8,28 +8,22 @@ import { AD_PLANS } from "@/lib/ad-plans";
 import { brl } from "@/lib/utils";
 import { getProviders, getCategories } from "@/lib/data";
 import { getAllPosts } from "@/lib/blog";
-import { ACTIVE_LOCATION_NAME } from "@/lib/locations";
+import { DEFAULT_LOCATION, getActiveLocationBySlug } from "@/lib/locations";
 
-export const metadata: Metadata = {
-  title: `Anuncie no Bem Servido · Alcance turistas em ${ACTIVE_LOCATION_NAME}`,
-  description:
-    `Leve a sua marca até os turistas, donos de casa de temporada e visitantes de ${ACTIVE_LOCATION_NAME} no momento em que planeiam a estadia. Planos a partir de R$149/mês.`,
-  alternates: { canonical: "/anunciar" },
-};
-
-const AUDIENCE = [
-  { icon: Users, title: "Turistas planeando a viagem", desc: "Visitantes que pesquisam serviços antes mesmo de chegar à ilha." },
-  { icon: Home, title: "Donos de casa de temporada", desc: "Proprietários que precisam de serviços de confiança o ano todo." },
-  { icon: Anchor, title: "Hóspedes e veranistas", desc: `Famílias e grupos que querem aproveitar ${ACTIVE_LOCATION_NAME} sem preocupações.` },
-];
-
-const FAQ = [
-  { q: "Quem vai ver o meu anúncio?", a: `Turistas, donos de casas de temporada e veranistas que usam o Bem Servido para encontrar serviços em ${ACTIVE_LOCATION_NAME} — exatamente o público que está prestes a gastar na ilha.` },
-  { q: "Onde os anúncios aparecem?", a: "Depende do plano: banners na página inicial, nas páginas de categoria e nos perfis dos profissionais, além do logótipo no rodapé e posts patrocinados no blog para os planos superiores." },
-  { q: "Como envio a minha arte?", a: "Após criar a conta, no painel do anunciante você envia a imagem do banner (formato 5:1, ex. 1200×240px). A nossa equipa revê e ativa o anúncio." },
-  { q: "Posso cancelar quando quiser?", a: "Sim. A assinatura é mensal e pode ser cancelada a qualquer momento, sem multa." },
-  { q: "Preciso de uma agência para criar o anúncio?", a: "Não. Basta uma imagem horizontal e o link de destino. Se precisar, damos as dimensões recomendadas e dicas no painel." },
-];
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ location: string }>;
+}): Promise<Metadata> {
+  const { location } = await params;
+  const loc = getActiveLocationBySlug(location) ?? getActiveLocationBySlug(DEFAULT_LOCATION)!;
+  return {
+    title: `Anuncie no Bem Servido · Alcance turistas em ${loc.name}`,
+    description:
+      `Leve a sua marca até os turistas, donos de casa de temporada e visitantes de ${loc.name} no momento em que planeiam a estadia. Planos a partir de R$149/mês.`,
+    alternates: { canonical: `/${loc.slug}/anunciar` },
+  };
+}
 
 function BrowserFrame({ children, label }: { children: React.ReactNode; label: string }) {
   return (
@@ -62,21 +56,41 @@ const skel = (w: string, h = 8) => (
   <div className="rounded-full" style={{ width: w, height: h, background: "rgba(0,0,0,.07)" }} />
 );
 
-export default async function AnunciarPage() {
+export default async function AnunciarPage({
+  params,
+}: {
+  params: Promise<{ location: string }>;
+}) {
+  const { location } = await params;
+  const loc = getActiveLocationBySlug(location) ?? getActiveLocationBySlug(DEFAULT_LOCATION)!;
   const [providers, categories, posts] = await Promise.all([
-    getProviders(),
+    getProviders(loc.slug),
     getCategories(),
-    getAllPosts(),
+    getAllPosts(loc.slug),
   ]);
   const providersCount = providers.length;
   const categoriesCount = categories.length;
   const samplePost = posts[0] ?? null;
 
+  const AUDIENCE = [
+    { icon: Users, title: "Turistas planeando a viagem", desc: "Visitantes que pesquisam serviços antes mesmo de chegar à ilha." },
+    { icon: Home, title: "Donos de casa de temporada", desc: "Proprietários que precisam de serviços de confiança o ano todo." },
+    { icon: Anchor, title: "Hóspedes e veranistas", desc: `Famílias e grupos que querem aproveitar ${loc.name} sem preocupações.` },
+  ];
+
+  const FAQ = [
+    { q: "Quem vai ver o meu anúncio?", a: `Turistas, donos de casas de temporada e veranistas que usam o Bem Servido para encontrar serviços em ${loc.name} — exatamente o público que está prestes a gastar na ilha.` },
+    { q: "Onde os anúncios aparecem?", a: "Depende do plano: banners na página inicial, nas páginas de categoria e nos perfis dos profissionais, além do logótipo no rodapé e posts patrocinados no blog para os planos superiores." },
+    { q: "Como envio a minha arte?", a: "Após criar a conta, no painel do anunciante você envia a imagem do banner (formato 5:1, ex. 1200×240px). A nossa equipa revê e ativa o anúncio." },
+    { q: "Posso cancelar quando quiser?", a: "Sim. A assinatura é mensal e pode ser cancelada a qualquer momento, sem multa." },
+    { q: "Preciso de uma agência para criar o anúncio?", a: "Não. Basta uma imagem horizontal e o link de destino. Se precisar, damos as dimensões recomendadas e dicas no painel." },
+  ];
+
   const stats: [string, string][] = [
     ["10.000+", "visitas por mês"],
     [`${providersCount}+`, "profissionais ativos"],
     [`${categoriesCount}`, "categorias de serviço"],
-    ["100%", `foco em ${ACTIVE_LOCATION_NAME}`],
+    ["100%", `foco em ${loc.name}`],
   ];
 
   return (
@@ -88,10 +102,10 @@ export default async function AnunciarPage() {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[13px] font-medium mb-6"
               style={{ background: "#fff", border: "1px solid var(--line)", color: "var(--sea)" }}>
-              <MapPin size={14} /> Para empresas · {ACTIVE_LOCATION_NAME}
+              <MapPin size={14} /> Para empresas · {loc.name}
             </div>
             <h1 className="serif leading-[1.04] tracking-tight" style={{ fontSize: "clamp(2.4rem,5.5vw,4rem)", fontWeight: 600 }}>
-              Seja visto por quem<br /><span style={{ color: "var(--coral)" }}>chega em {ACTIVE_LOCATION_NAME}</span>
+              Seja visto por quem<br /><span style={{ color: "var(--coral)" }}>chega em {loc.name}</span>
             </h1>
             <p className="mt-6 text-lg max-w-md" style={{ color: "var(--ink-soft)" }}>
               O Bem Servido conecta turistas, donos de casa de temporada e hóspedes aos melhores serviços da ilha. Coloque a sua marca diante deles no momento em que planeiam a estadia.
@@ -144,7 +158,7 @@ export default async function AnunciarPage() {
         <div className="text-center max-w-2xl mx-auto mb-10">
           <h2 className="serif text-3xl" style={{ fontWeight: 600 }}>Um público que está prestes a gastar na ilha</h2>
           <p className="mt-3 text-lg" style={{ color: "var(--ink-soft)" }}>
-            Quem usa o Bem Servido não está só a navegar — está a planear uma estadia em {ACTIVE_LOCATION_NAME} e a procurar em quem confiar.
+            Quem usa o Bem Servido não está só a navegar — está a planear uma estadia em {loc.name} e a procurar em quem confiar.
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-5">
@@ -298,7 +312,7 @@ export default async function AnunciarPage() {
                 <span>Leitura de 4 min</span>
               </div>
               <h3 className="serif text-2xl leading-snug mb-2" style={{ fontWeight: 600 }}>
-                {samplePost?.title || `Como aproveitar ${ACTIVE_LOCATION_NAME} com os serviços certos`}
+                {samplePost?.title || `Como aproveitar ${loc.name} com os serviços certos`}
               </h3>
               <p className="text-sm" style={{ color: "var(--ink-soft)" }}>
                 {samplePost?.description || "Um exemplo de conteúdo patrocinado que apresenta a sua empresa aos visitantes enquanto planeiam a viagem."}
@@ -315,7 +329,7 @@ export default async function AnunciarPage() {
       <section className="max-w-5xl mx-auto px-5 py-16">
         <div className="rounded-3xl p-8 md:p-10" style={{ background: "var(--sea)" }}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            {stats.map(([n, l], i) => (
+            {stats.map(([n, l]) => (
               <div key={l}>
                 <div className="serif text-white" style={{ fontSize: "clamp(2rem,4vw,2.8rem)", fontWeight: 600 }}>{n}</div>
                 <div className="text-sm mt-1" style={{ color: "rgba(255,255,255,.75)" }}>{l}</div>
@@ -353,7 +367,7 @@ export default async function AnunciarPage() {
         <div className="absolute inset-0" style={{ background: "radial-gradient(120% 100% at 50% -20%, rgba(14,91,78,.18), transparent 60%), var(--cream)" }} />
         <div className="relative max-w-3xl mx-auto px-5 py-16 text-center">
           <h2 className="serif" style={{ fontSize: "clamp(2rem,4.5vw,3rem)", fontWeight: 600 }}>
-            Pronto para aparecer em {ACTIVE_LOCATION_NAME}?
+            Pronto para aparecer em {loc.name}?
           </h2>
           <p className="mt-4 text-lg max-w-xl mx-auto" style={{ color: "var(--ink-soft)" }}>
             Crie a conta da sua empresa, escolha o plano e a nossa equipa ativa o seu anúncio após uma revisão rápida.

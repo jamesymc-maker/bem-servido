@@ -4,9 +4,10 @@ import "./globals.css";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { JsonLd } from "@/components/json-ld";
+import { LocationProvider } from "@/components/location-provider";
 import { Analytics } from "@vercel/analytics/next";
 import { getCategories } from "@/lib/data";
-import { ACTIVE_LOCATION_NAME, getActiveLocation } from "@/lib/locations";
+import { ACTIVE_LOCATION_NAME, DEFAULT_LOCATION } from "@/lib/locations";
 
 const fraunces = Fraunces({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-fraunces" });
 const hanken = Hanken_Grotesk({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-hanken" });
@@ -36,25 +37,9 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const categories = await getCategories();
-  const loc = getActiveLocation();
 
-  const orgJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": `${SITE}/#business`,
-    name: "Bem Servido",
-    url: SITE,
-    description: `Diretório de profissionais locais de confiança em ${loc.name}, ${loc.country}.`,
-    image: `${SITE}/opengraph-image`,
-    areaServed: { "@type": "Place", name: `${loc.name}, ${loc.region}, ${loc.country}` },
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: loc.name,
-      addressRegion: loc.region,
-      addressCountry: "BR",
-    },
-    priceRange: "R$",
-  };
+  // Generic, location-agnostic site schema. The per-location LocalBusiness
+  // schema lives in app/[location]/layout.tsx.
   const siteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -63,7 +48,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     inLanguage: "pt-BR",
     potentialAction: {
       "@type": "SearchAction",
-      target: `${SITE}/servicos?q={query}`,
+      target: `${SITE}/${DEFAULT_LOCATION}/servicos?q={query}`,
       "query-input": "required name=query",
     },
   };
@@ -71,12 +56,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="pt-BR" className={`${fraunces.variable} ${hanken.variable}`}>
       <body>
-        <JsonLd data={orgJsonLd} />
         <JsonLd data={siteJsonLd} />
         <div className="grain" />
-        <Nav />
-        <main>{children}</main>
-        <Footer categories={categories} />
+        <LocationProvider>
+          <Nav />
+          <main>{children}</main>
+          <Footer categories={categories} />
+        </LocationProvider>
         <Analytics />
       </body>
     </html>

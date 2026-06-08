@@ -4,11 +4,12 @@ import { useRouter } from "next/navigation";
 import { Check, Gift } from "lucide-react";
 import { PLANS } from "@/lib/plans";
 import { brl } from "@/lib/utils";
-import { t } from "@/lib/i18n";
+import { useT } from "./location-provider";
 import { Testimonials } from "./testimonials";
 
 export function Pricing() {
   const router = useRouter();
+  const t = useT();
   const [loading, setLoading] = useState<string | null>(null);
   const [msg, setMsg] = useState<string | null>(null);
 

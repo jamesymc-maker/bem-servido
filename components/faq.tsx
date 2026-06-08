@@ -1,9 +1,10 @@
 "use client";
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
-import { t } from "@/lib/i18n";
+import { useT } from "./location-provider";
 
 export function Faq() {
+  const t = useT();
   const items: { q: string; a: string }[] = t("faq.items");
   const [open, setOpen] = useState<number | null>(0);
   return (

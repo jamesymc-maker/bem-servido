@@ -15,6 +15,7 @@ export interface Provider {
   category_slug: string;
   category_label: string;
   category_icon: string;
+  location_slug: string | null;
   tier: Tier;
   verified: boolean;
   photo_url: string;

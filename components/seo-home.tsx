@@ -1,9 +1,11 @@
 "use client";
 import Link from "next/link";
 import type { Category } from "@/lib/types";
-import { t } from "@/lib/i18n";
+import { useActiveLocation, useT } from "./location-provider";
 
 export function SeoHome({ categories }: { categories: Category[] }) {
+  const t = useT();
+  const { slug } = useActiveLocation();
   const body: string[] = t("seo.body");
   return (
     <section className="max-w-3xl mx-auto px-5 py-16">
@@ -15,7 +17,7 @@ export function SeoHome({ categories }: { categories: Category[] }) {
         <div className="text-[11px] uppercase tracking-wide mb-3" style={{ color: "var(--ink-soft)" }}>{t("seo.popular")}</div>
         <div className="flex flex-wrap gap-2">
           {categories.map((c) => (
-            <Link key={c.slug} href={`/servicos/${c.slug}`}
+            <Link key={c.slug} href={`/${slug}/servicos/${c.slug}`}
               className="rounded-full px-3.5 py-1.5 text-sm font-medium transition hover:bg-white"
               style={{ border: "1px solid var(--line)", color: "var(--ink)" }}>{t(`cats.${c.slug}`)}</Link>
           ))}

@@ -2,8 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { MapPin, Search } from "lucide-react";
-import { t } from "@/lib/i18n";
-import { getActiveLocation } from "@/lib/locations";
+import { useActiveLocation, useT } from "./location-provider";
 
 const face = (g: string, n: number) => `https://randomuser.me/api/portraits/${g}/${n}.jpg`;
 const FACES = [face("women", 44), face("men", 45), face("women", 29), face("men", 64), face("women", 12)];
@@ -11,10 +10,11 @@ const QUICK_SLUGS = ["private-chefs", "drivers", "babysitters", "boat-services"]
 
 export function Hero() {
   const router = useRouter();
+  const t = useT();
+  const loc = useActiveLocation();
   const [q, setQ] = useState("");
-  const submit = () => router.push(`/servicos?q=${encodeURIComponent(q)}`);
+  const submit = () => router.push(`/${loc.slug}/servicos?q=${encodeURIComponent(q)}`);
   const quick: string[] = t("hero.quick");
-  const loc = getActiveLocation();
   const badge = `${loc.name} · ${loc.region}, ${loc.country}`;
   const positions = [
     { top: "2%", left: "20%", s: 150, d: "0s", n: 0 },
@@ -50,7 +50,7 @@ export function Hero() {
           </div>
           <div className="rise mt-5 flex flex-wrap gap-2 text-sm" style={{ animationDelay: "300ms" }}>
             {quick.map((label, i) => (
-              <button key={label} onClick={() => router.push(`/servicos/${QUICK_SLUGS[i]}`)}
+              <button key={label} onClick={() => router.push(`/${loc.slug}/servicos/${QUICK_SLUGS[i]}`)}
                 className="rounded-full px-3.5 py-1.5 transition hover:bg-white"
                 style={{ border: "1px solid var(--line)", color: "var(--ink-soft)" }}>{label}</button>
             ))}

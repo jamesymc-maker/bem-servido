@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { CalendarDays, Clock } from "lucide-react";
 import type { Post } from "@/lib/blog";
-import { t } from "@/lib/i18n";
+import { useActiveLocation, useT } from "./location-provider";
 
 function fmt(date: string) {
   try { return new Date(date).toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" }); }
@@ -10,6 +10,8 @@ function fmt(date: string) {
 }
 
 export function BlogList({ posts }: { posts: Post[] }) {
+  const t = useT();
+  const { slug } = useActiveLocation();
   return (
     <div className="max-w-5xl mx-auto px-5 py-12">
       <div className="mb-9">
@@ -21,7 +23,7 @@ export function BlogList({ posts }: { posts: Post[] }) {
       ) : (
         <div className="grid sm:grid-cols-2 gap-6">
           {posts.map((p, i) => (
-            <Link key={p.slug} href={`/blog/${p.slug}`}
+            <Link key={p.slug} href={`/${slug}/blog/${p.slug}`}
               className="lift rise rounded-3xl overflow-hidden bg-white flex flex-col" style={{ border: "1px solid var(--line)", animationDelay: `${i * 60}ms` }}>
               {p.cover && <img src={p.cover} alt={p.title} referrerPolicy="no-referrer" className="w-full aspect-[16/9] object-cover" />}
               <div className="p-5 flex flex-col gap-2 flex-1">

@@ -1,7 +1,8 @@
 "use client";
-import { t } from "@/lib/i18n";
+import { useT } from "./location-provider";
 
 export function About() {
+  const t = useT();
   const body: string[] = t("sobre.body");
   return (
     <section className="relative overflow-hidden">

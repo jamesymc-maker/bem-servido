@@ -8,15 +8,17 @@ import { IntroVideo } from "./intro-video";
 import { ListingCard } from "./listing-card";
 import { ReviewSection } from "./review-section";
 import { Star } from "lucide-react";
-import { t } from "@/lib/i18n";
+import { useActiveLocation, useT } from "./location-provider";
 
 export function ProfileView({ p, related, reviews, summary }: { p: Provider; related: Provider[]; reviews: Review[]; summary: ReviewSummary }) {
+  const t = useT();
+  const { slug } = useActiveLocation();
   const firstName = p.name.split(" ")[0];
   const catLabel = t(`cats.${p.category_slug}`);
   return (
     <div>
       <div className="max-w-5xl mx-auto px-5 pt-6">
-        <Link href={`/servicos/${p.category_slug}`} className="inline-flex items-center gap-1.5 text-sm font-medium" style={{ color: "var(--ink-soft)" }}>
+        <Link href={`/${slug}/servicos/${p.category_slug}`} className="inline-flex items-center gap-1.5 text-sm font-medium" style={{ color: "var(--ink-soft)" }}>
           <ArrowLeft size={16} /> {catLabel}
         </Link>
       </div>

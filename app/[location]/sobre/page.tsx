@@ -4,16 +4,30 @@ import { About } from "@/components/about";
 import { Faq } from "@/components/faq";
 import { JsonLd } from "@/components/json-ld";
 import { t } from "@/lib/i18n";
-import { ACTIVE_LOCATION_NAME } from "@/lib/locations";
+import { DEFAULT_LOCATION, getActiveLocationBySlug } from "@/lib/locations";
 
-export const metadata: Metadata = {
-  title: `Sobre · Bem Servido · Serviços locais de confiança em ${ACTIVE_LOCATION_NAME}`,
-  description: `O Bem Servido conecta você aos melhores profissionais locais de ${ACTIVE_LOCATION_NAME}. Saiba como funciona e tire suas dúvidas.`,
-  alternates: { canonical: "/sobre" },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ location: string }>;
+}): Promise<Metadata> {
+  const { location } = await params;
+  const loc = getActiveLocationBySlug(location) ?? getActiveLocationBySlug(DEFAULT_LOCATION)!;
+  return {
+    title: `Sobre · Bem Servido · Serviços locais de confiança em ${loc.name}`,
+    description: `O Bem Servido conecta você aos melhores profissionais locais de ${loc.name}. Saiba como funciona e tire suas dúvidas.`,
+    alternates: { canonical: `/${loc.slug}/sobre` },
+  };
+}
 
-export default async function SobrePage() {
-  const items: { q: string; a: string }[] = t("faq.items");
+export default async function SobrePage({
+  params,
+}: {
+  params: Promise<{ location: string }>;
+}) {
+  const { location } = await params;
+  const loc = getActiveLocationBySlug(location) ?? getActiveLocationBySlug(DEFAULT_LOCATION)!;
+  const items: { q: string; a: string }[] = t("faq.items", { loc: loc.name });
 
   const faqJsonLd = {
     "@context": "https://schema.org",

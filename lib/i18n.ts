@@ -1,6 +1,8 @@
 // UI dictionary (Portuguese only). Provider-authored text (descriptions) is NOT translated here.
-// Use {loc} anywhere the active location name should appear; t() fills it in
-// automatically from lib/locations.ts so new regions update every string.
+// Use {loc} anywhere the active location name should appear. The active location
+// is URL-driven: pass `{ loc }` to t() (client components use the useT() hook,
+// server pages pass the resolved location name). When no loc is given it falls
+// back to the default active location.
 import { ACTIVE_LOCATION_NAME } from "./locations";
 
 export const DICT = {
@@ -122,7 +124,7 @@ function get(obj: any, path: string) {
 function fill(value: any, vars?: Record<string, string | number>): any {
   if (typeof value === "string") {
     return value.replace(/\{(\w+)\}/g, (match, k) => {
-      if (k === "loc") return ACTIVE_LOCATION_NAME;
+      if (k === "loc") return vars?.loc != null ? String(vars.loc) : ACTIVE_LOCATION_NAME;
       if (vars) return String(vars[k] ?? "");
       return match;
     });

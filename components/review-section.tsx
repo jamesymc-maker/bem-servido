@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Star } from "lucide-react";
 import type { Review, ReviewSummary } from "@/lib/types";
-import { t } from "@/lib/i18n";
+import { useT } from "./location-provider";
 
 function StarsRow({ n, size = 15 }: { n: number; size?: number }) {
   return (
@@ -31,6 +31,7 @@ export function ReviewSection({
   const [comment, setComment] = useState("");
   const [state, setState] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [err, setErr] = useState<string | null>(null);
+  const t = useT();
 
   async function submit() {
     setErr(null);

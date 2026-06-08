@@ -2,11 +2,11 @@
 import Link from "next/link";
 import { Anchor, MapPin, MessageCircle } from "lucide-react";
 import type { Category } from "@/lib/types";
-import { t } from "@/lib/i18n";
-import { getActiveLocation } from "@/lib/locations";
+import { useActiveLocation, useT } from "./location-provider";
 
 export function Footer({ categories }: { categories: Category[] }) {
-  const loc = getActiveLocation();
+  const t = useT();
+  const loc = useActiveLocation();
   return (
     <footer style={{ background: "var(--sea-deep)", color: "rgba(255,255,255,.78)" }}>
       <div className="max-w-6xl mx-auto px-5 py-12 grid grid-cols-2 md:grid-cols-[1.6fr_1fr_1fr_1fr] gap-8">
@@ -39,24 +39,24 @@ export function Footer({ categories }: { categories: Category[] }) {
           <div className="text-white font-semibold mb-3 text-sm">{t("footer.categories")}</div>
           <ul className="flex flex-col gap-2 text-sm">
             {categories.slice(0, 6).map((c) => (
-              <li key={c.slug}><Link href={`/servicos/${c.slug}`} className="hover:text-white transition">{t(`cats.${c.slug}`)}</Link></li>
+              <li key={c.slug}><Link href={`/${loc.slug}/servicos/${c.slug}`} className="hover:text-white transition">{t(`cats.${c.slug}`)}</Link></li>
             ))}
           </ul>
         </div>
         <div>
           <div className="text-white font-semibold mb-3 text-sm">{t("footer.resources")}</div>
           <ul className="flex flex-col gap-2 text-sm">
-            <li><Link href="/blog" className="hover:text-white transition">{t("nav.blog")}</Link></li>
-            <li><Link href="/sobre" className="hover:text-white transition">{t("nav.about")}</Link></li>
-            <li><Link href="/servicos" className="hover:text-white transition">{t("nav.findPros")}</Link></li>
+            <li><Link href={`/${loc.slug}/blog`} className="hover:text-white transition">{t("nav.blog")}</Link></li>
+            <li><Link href={`/${loc.slug}/sobre`} className="hover:text-white transition">{t("nav.about")}</Link></li>
+            <li><Link href={`/${loc.slug}/servicos`} className="hover:text-white transition">{t("nav.findPros")}</Link></li>
           </ul>
         </div>
         <div>
           <div className="text-white font-semibold mb-3 text-sm">{t("footer.platform")}</div>
           <ul className="flex flex-col gap-2 text-sm">
-            <li><Link href="/precos" className="hover:text-white transition">{t("nav.advertise")}</Link></li>
-            <li><Link href="/" className="hover:text-white transition">{t("nav.home")}</Link></li>
-            <li><Link href="/anunciar" className="hover:text-white transition">{t("nav.advertise_link")}</Link></li>
+            <li><Link href={`/${loc.slug}/precos`} className="hover:text-white transition">{t("nav.advertise")}</Link></li>
+            <li><Link href={`/${loc.slug}`} className="hover:text-white transition">{t("nav.home")}</Link></li>
+            <li><Link href={`/${loc.slug}/anunciar`} className="hover:text-white transition">{t("nav.advertise_link")}</Link></li>
           </ul>
         </div>
       </div>

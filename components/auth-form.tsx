@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Anchor } from "lucide-react";
 import { loginWithPassword } from "@/lib/actions/auth";
 import { createClient } from "@/lib/supabase/client";
-import { ACTIVE_LOCATION_NAME } from "@/lib/locations";
+import { useActiveLocation } from "./location-provider";
 
 type AccountType = "provider" | "advertiser";
 
@@ -20,6 +20,7 @@ export function AuthForm({
 }) {
   const router = useRouter();
   const params = useSearchParams();
+  const activeLocation = useActiveLocation();
   const defaultNext = accountType === "advertiser" ? "/anunciante/painel" : "/painel";
   const next = redirectTo || params.get("next") || defaultNext;
   const isAdvertiser = accountType === "advertiser";
@@ -70,7 +71,7 @@ export function AuthForm({
       <h1 className="serif text-3xl mb-1" style={{ fontWeight: 600 }}>{isSignup ? "Criar conta" : "Entrar"}</h1>
       <p className="text-sm mb-7" style={{ color: "var(--ink-soft)" }}>
         {isSignup
-          ? (isAdvertiser ? "Crie a conta da sua empresa para anunciar no Bem Servido." : `Anuncie o seu serviço em ${ACTIVE_LOCATION_NAME}.`)
+          ? (isAdvertiser ? "Crie a conta da sua empresa para anunciar no Bem Servido." : `Anuncie o seu serviço em ${activeLocation.name}.`)
           : (isAdvertiser ? "Acesse o painel do anunciante." : "Acesse o seu painel de profissional.")}
       </p>
 

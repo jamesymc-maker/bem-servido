@@ -1,24 +1,41 @@
 import type { MetadataRoute } from "next";
 import { getCategories, getProviders } from "@/lib/data";
 import { getAllPosts } from "@/lib/blog";
+import { activeLocations } from "@/lib/locations";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://bemservido.com.br";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [categories, providers] = await Promise.all([getCategories(), getProviders()]);
-  const posts = await getAllPosts();
+  const categories = await getCategories();
+  const locations = activeLocations();
 
-  const staticUrls: MetadataRoute.Sitemap = [
-    { url: `${SITE}/`, changeFrequency: "daily", priority: 1 },
-    { url: `${SITE}/servicos`, changeFrequency: "daily", priority: 0.9 },
-    { url: `${SITE}/precos`, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${SITE}/sobre`, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${SITE}/anunciar`, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${SITE}/blog`, changeFrequency: "weekly", priority: 0.7 },
-  ];
-  const catUrls = categories.map((c) => ({ url: `${SITE}/servicos/${c.slug}`, changeFrequency: "weekly" as const, priority: 0.8 }));
-  const provUrls = providers.map((p) => ({ url: `${SITE}/profissional/${p.slug}`, changeFrequency: "weekly" as const, priority: 0.7 }));
-  const postUrls = posts.map((p) => ({ url: `${SITE}/blog/${p.slug}`, lastModified: p.date || undefined, changeFrequency: "monthly" as const, priority: 0.6 }));
+  const entries: MetadataRoute.Sitemap = [];
 
-  return [...staticUrls, ...catUrls, ...provUrls, ...postUrls];
+  for (const loc of locations) {
+    const base = `${SITE}/${loc.slug}`;
+    const [providers, posts] = await Promise.all([
+      getProviders(loc.slug),
+      getAllPosts(loc.slug),
+    ]);
+
+    entries.push(
+      { url: base, changeFrequency: "daily", priority: 1 },
+      { url: `${base}/servicos`, changeFrequency: "daily", priority: 0.9 },
+      { url: `${base}/precos`, changeFrequency: "monthly", priority: 0.6 },
+      { url: `${base}/sobre`, changeFrequency: "monthly", priority: 0.6 },
+      { url: `${base}/anunciar`, changeFrequency: "monthly", priority: 0.6 },
+      { url: `${base}/blog`, changeFrequency: "weekly", priority: 0.7 },
+    );
+    for (const c of categories) {
+      entries.push({ url: `${base}/servicos/${c.slug}`, changeFrequency: "weekly", priority: 0.8 });
+    }
+    for (const p of providers) {
+      entries.push({ url: `${base}/profissional/${p.slug}`, changeFrequency: "weekly", priority: 0.7 });
+    }
+    for (const p of posts) {
+      entries.push({ url: `${base}/blog/${p.slug}`, lastModified: p.date || undefined, changeFrequency: "monthly", priority: 0.6 });
+    }
+  }
+
+  return entries;
 }

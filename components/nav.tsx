@@ -2,22 +2,24 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Anchor, Menu, X } from "lucide-react";
-import { t } from "@/lib/i18n";
+import { useActiveLocation, useT } from "./location-provider";
 import { LocationBar } from "./location-bar";
 
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const t = useT();
+  const { slug } = useActiveLocation();
   const links: [string, string][] = [
-    [t("nav.categories"), "/servicos"],
-    [t("nav.blog"), "/blog"],
-    [t("nav.about"), "/sobre"],
+    [t("nav.categories"), `/${slug}/servicos`],
+    [t("nav.blog"), `/${slug}/blog`],
+    [t("nav.about"), `/${slug}/sobre`],
   ];
-  const mobileLinks: [string, string][] = [[t("nav.home"), "/"], ...links];
+  const mobileLinks: [string, string][] = [[t("nav.home"), `/${slug}`], ...links];
   return (
     <div className="sticky top-0 z-50">
       <header className="backdrop-blur-md" style={{ background: "rgba(251,247,239,.9)", borderBottom: "1px solid var(--line)" }}>
         <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between gap-3">
-          <Link href="/" className="flex items-center gap-2.5 shrink-0">
+          <Link href={`/${slug}`} className="flex items-center gap-2.5 shrink-0">
             <span className="grid place-items-center w-9 h-9 rounded-xl" style={{ background: "var(--sea)" }}>
               <Anchor size={18} color="#fff" />
             </span>
@@ -30,7 +32,7 @@ export function Nav() {
               <Link key={href} href={href} className="underline-grow pb-0.5" style={{ color: "var(--ink-soft)" }}>{label}</Link>
             ))}
             <Link href="/entrar" className="underline-grow pb-0.5" style={{ color: "var(--ink-soft)" }}>{t("nav.login")}</Link>
-            <Link href="/precos" className="rounded-full px-4 py-2 text-white text-sm font-semibold transition active:scale-95"
+            <Link href={`/${slug}/precos`} className="rounded-full px-4 py-2 text-white text-sm font-semibold transition active:scale-95"
               style={{ background: "var(--ink)" }}>{t("nav.advertise")}</Link>
           </nav>
           <div className="flex items-center gap-2.5 md:hidden">
@@ -43,7 +45,7 @@ export function Nav() {
               <Link key={href} href={href} onClick={() => setOpen(false)} className="py-2.5 font-medium">{label}</Link>
             ))}
             <Link href="/entrar" onClick={() => setOpen(false)} className="py-2.5 font-medium">{t("nav.login")}</Link>
-            <Link href="/precos" onClick={() => setOpen(false)}
+            <Link href={`/${slug}/precos`} onClick={() => setOpen(false)}
               className="mt-1 rounded-full px-4 py-2.5 text-white font-semibold text-center" style={{ background: "var(--ink)" }}>
               {t("nav.advertise")}
             </Link>

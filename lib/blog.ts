@@ -20,6 +20,7 @@ export interface Post {
   minutes: number;
   html: string;
   published?: boolean;
+  location_slug?: string | null;
 }
 
 function mdToPost(slug: string, raw: string): Post | null {
@@ -59,16 +60,19 @@ function dbRowToPost(row: any): Post {
     minutes: Math.max(1, Math.round(words / 200)),
     html: marked.parse(row.content || "") as string,
     published: row.published ?? false,
+    location_slug: row.location_slug ?? null,
   };
 }
 
-async function getDbPosts(publishedOnly = true): Promise<Post[]> {
+async function getDbPosts(publishedOnly = true, locationSlug?: string): Promise<Post[]> {
   if (!hasSupabase) return [];
   try {
     const { createServerSupabase } = await import("./supabase/server");
     const supabase = await createServerSupabase();
     let q = supabase.from("blog_posts").select("*").order("date", { ascending: false });
     if (publishedOnly) q = q.eq("published", true);
+    // Posts with a null location_slug are global and show on every location.
+    if (locationSlug) q = q.or(`location_slug.is.null,location_slug.eq.${locationSlug}`);
     const { data } = await q;
     return (data ?? []).map(dbRowToPost);
   } catch { return []; }
@@ -84,8 +88,9 @@ function getFilePosts(): Post[] {
   } catch { return []; }
 }
 
-export async function getAllPosts(): Promise<Post[]> {
-  return hasSupabase ? await getDbPosts(true) : getFilePosts();
+export async function getAllPosts(locationSlug?: string): Promise<Post[]> {
+  // File-based posts carry no location, so they show on every location.
+  return hasSupabase ? await getDbPosts(true, locationSlug) : getFilePosts();
 }
 
 export async function getAllPostsAdmin(): Promise<Post[]> {

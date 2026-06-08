@@ -21,6 +21,7 @@ function mapRow(row: any): Provider {
     category_slug: cat.slug ?? row.category_slug ?? "",
     category_label: cat.label ?? "",
     category_icon: cat.icon ?? "concierge",
+    location_slug: row.locations?.slug ?? row.location_slug ?? null,
     tier: row.tier,
     verified: row.verified,
     photo_url: row.photo_url,
@@ -39,7 +40,7 @@ function mapRow(row: any): Provider {
 }
 
 const SELECT =
-  "*, categories(slug,label,icon), provider_gallery(url,sort)";
+  "*, categories(slug,label,icon), provider_gallery(url,sort), locations(slug)";
 
 export async function getCategories(): Promise<Category[]> {
   if (!hasSupabase) return SEED_CATEGORIES;
@@ -52,22 +53,34 @@ export async function getCategories(): Promise<Category[]> {
   }
 }
 
-export async function getProviders(): Promise<Provider[]> {
-  if (!hasSupabase) return SEED_PROVIDERS;
+// Providers for a given location. With a slug, only providers linked to that
+// location are returned (so /ilhabela and /ubatuba are separate experiences).
+export async function getProviders(locationSlug?: string): Promise<Provider[]> {
+  const seed = locationSlug
+    ? SEED_PROVIDERS.filter((p) => p.location_slug === locationSlug)
+    : SEED_PROVIDERS;
+  if (!hasSupabase) return seed;
   try {
     const supabase = await createServerSupabase();
-    const { data } = await supabase
-      .from("providers")
-      .select(SELECT)
-      .eq("status", "published");
-    return data?.length ? data.map(mapRow) : SEED_PROVIDERS;
+    let query = supabase.from("providers").select(SELECT).eq("status", "published");
+    if (locationSlug) {
+      const { data: loc } = await supabase
+        .from("locations")
+        .select("id")
+        .eq("slug", locationSlug)
+        .maybeSingle();
+      if (!loc) return seed;
+      query = query.eq("location_id", loc.id);
+    }
+    const { data } = await query;
+    return data?.length ? data.map(mapRow) : seed;
   } catch {
-    return SEED_PROVIDERS;
+    return seed;
   }
 }
 
-export async function getFeatured(limit = 6): Promise<Provider[]> {
-  const all = await getProviders();
+export async function getFeatured(locationSlug?: string, limit = 6): Promise<Provider[]> {
+  const all = await getProviders(locationSlug);
   return all.filter((p) => p.tier !== "standard").slice(0, limit);
 }
 

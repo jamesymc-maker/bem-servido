@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Ad } from "@/lib/ads";
+import { DEFAULT_LOCATION } from "@/lib/locations";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "";
 
@@ -42,12 +43,13 @@ export function AdCard({ ad, size = "banner" }: { ad: Ad; size?: "banner" | "sma
 }
 
 // Shown when no ad is available
-export function AdPlaceholder({ label }: { label: string }) {
+export function AdPlaceholder({ label, locationSlug }: { label: string; locationSlug?: string }) {
+  const href = `/${locationSlug || DEFAULT_LOCATION}/anunciar`;
   return (
     <div className="rounded-2xl grid place-items-center text-center py-8 px-4"
       style={{ border: "1.5px dashed var(--line)", background: "rgba(255,255,255,.5)" }}>
       <div className="text-[11px] uppercase tracking-widest mb-1" style={{ color: "var(--ink-soft)" }}>Publicidade</div>
-      <div className="text-sm" style={{ color: "var(--ink-soft)" }}>{label} · <a href="/anunciar" className="underline">Anuncie aqui</a></div>
+      <div className="text-sm" style={{ color: "var(--ink-soft)" }}>{label} · <a href={href} className="underline">Anuncie aqui</a></div>
     </div>
   );
 }

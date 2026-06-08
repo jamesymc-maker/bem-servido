@@ -3,7 +3,8 @@ import { useState, useMemo } from "react";
 import { Search, X } from "lucide-react";
 import type { Category, Provider } from "@/lib/types";
 import { sortByRank } from "@/lib/utils";
-import { catSearchTerms, t } from "@/lib/i18n";
+import { catSearchTerms } from "@/lib/i18n";
+import { useT } from "./location-provider";
 import { ListingCard } from "./listing-card";
 import { CatIcon } from "./ui";
 
@@ -12,6 +13,7 @@ export function Results({
 }: {
   providers: Provider[]; categories: Category[]; initialCategory?: string; initialQuery?: string;
 }) {
+  const t = useT();
   const [q, setQ] = useState(initialQuery);
   const [cat, setCat] = useState(initialCategory);
 
