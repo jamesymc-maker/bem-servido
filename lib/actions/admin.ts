@@ -18,7 +18,7 @@ export async function setListingStatus(formData: FormData) {
   const id = String(formData.get("id"));
   const status = String(formData.get("status"));
   await db.from("providers").update({ status }).eq("id", id);
-  revalidatePath("/admin/listings");
+  revalidatePath("/admin/providers");
   revalidatePath("/admin");
 }
 
@@ -27,14 +27,14 @@ export async function setListingTier(formData: FormData) {
   const id = String(formData.get("id"));
   const tier = String(formData.get("tier"));
   await db.from("providers").update({ tier }).eq("id", id);
-  revalidatePath("/admin/listings");
+  revalidatePath("/admin/providers");
 }
 
 export async function deleteListing(formData: FormData) {
   const db = await requireAdmin();
   const id = String(formData.get("id"));
   await db.from("providers").delete().eq("id", id);
-  revalidatePath("/admin/listings");
+  revalidatePath("/admin/providers");
   revalidatePath("/admin");
 }
 
@@ -44,7 +44,7 @@ export async function moderateReview(formData: FormData) {
   const status = String(formData.get("status")); // approved | rejected
   await db.from("reviews").update({ status }).eq("id", id);
   revalidatePath("/admin");
-  revalidatePath("/admin/listings");
+  revalidatePath("/admin/avaliacoes");
 }
 
 export async function upsertCategory(formData: FormData) {
@@ -138,6 +138,6 @@ export async function approveWithTrial(formData: FormData) {
   const days = Number(formData.get("trial_days") || 60);
   const trial_ends_at = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toISOString();
   await db.from("providers").update({ status: "published", trial_ends_at, trial_days: days }).eq("id", id);
-  revalidatePath("/admin/listings");
+  revalidatePath("/admin/providers");
   revalidatePath("/admin");
 }

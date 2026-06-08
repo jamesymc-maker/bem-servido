@@ -89,6 +89,16 @@ export async function adminToggleAd(formData: FormData) {
   const id = String(formData.get("id"));
   const active = String(formData.get("active")) === "true";
   await db.from("ads").update({ active }).eq("id", id);
+  revalidatePath("/admin/anuncios");
+  revalidatePath("/admin/anunciantes");
+}
+
+// Admin: suspend/reactivate an advertiser
+export async function adminToggleAdvertiser(formData: FormData) {
+  const db = createAdminSupabase();
+  const id = String(formData.get("id"));
+  const active = String(formData.get("active")) === "true";
+  await db.from("advertisers").update({ active }).eq("id", id);
   revalidatePath("/admin/anunciantes");
 }
 

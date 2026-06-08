@@ -1,17 +1,17 @@
 "use client";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, List, Users, CreditCard, Tags, Settings, LogOut, ExternalLink, FileText, Megaphone } from "lucide-react";
+import { LayoutDashboard, Users, Tags, Settings, LogOut, ExternalLink, FileText, Megaphone, Image as ImageIcon, Star } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
 const NAV = [
   { href: "/admin", label: "Painel", Icon: LayoutDashboard },
-  { href: "/admin/listings", label: "Listagens", Icon: List },
   { href: "/admin/providers", label: "Profissionais", Icon: Users },
-  { href: "/admin/payments", label: "Pagamentos", Icon: CreditCard },
-  { href: "/admin/categories", label: "Categorias", Icon: Tags },
-  { href: "/admin/blog", label: "Blog", Icon: FileText },
   { href: "/admin/anunciantes", label: "Anunciantes", Icon: Megaphone },
+  { href: "/admin/anuncios", label: "Anúncios", Icon: ImageIcon },
+  { href: "/admin/avaliacoes", label: "Avaliações", Icon: Star },
+  { href: "/admin/blog", label: "Blog", Icon: FileText },
+  { href: "/admin/categories", label: "Categorias", Icon: Tags },
   { href: "/admin/settings", label: "Ajustes", Icon: Settings },
 ];
 

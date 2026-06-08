@@ -114,14 +114,15 @@ That account can now reach `/admin`.
 **Provider flow:**
 `/criar-conta` → `/painel` → complete profile, upload photos, add intro video
 link, choose a plan (Stripe Checkout) → listing sits as `pending` → you approve
-it at `/admin/listings` → it goes live. Listings never publish automatically.
+it at `/admin/providers` → it goes live. Listings never publish automatically.
 
 **Routes:**
 - Public auth: `/entrar` (login), `/criar-conta` (signup)
 - Provider dashboard (`/painel`, login required): overview, `/perfil`, `/fotos`,
   `/video`, `/plano`, `/pagamentos`
-- Admin (`/admin`, admin only): dashboard + review moderation, `/listings`
-  (approve/reject/suspend/tier/delete), `/providers`, `/payments`, `/categories`
+- Admin (`/admin`, admin only): dashboard, `/providers`
+  (approve/suspend, trial tracking, filters), `/anunciantes`, `/anuncios`
+  (activate/deactivate), `/avaliacoes` (review moderation), `/blog`, `/categories`
   (add/edit/hide/reorder), `/settings`
 
 Both `/painel` and `/admin` are gated in `proxy.ts` (must be logged in) and
