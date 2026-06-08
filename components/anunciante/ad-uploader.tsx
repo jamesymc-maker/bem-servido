@@ -38,14 +38,16 @@ export function AdUploader({ advertiserId, adId, initialImage }: { advertiserId:
     setBusy(true);
     try {
       const { data: { user } } = await supabase.auth.getUser();
-      if (!user) throw new Error("não autenticado");
+      if (!user) throw new Error("Sessão expirada. Entre novamente para enviar a imagem.");
       const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
       const path = `${user.id}/${Date.now()}.${ext}`;
       const { error } = await supabase.storage.from("ads").upload(path, file, { upsert: true, contentType: file.type });
       if (error) throw error;
       const url = supabase.storage.from("ads").getPublicUrl(path).data.publicUrl;
       setImg(url);
-    } catch (e: any) { setErr(e.message); }
+    } catch (e: any) {
+      setErr(e?.message || "Não foi possível enviar a imagem. Tente novamente.");
+    }
     finally { setBusy(false); }
   }
 

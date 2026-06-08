@@ -30,7 +30,8 @@ export function Results({
     return sortByRank(rows);
   }, [providers, cat, q]);
 
-  const title = cat === "all" ? t("results.allTitle") : `${t(`cats.${cat}`)} ${t("results.inLocation")}`;
+  const catLabel = (slug: string) => categories.find((c) => c.slug === slug)?.label || t(`cats.${slug}`);
+  const title = cat === "all" ? t("results.allTitle") : `${catLabel(cat)} ${t("results.inLocation")}`;
 
   return (
     <div className="max-w-6xl mx-auto px-5 py-10">
@@ -45,7 +46,7 @@ export function Results({
         <Chip active={cat === "all"} onClick={() => setCat("all")}>{t("results.all")}</Chip>
         {categories.map((c) => (
           <Chip key={c.slug} active={cat === c.slug} onClick={() => setCat(c.slug)}>
-            <CatIcon name={c.icon} size={14} /> {t(`cats.${c.slug}`)}
+            <CatIcon name={c.icon} size={14} /> {c.label || t(`cats.${c.slug}`)}
           </Chip>
         ))}
       </div>

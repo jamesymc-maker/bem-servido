@@ -39,7 +39,7 @@ export function Footer({ categories }: { categories: Category[] }) {
           <div className="text-white font-semibold mb-3 text-sm">{t("footer.categories")}</div>
           <ul className="flex flex-col gap-2 text-sm">
             {categories.slice(0, 6).map((c) => (
-              <li key={c.slug}><Link href={`/${loc.slug}/servicos/${c.slug}`} className="hover:text-white transition">{t(`cats.${c.slug}`)}</Link></li>
+              <li key={c.slug}><Link href={`/${loc.slug}/servicos/${c.slug}`} className="hover:text-white transition">{c.label || t(`cats.${c.slug}`)}</Link></li>
             ))}
           </ul>
         </div>

@@ -7,17 +7,17 @@ insert into locations (slug,name,region,country,active,sort) values
 on conflict (slug) do update set name=excluded.name, region=excluded.region, active=excluded.active, sort=excluded.sort;
 
 insert into categories (slug,label,icon,sort) values
-  ('private-chefs','Private Chefs','chef',1),
-  ('drivers','Drivers','driver',2),
-  ('house-cleaning','House Cleaning','cleaning',3),
-  ('babysitters','Babysitters','baby',4),
-  ('boat-services','Boat Services','boat',5),
-  ('wellness','Wellness','wellness',6),
-  ('handymen','Handymen','handyman',7),
-  ('photography','Photography','photo',8),
+  ('private-chefs','Chefs Privativos','chef',1),
+  ('drivers','Motoristas','driver',2),
+  ('house-cleaning','Limpeza','cleaning',3),
+  ('babysitters','Babás','baby',4),
+  ('boat-services','Passeios de Barco','boat',5),
+  ('wellness','Bem-estar','wellness',6),
+  ('handymen','Reparos','handyman',7),
+  ('photography','Fotografia','photo',8),
   ('concierge','Concierge','concierge',9),
-  ('tour-guides','Tour Guides','guide',10)
-on conflict (slug) do update set label=excluded.label, icon=excluded.icon, sort=excluded.sort;
+  ('tour-guides','Guias de Turismo','guide',10)
+on conflict (slug) do update set icon=excluded.icon, sort=excluded.sort;
 
 delete from providers where owner_id is null;
 

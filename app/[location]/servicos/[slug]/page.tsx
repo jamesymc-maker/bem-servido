@@ -13,7 +13,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { location, slug } = await params;
   const loc = getActiveLocationBySlug(location) ?? getActiveLocationBySlug(DEFAULT_LOCATION)!;
-  const label = t(`cats.${slug}`);
+  const categories = await getCategories();
+  const label = categories.find((c) => c.slug === slug)?.label || t(`cats.${slug}`);
   const titleBase = `${label} em ${loc.name}`;
   return {
     title: `${titleBase} · Bem Servido`,

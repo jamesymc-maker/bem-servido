@@ -6,7 +6,7 @@
 import { ACTIVE_LOCATION_NAME } from "./locations";
 
 export const DICT = {
-  nav: { home: "Início", categories: "Categorias", forProviders: "Para profissionais", advertise: "Anunciar serviço", findPros: "Buscar profissionais", blog: "Blog", about: "Sobre", advertise_link: "Anunciar", login: "Entrar", menu: "Menu" },
+  nav: { home: "Início", categories: "Categorias", servicesIn: "Serviços em {loc}", forProviders: "Para profissionais", advertise: "Anunciar serviço", findPros: "Buscar profissionais", blog: "Blog", about: "Sobre", advertise_link: "Anunciar", login: "Entrar", menu: "Menu" },
   loc: { choose: "Escolha a região", soon: "em breve", current: "Você está vendo" },
   hero: {
     badge: "{loc} · São Paulo, Brasil",

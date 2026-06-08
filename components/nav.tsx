@@ -10,7 +10,7 @@ export function Nav() {
   const t = useT();
   const { slug } = useActiveLocation();
   const links: [string, string][] = [
-    [t("nav.categories"), `/${slug}/servicos`],
+    [t("nav.servicesIn"), `/${slug}/servicos`],
     [t("nav.blog"), `/${slug}/blog`],
     [t("nav.about"), `/${slug}/sobre`],
   ];

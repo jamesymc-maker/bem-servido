@@ -14,7 +14,7 @@ export function ProfileView({ p, related, reviews, summary }: { p: Provider; rel
   const t = useT();
   const { slug } = useActiveLocation();
   const firstName = p.name.split(" ")[0];
-  const catLabel = t(`cats.${p.category_slug}`);
+  const catLabel = p.category_label || t(`cats.${p.category_slug}`);
   return (
     <div>
       <div className="max-w-5xl mx-auto px-5 pt-6">

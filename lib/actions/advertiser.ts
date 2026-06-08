@@ -29,11 +29,11 @@ export async function getOrCreateAdvertiser() {
 
   if (user.user_metadata?.account_type === "provider") return null;
 
-  const { data: profile } = await supabase.from("profiles").select("full_name,email").eq("id", user.id).single();
+  const { data: profile } = await supabase.from("profiles").select("full_name,email").eq("id", user.id).maybeSingle();
   const { data: created } = await supabase.from("advertisers")
     .insert({ owner_id: user.id, company_name: profile?.full_name || "Minha empresa", email: profile?.email || "" })
     .select("*, advertiser_subscriptions(tier,status,current_period_end,last_payment_at)")
-    .single();
+    .maybeSingle();
   return created;
 }
 
@@ -56,8 +56,19 @@ export async function saveLogoUrl(url: string) {
 
 export async function upsertAd(formData: FormData) {
   const { supabase, user } = await ctxAdvertiser();
-  const { data: adv } = await supabase.from("advertisers").select("id").eq("owner_id", user.id).single();
-  if (!adv) throw new Error("no advertiser");
+  // Ensure the advertiser row exists (a missing row previously threw and
+  // surfaced as "A server error occurred").
+  let { data: adv } = await supabase.from("advertisers").select("id").eq("owner_id", user.id).maybeSingle();
+  if (!adv) {
+    const { data: profile } = await supabase.from("profiles").select("full_name,email").eq("id", user.id).maybeSingle();
+    const { data: created, error: createErr } = await supabase
+      .from("advertisers")
+      .insert({ owner_id: user.id, company_name: profile?.full_name || "Minha empresa", email: profile?.email || "" })
+      .select("id")
+      .maybeSingle();
+    if (createErr || !created) throw new Error(`Não foi possível criar o anunciante: ${createErr?.message ?? "desconhecido"}`);
+    adv = created;
+  }
   const id = String(formData.get("id") || "").trim();
   const payload = {
     advertiser_id: adv.id,
@@ -67,17 +78,16 @@ export async function upsertAd(formData: FormData) {
     image_url: String(formData.get("image_url") || "").trim() || null,
     active: false, // admin activates
   };
-  if (id) {
-    await supabase.from("ads").update(payload).eq("id", id).eq("advertiser_id", adv.id);
-  } else {
-    await supabase.from("ads").insert(payload);
-  }
+  const { error } = id
+    ? await supabase.from("ads").update(payload).eq("id", id).eq("advertiser_id", adv.id)
+    : await supabase.from("ads").insert(payload);
+  if (error) throw new Error(`Não foi possível salvar o anúncio: ${error.message}`);
   revalidatePath("/anunciante/painel/anuncios");
 }
 
 export async function deleteAd(formData: FormData) {
   const { supabase, user } = await ctxAdvertiser();
-  const { data: adv } = await supabase.from("advertisers").select("id").eq("owner_id", user.id).single();
+  const { data: adv } = await supabase.from("advertisers").select("id").eq("owner_id", user.id).maybeSingle();
   if (!adv) return;
   await supabase.from("ads").delete().eq("id", String(formData.get("id"))).eq("advertiser_id", adv.id);
   revalidatePath("/anunciante/painel/anuncios");

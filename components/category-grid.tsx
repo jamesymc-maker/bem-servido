@@ -25,7 +25,7 @@ export function CategoryGrid({ categories }: { categories: Category[] }) {
               style={{ background: "var(--sand)", color: "var(--sea)" }}>
               <CatIcon name={c.icon} size={22} />
             </span>
-            <span className="font-semibold leading-tight">{t(`cats.${c.slug}`)}</span>
+            <span className="font-semibold leading-tight">{c.label || t(`cats.${c.slug}`)}</span>
           </Link>
         ))}
       </div>

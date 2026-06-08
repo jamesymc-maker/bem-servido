@@ -19,7 +19,7 @@ export function SeoHome({ categories }: { categories: Category[] }) {
           {categories.map((c) => (
             <Link key={c.slug} href={`/${slug}/servicos/${c.slug}`}
               className="rounded-full px-3.5 py-1.5 text-sm font-medium transition hover:bg-white"
-              style={{ border: "1px solid var(--line)", color: "var(--ink)" }}>{t(`cats.${c.slug}`)}</Link>
+              style={{ border: "1px solid var(--line)", color: "var(--ink)" }}>{c.label || t(`cats.${c.slug}`)}</Link>
           ))}
         </div>
       </div>

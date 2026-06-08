@@ -28,7 +28,7 @@ export function ListingCard({ p, i = 0 }: { p: Provider; i?: number }) {
         </div>
         <h3 className="serif text-2xl mt-4 leading-none" style={{ fontWeight: 600 }}>{p.name}</h3>
         <div className="flex items-center gap-1.5 mt-2 text-sm" style={{ color: "var(--sea)" }}>
-          <CatIcon name={p.category_icon} size={15} /> <span className="font-semibold">{t(`cats.${p.category_slug}`)}</span>
+          <CatIcon name={p.category_icon} size={15} /> <span className="font-semibold">{p.category_label || t(`cats.${p.category_slug}`)}</span>
         </div>
       </div>
       <div className="px-6 pb-6 pt-1 flex flex-col gap-3 flex-1">

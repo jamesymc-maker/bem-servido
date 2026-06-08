@@ -2,9 +2,27 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { marked } from "marked";
+import { createClient } from "@supabase/supabase-js";
 
 const BLOG_DIR = path.join(process.cwd(), "content", "blog");
-const hasSupabase = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL);
+const hasSupabase = Boolean(
+  process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+);
+
+// Cookieless anon client for PUBLIC blog reads. Blog content is public (RLS
+// only exposes published rows), so it does not need the request session. Using
+// a cookie-bound client here calls next/headers `cookies()`, which forces these
+// pages into dynamic rendering and — combined with the old silent `catch {}` —
+// swallowed Next.js's internal render-control signals, surfacing as
+// "A server error occurred". A plain anon client keeps reads static-friendly
+// and lets us see real Supabase errors.
+function publicSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    { auth: { persistSession: false } },
+  );
+}
 
 export interface Post {
   id?: string;
@@ -66,16 +84,23 @@ function dbRowToPost(row: any): Post {
 
 async function getDbPosts(publishedOnly = true, locationSlug?: string): Promise<Post[]> {
   if (!hasSupabase) return [];
-  try {
-    const { createServerSupabase } = await import("./supabase/server");
-    const supabase = await createServerSupabase();
-    let q = supabase.from("blog_posts").select("*").order("date", { ascending: false });
-    if (publishedOnly) q = q.eq("published", true);
-    // Posts with a null location_slug are global and show on every location.
-    if (locationSlug) q = q.or(`location_slug.is.null,location_slug.eq.${locationSlug}`);
-    const { data } = await q;
-    return (data ?? []).map(dbRowToPost);
-  } catch { return []; }
+  // Published reads use the public anon client (RLS-filtered). Admin reads of
+  // unpublished drafts need the service-role client to bypass RLS.
+  let supabase = publicSupabase();
+  if (!publishedOnly) {
+    const { createAdminSupabase } = await import("./supabase/admin");
+    supabase = createAdminSupabase();
+  }
+  let q = supabase.from("blog_posts").select("*").order("date", { ascending: false });
+  if (publishedOnly) q = q.eq("published", true);
+  // Posts with a null location_slug are global and show on every location.
+  if (locationSlug) q = q.or(`location_slug.is.null,location_slug.eq.${locationSlug}`);
+  const { data, error } = await q;
+  if (error) {
+    console.error("[blog] getDbPosts query failed:", error.message);
+    return [];
+  }
+  return (data ?? []).map(dbRowToPost);
 }
 
 function getFilePosts(): Post[] {
@@ -99,12 +124,21 @@ export async function getAllPostsAdmin(): Promise<Post[]> {
 
 export async function getPost(slug: string): Promise<Post | null> {
   if (hasSupabase) {
-    try {
-      const { createServerSupabase } = await import("./supabase/server");
-      const supabase = await createServerSupabase();
-      const { data } = await supabase.from("blog_posts").select("*").eq("slug", slug).single();
-      if (data) return dbRowToPost(data);
-    } catch {}
+    const supabase = publicSupabase();
+    // maybeSingle() returns null (not an error) when no row matches, so a
+    // missing/unpublished post is a clean 404 rather than a thrown error.
+    const { data, error } = await supabase
+      .from("blog_posts")
+      .select("*")
+      .eq("slug", slug)
+      .eq("published", true)
+      .maybeSingle();
+    if (error) {
+      console.error(`[blog] getPost("${slug}") query failed:`, error.message);
+    }
+    // When Supabase is configured it is the source of truth: a missing row
+    // means the post does not exist, so we do not fall back to bundled files.
+    return data ? dbRowToPost(data) : null;
   }
   try {
     const raw = fs.readFileSync(path.join(BLOG_DIR, `${slug}.md`), "utf8");

@@ -4,16 +4,16 @@ import type { Category, Provider } from "./types";
 // Once Supabase is wired and seeded, live data takes over automatically.
 
 export const SEED_CATEGORIES: Category[] = [
-  { slug: "private-chefs", label: "Private Chefs", icon: "chef", sort: 1 },
-  { slug: "drivers", label: "Drivers", icon: "driver", sort: 2 },
-  { slug: "house-cleaning", label: "House Cleaning", icon: "cleaning", sort: 3 },
-  { slug: "babysitters", label: "Babysitters", icon: "baby", sort: 4 },
-  { slug: "boat-services", label: "Boat Services", icon: "boat", sort: 5 },
-  { slug: "wellness", label: "Wellness", icon: "wellness", sort: 6 },
-  { slug: "handymen", label: "Handymen", icon: "handyman", sort: 7 },
-  { slug: "photography", label: "Photography", icon: "photo", sort: 8 },
+  { slug: "private-chefs", label: "Chefs Privativos", icon: "chef", sort: 1 },
+  { slug: "drivers", label: "Motoristas", icon: "driver", sort: 2 },
+  { slug: "house-cleaning", label: "Limpeza", icon: "cleaning", sort: 3 },
+  { slug: "babysitters", label: "Babás", icon: "baby", sort: 4 },
+  { slug: "boat-services", label: "Passeios de Barco", icon: "boat", sort: 5 },
+  { slug: "wellness", label: "Bem-estar", icon: "wellness", sort: 6 },
+  { slug: "handymen", label: "Reparos", icon: "handyman", sort: 7 },
+  { slug: "photography", label: "Fotografia", icon: "photo", sort: 8 },
   { slug: "concierge", label: "Concierge", icon: "concierge", sort: 9 },
-  { slug: "tour-guides", label: "Tour Guides", icon: "guide", sort: 10 },
+  { slug: "tour-guides", label: "Guias de Turismo", icon: "guide", sort: 10 },
 ];
 
 const face = (g: string, n: number) => `https://randomuser.me/api/portraits/${g}/${n}.jpg`;
