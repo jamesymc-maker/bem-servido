@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer";
 import { JsonLd } from "@/components/json-ld";
 import { Analytics } from "@vercel/analytics/next";
 import { getCategories } from "@/lib/data";
+import { ACTIVE_LOCATION_NAME, getActiveLocation } from "@/lib/locations";
 
 const fraunces = Fraunces({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-fraunces" });
 const hanken = Hanken_Grotesk({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-hanken" });
@@ -14,17 +15,17 @@ const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://bemservido.com.br";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: { default: "Bem Servido · Serviços locais de confiança em Ilhabela", template: "%s" },
-  description: "Chefs, motoristas, babás, capitães de barco e mais. Profissionais locais de confiança em Ilhabela.",
+  title: { default: `Bem Servido · Serviços locais de confiança em ${ACTIVE_LOCATION_NAME}`, template: "%s" },
+  description: `Chefs, motoristas, babás, capitães de barco e mais. Profissionais locais de confiança em ${ACTIVE_LOCATION_NAME}.`,
   openGraph: {
-    title: "Bem Servido · Ilhabela",
-    description: "Profissionais locais de confiança em Ilhabela. Gente de verdade, com rosto e nome.",
+    title: `Bem Servido · ${ACTIVE_LOCATION_NAME}`,
+    description: `Profissionais locais de confiança em ${ACTIVE_LOCATION_NAME}. Gente de verdade, com rosto e nome.`,
     type: "website", locale: "pt_BR", siteName: "Bem Servido", url: SITE,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bem Servido · Ilhabela",
-    description: "Profissionais locais de confiança em Ilhabela. Gente de verdade, com rosto e nome.",
+    title: `Bem Servido · ${ACTIVE_LOCATION_NAME}`,
+    description: `Profissionais locais de confiança em ${ACTIVE_LOCATION_NAME}. Gente de verdade, com rosto e nome.`,
   },
   verification: {
     // TODO(James): replace with your verification code from search.google.com/search-console
@@ -35,6 +36,7 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const categories = await getCategories();
+  const loc = getActiveLocation();
 
   const orgJsonLd = {
     "@context": "https://schema.org",
@@ -42,13 +44,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     "@id": `${SITE}/#business`,
     name: "Bem Servido",
     url: SITE,
-    description: "Diretório de profissionais locais de confiança em Ilhabela, Brasil.",
+    description: `Diretório de profissionais locais de confiança em ${loc.name}, ${loc.country}.`,
     image: `${SITE}/opengraph-image`,
-    areaServed: { "@type": "Place", name: "Ilhabela, São Paulo, Brasil" },
+    areaServed: { "@type": "Place", name: `${loc.name}, ${loc.region}, ${loc.country}` },
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Ilhabela",
-      addressRegion: "SP",
+      addressLocality: loc.name,
+      addressRegion: loc.region,
       addressCountry: "BR",
     },
     priceRange: "R$",

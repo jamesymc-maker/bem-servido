@@ -28,7 +28,7 @@ export function Results({
     return sortByRank(rows);
   }, [providers, cat, q]);
 
-  const title = cat === "all" ? t("results.allTitle") : t(`cats.${cat}`);
+  const title = cat === "all" ? t("results.allTitle") : `${t(`cats.${cat}`)} ${t("results.inLocation")}`;
 
   return (
     <div className="max-w-6xl mx-auto px-5 py-10">

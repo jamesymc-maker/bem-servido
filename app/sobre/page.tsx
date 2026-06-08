@@ -3,16 +3,17 @@ import { MessageCircle } from "lucide-react";
 import { About } from "@/components/about";
 import { Faq } from "@/components/faq";
 import { JsonLd } from "@/components/json-ld";
-import { DICT } from "@/lib/i18n";
+import { t } from "@/lib/i18n";
+import { ACTIVE_LOCATION_NAME } from "@/lib/locations";
 
 export const metadata: Metadata = {
-  title: "Sobre · Bem Servido · Serviços locais de confiança em Ilhabela",
-  description: "O Bem Servido conecta você aos melhores profissionais locais de Ilhabela. Saiba como funciona e tire suas dúvidas.",
+  title: `Sobre · Bem Servido · Serviços locais de confiança em ${ACTIVE_LOCATION_NAME}`,
+  description: `O Bem Servido conecta você aos melhores profissionais locais de ${ACTIVE_LOCATION_NAME}. Saiba como funciona e tire suas dúvidas.`,
   alternates: { canonical: "/sobre" },
 };
 
 export default async function SobrePage() {
-  const items: { q: string; a: string }[] = DICT.faq.items;
+  const items: { q: string; a: string }[] = t("faq.items");
 
   const faqJsonLd = {
     "@context": "https://schema.org",

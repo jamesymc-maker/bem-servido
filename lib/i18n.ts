@@ -1,10 +1,14 @@
 // UI dictionary (Portuguese only). Provider-authored text (descriptions) is NOT translated here.
+// Use {loc} anywhere the active location name should appear; t() fills it in
+// automatically from lib/locations.ts so new regions update every string.
+import { ACTIVE_LOCATION_NAME } from "./locations";
+
 export const DICT = {
   nav: { home: "Início", categories: "Categorias", forProviders: "Para profissionais", advertise: "Anunciar serviço", findPros: "Buscar profissionais", blog: "Blog", about: "Sobre", advertise_link: "Anunciar", login: "Entrar", menu: "Menu" },
   loc: { choose: "Escolha a região", soon: "em breve", current: "Você está vendo" },
   hero: {
     badge: "Ilhabela · São Paulo, Brasil",
-    titleA: "As pessoas que", titleB: "tornam Ilhabela", accent: "mais fácil.",
+    titleA: "As pessoas que", titleB: "tornam {loc}", accent: "mais fácil.",
     sub: "Chefs, motoristas, babás, capitães de barco e mais. Profissionais locais de confiança, gente de verdade com rosto e nome.",
     placeholder: "Chef, motorista, babá, barco...", search: "Buscar",
     quick: ["Chef", "Motorista", "Babá", "Barco"],
@@ -16,7 +20,7 @@ export const DICT = {
   card: { from: "A partir de", halfDay: "/ meio dia" },
   results: {
     placeholder: "Buscar profissional, serviço ou idioma...", all: "Todos",
-    allTitle: "Todos os profissionais", result: "resultado", results: "resultados",
+    allTitle: "Profissionais em {loc}", inLocation: "em {loc}", result: "resultado", results: "resultados",
     emptyTitle: "Nada encontrado", emptySub: "Tente outra busca ou categoria.",
   },
   profile: {
@@ -52,9 +56,9 @@ export const DICT = {
     providersSub: "O que os profissionais do Bem Servido têm a dizer sobre estar na plataforma.",
   },
   seo: {
-    heading: "Serviços de confiança em Ilhabela, na palma da mão",
+    heading: "Serviços de confiança em {loc}, na palma da mão",
     body: [
-      "O Bem Servido reúne os melhores profissionais locais de Ilhabela num só lugar: chefs privativos, motoristas, babás, capitães de barco, faxineiras, massoterapeutas, fotógrafos, guias e concierges. Cada perfil mostra o rosto, os idiomas e os valores de quem vai te atender.",
+      "O Bem Servido reúne os melhores profissionais locais de {loc} num só lugar: chefs privativos, motoristas, babás, capitães de barco, faxineiras, massoterapeutas, fotógrafos, guias e concierges. Cada perfil mostra o rosto, os idiomas e os valores de quem vai te atender.",
       "Seja para um jantar na casa de temporada, um transfer do aeroporto até a balsa de São Sebastião ou um passeio de lancha até a Praia do Bonete, você encontra o profissional certo e fala direto pelo WhatsApp. Sem reservas complicadas e sem comissão.",
       "Tudo pensado para o celular: encontre, veja o vídeo de apresentação e contacte em segundos, de onde estiver na ilha.",
     ],
@@ -62,23 +66,24 @@ export const DICT = {
   },
   faq: {
     title: "Perguntas frequentes",
-    sub: "Tudo o que você precisa saber sobre o Bem Servido.",
+    sub: "Tudo o que você precisa saber sobre o Bem Servido em {loc}.",
     items: [
-      { q: "O Bem Servido cobra comissão?", a: "Não. Você fala direto com o profissional pelo WhatsApp ou telefone. O Bem Servido apenas conecta você a quem presta o serviço." },
-      { q: "Como contrato um profissional?", a: "Busque pela categoria ou pelo nome, abra o perfil, veja o vídeo de apresentação e os valores, e toque em WhatsApp para combinar tudo direto com a pessoa." },
-      { q: "Os profissionais são verificados?", a: "Profissionais com o selo de identidade verificada passaram por checagem de documento. Todos exibem foto real e uma descrição clara do serviço que oferecem." },
-      { q: "Quais serviços encontro em Ilhabela?", a: "Chefs privativos, motoristas e transfers, limpeza, babás, passeios de barco, bem-estar e massagem, reparos, fotografia, concierge e guias de turismo." },
-      { q: "É para turistas ou para moradores?", a: "Para os dois. Turistas, donos de casas de temporada, hóspedes de Airbnb e moradores usam o Bem Servido para encontrar quem resolve." },
-      { q: "Vão atender outras cidades?", a: "Começamos por Ilhabela. Em breve vamos expandir para outras regiões do litoral." },
+      { q: "O Bem Servido cobra comissão em {loc}?", a: "Não. Você fala direto com o profissional pelo WhatsApp ou telefone. O Bem Servido apenas conecta você a quem presta o serviço em {loc}." },
+      { q: "Como contrato um profissional em {loc}?", a: "Busque pela categoria ou pelo nome, abra o perfil, veja o vídeo de apresentação e os valores, e toque em WhatsApp para combinar tudo direto com a pessoa." },
+      { q: "Os profissionais em {loc} são verificados?", a: "Profissionais com o selo de identidade verificada passaram por checagem de documento. Todos exibem foto real e uma descrição clara do serviço que oferecem." },
+      { q: "Quais serviços encontro em {loc}?", a: "Chefs privativos, motoristas e transfers, limpeza, babás, passeios de barco, bem-estar e massagem, reparos, fotografia, concierge e guias de turismo." },
+      { q: "Quais profissionais estão disponíveis em {loc}?", a: "Você encontra chefs privativos, motoristas, babás, capitães de barco, faxineiras, massoterapeutas, fotógrafos, concierges e guias de turismo, todos locais e com perfil completo." },
+      { q: "É para turistas ou para moradores de {loc}?", a: "Para os dois. Turistas, donos de casas de temporada, hóspedes de Airbnb e moradores usam o Bem Servido para encontrar quem resolve em {loc}." },
+      { q: "Vão atender outras cidades além de {loc}?", a: "Começamos por {loc}. Em breve vamos expandir para outras regiões do litoral." },
     ],
   },
   sobre: {
-    title: "Sobre o Bem Servido",
-    lead: "O jeito mais simples de encontrar profissionais locais de confiança em Ilhabela.",
+    title: "Sobre o Bem Servido em {loc}",
+    lead: "O jeito mais simples de encontrar profissionais locais de confiança em {loc}.",
     body: [
-      "O Bem Servido nasceu de uma ideia simples: na hora de contratar um chef, um motorista ou uma babá em Ilhabela, as pessoas escolhem pessoas. Por isso o rosto, o nome e a voz de cada profissional vêm em primeiro lugar.",
-      "Reunimos profissionais locais em perfis claros, com foto, idiomas, valores e um vídeo curto de apresentação. Você compara, escolhe e fala direto pelo WhatsApp. Sem intermediários, sem comissão e sem complicação.",
-      "Estamos começando por Ilhabela, mas a ideia é levar o Bem Servido para todo o litoral. Se você é profissional na ilha, anuncie o seu serviço e seja encontrado por quem está chegando.",
+      "O Bem Servido nasceu de uma ideia simples: na hora de contratar um chef, um motorista ou uma babá em {loc}, as pessoas escolhem pessoas. Por isso o rosto, o nome e a voz de cada profissional vêm em primeiro lugar.",
+      "Reunimos os profissionais locais de {loc} em perfis claros, com foto, idiomas, valores e um vídeo curto de apresentação. Você compara, escolhe e fala direto pelo WhatsApp. Sem intermediários, sem comissão e sem complicação.",
+      "Estamos começando por {loc}, mas a ideia é levar o Bem Servido para todo o litoral. Se você é profissional na ilha, anuncie o seu serviço e seja encontrado por quem está chegando.",
     ],
   },
   blog: {
@@ -99,7 +104,7 @@ export const DICT = {
     failed: "Não foi possível enviar. Tente novamente.",
     notConfigured: "Avaliações ainda não disponíveis nesta versão de demonstração.",
   },
-  footer: { tagline: "O diretório de profissionais locais de confiança de Ilhabela. Gente de verdade, com rosto e nome.", categories: "Categorias", platform: "Plataforma", resources: "Conteúdo" },
+  footer: { tagline: "O diretório de profissionais locais de confiança de {loc}. Gente de verdade, com rosto e nome.", categories: "Categorias", platform: "Plataforma", resources: "Conteúdo" },
   cats: {
     "private-chefs": "Chefs Privativos", "drivers": "Motoristas", "house-cleaning": "Limpeza", "babysitters": "Babás",
     "boat-services": "Passeios de Barco", "wellness": "Bem-estar", "handymen": "Reparos", "photography": "Fotografia",
@@ -111,11 +116,30 @@ function get(obj: any, path: string) {
   return path.split(".").reduce((o, k) => (o == null ? undefined : o[k]), obj);
 }
 
+// Recursively fills placeholders. {loc} always resolves to the active location
+// name; other {keys} resolve from vars (preserving the original behaviour where
+// a provided-but-missing key becomes "" and untouched keys stay literal).
+function fill(value: any, vars?: Record<string, string | number>): any {
+  if (typeof value === "string") {
+    return value.replace(/\{(\w+)\}/g, (match, k) => {
+      if (k === "loc") return ACTIVE_LOCATION_NAME;
+      if (vars) return String(vars[k] ?? "");
+      return match;
+    });
+  }
+  if (Array.isArray(value)) return value.map((item) => fill(item, vars));
+  if (value && typeof value === "object") {
+    const out: Record<string, any> = {};
+    for (const k in value) out[k] = fill(value[k], vars);
+    return out;
+  }
+  return value;
+}
+
 export function t(key: string, vars?: Record<string, string | number>): any {
   const v = get(DICT, key);
   if (v === undefined) return key;
-  if (typeof v === "string" && vars) return v.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ""));
-  return v;
+  return fill(v, vars);
 }
 
 export function catSearchTerms(slug: string) {

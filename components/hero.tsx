@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { MapPin, Search } from "lucide-react";
 import { t } from "@/lib/i18n";
+import { getActiveLocation } from "@/lib/locations";
 
 const face = (g: string, n: number) => `https://randomuser.me/api/portraits/${g}/${n}.jpg`;
 const FACES = [face("women", 44), face("men", 45), face("women", 29), face("men", 64), face("women", 12)];
@@ -13,6 +14,8 @@ export function Hero() {
   const [q, setQ] = useState("");
   const submit = () => router.push(`/servicos?q=${encodeURIComponent(q)}`);
   const quick: string[] = t("hero.quick");
+  const loc = getActiveLocation();
+  const badge = `${loc.name} · ${loc.region}, ${loc.country}`;
   const positions = [
     { top: "2%", left: "20%", s: 150, d: "0s", n: 0 },
     { top: "30%", left: "62%", s: 120, d: ".6s", n: 1 },
@@ -29,7 +32,7 @@ export function Hero() {
         <div>
           <div className="rise inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[13px] font-medium mb-6"
             style={{ background: "#fff", border: "1px solid var(--line)", color: "var(--sea)" }}>
-            <MapPin size={14} /> {t("hero.badge")}
+            <MapPin size={14} /> {badge}
           </div>
           <h1 className="serif rise leading-[1.02] tracking-tight"
             style={{ fontSize: "clamp(2.6rem,6vw,4.4rem)", fontWeight: 600, animationDelay: "60ms" }}>

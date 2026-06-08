@@ -3,8 +3,10 @@ import Link from "next/link";
 import { Anchor, MapPin, MessageCircle } from "lucide-react";
 import type { Category } from "@/lib/types";
 import { t } from "@/lib/i18n";
+import { getActiveLocation } from "@/lib/locations";
 
 export function Footer({ categories }: { categories: Category[] }) {
+  const loc = getActiveLocation();
   return (
     <footer style={{ background: "var(--sea-deep)", color: "rgba(255,255,255,.78)" }}>
       <div className="max-w-6xl mx-auto px-5 py-12 grid grid-cols-2 md:grid-cols-[1.6fr_1fr_1fr_1fr] gap-8">
@@ -19,7 +21,7 @@ export function Footer({ categories }: { categories: Category[] }) {
           </div>
           <p className="text-sm max-w-xs">{t("footer.tagline")}</p>
           <div className="inline-flex items-center gap-1.5 mt-4 text-sm">
-            <MapPin size={14} color="var(--coral-soft)" /> Ilhabela · São Paulo · Brasil
+            <MapPin size={14} color="var(--coral-soft)" /> {loc.name} · {loc.region} · {loc.country}
           </div>
           <div className="mt-4">
             <a

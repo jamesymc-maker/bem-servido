@@ -19,3 +19,10 @@ export const DEFAULT_LOCATION = "ilhabela";
 export const getLocation = (slug: string) =>
   LOCATIONS.find((l) => l.slug === slug) ?? LOCATIONS[0];
 export const activeLocations = () => LOCATIONS.filter((l) => l.active);
+
+// The primary active location drives location-aware copy and SEO across the
+// site. Today that is Ilhabela; when a second region goes live, every heading,
+// FAQ, About line and meta tag that uses {loc} updates automatically.
+export const getActiveLocation = (): Location =>
+  activeLocations()[0] ?? getLocation(DEFAULT_LOCATION);
+export const ACTIVE_LOCATION_NAME = getActiveLocation().name;

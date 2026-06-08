@@ -1,7 +1,8 @@
 import { ImageResponse } from "next/og";
+import { ACTIVE_LOCATION_NAME } from "@/lib/locations";
 
 export const runtime = "edge";
-export const alt = "Bem Servido · Serviços locais de confiança em Ilhabela";
+export const alt = `Bem Servido · Serviços locais de confiança em ${ACTIVE_LOCATION_NAME}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -35,7 +36,7 @@ export default async function OpengraphImage() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           <div style={{ fontSize: 76, fontWeight: 700, lineHeight: 1.05, maxWidth: 980 }}>
-            Serviços locais de confiança em Ilhabela
+            Serviços locais de confiança em {ACTIVE_LOCATION_NAME}
           </div>
           <div style={{ fontSize: 34, color: "#EFE5D4", maxWidth: 900 }}>
             Chefs, motoristas, babás, capitães de barco e mais. Gente de verdade, com rosto e nome.
