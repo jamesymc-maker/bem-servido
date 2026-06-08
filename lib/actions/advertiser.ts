@@ -83,14 +83,17 @@ export async function deleteAd(formData: FormData) {
   revalidatePath("/anunciante/painel/anuncios");
 }
 
-// Admin: activate/deactivate an ad
+// Admin: manually activate/deactivate an ad for content moderation, regardless
+// of payment status. Deactivating sets admin_blocked so the Stripe webhook will
+// not silently bring the ad back live on the next payment event.
 export async function adminToggleAd(formData: FormData) {
   const db = createAdminSupabase();
   const id = String(formData.get("id"));
   const active = String(formData.get("active")) === "true";
-  await db.from("ads").update({ active }).eq("id", id);
+  await db.from("ads").update({ active, admin_blocked: !active }).eq("id", id);
   revalidatePath("/admin/anuncios");
   revalidatePath("/admin/anunciantes");
+  revalidatePath("/anunciante/painel/anuncios");
 }
 
 // Admin: suspend/reactivate an advertiser

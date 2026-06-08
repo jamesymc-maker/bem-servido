@@ -1,6 +1,42 @@
 import "server-only";
 import { createAdminSupabase } from "./supabase/admin";
+import { mapProviderRow } from "./data";
 import { PLANS } from "./plans";
+import type { Provider, Review } from "./types";
+
+const PROVIDER_FULL_SELECT = "*, categories(slug,label,icon), provider_gallery(url,sort)";
+
+// Fetch a single provider for admin preview via the service-role client so it
+// works for pending / suspended providers (bypasses the published RLS check).
+export async function adminGetProviderPreview(
+  id: string,
+): Promise<{ provider: Provider; status: string; reviews: Review[]; related: Provider[] } | null> {
+  const supabase = createAdminSupabase();
+  const { data } = await supabase.from("providers").select(PROVIDER_FULL_SELECT).eq("id", id).maybeSingle();
+  if (!data) return null;
+  const provider = mapProviderRow(data);
+  const [{ data: reviewRows }, { data: relatedRows }] = await Promise.all([
+    supabase
+      .from("reviews")
+      .select("id, provider_id, author_name, rating, comment, created_at")
+      .eq("provider_id", id)
+      .eq("status", "approved")
+      .order("created_at", { ascending: false }),
+    supabase
+      .from("providers")
+      .select(PROVIDER_FULL_SELECT)
+      .eq("status", "published")
+      .eq("category_id", (data as any).category_id)
+      .neq("id", id)
+      .limit(3),
+  ]);
+  return {
+    provider,
+    status: (data as any).status,
+    reviews: (reviewRows as Review[]) ?? [],
+    related: (relatedRows ?? []).map(mapProviderRow),
+  };
+}
 
 // owner_id has FKs to both auth.users and public.profiles, so embed profiles
 // via the explicit constraint name to avoid an ambiguous-relationship error.
@@ -66,7 +102,7 @@ export async function adminListAds() {
   const supabase = createAdminSupabase();
   const { data } = await supabase
     .from("ads")
-    .select("*, advertisers(company_name,logo_url)")
+    .select("*, advertisers(company_name,logo_url,tier)")
     .order("created_at", { ascending: false });
   return data ?? [];
 }

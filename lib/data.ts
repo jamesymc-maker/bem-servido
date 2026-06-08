@@ -8,6 +8,10 @@ const hasSupabase = Boolean(
   process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
 );
 
+export function mapProviderRow(row: any): Provider {
+  return mapRow(row);
+}
+
 function mapRow(row: any): Provider {
   const cat = row.categories ?? {};
   return {

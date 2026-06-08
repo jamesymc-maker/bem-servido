@@ -13,6 +13,21 @@ type Db = ReturnType<typeof createAdminSupabase>;
 const ADVERTISER_TIERS = new Set(["visibilidade", "destaque", "parceiro"]);
 const ACTIVE_STATUSES = new Set(["active", "trialing", "past_due"]);
 
+// Flip every ad belonging to an advertiser live, except ones an admin has
+// manually taken down for moderation (admin_blocked = true).
+async function activateAdvertiserAds(db: Db, advertiserId: string) {
+  await db.from("ads").update({ active: true }).eq("advertiser_id", advertiserId).eq("admin_blocked", false);
+}
+
+// Payment confirmed for an advertiser: persist their tier and put their ads
+// live automatically — no manual activation step needed after payment.
+async function activateAdvertiser(db: Db, advertiserId: string, tier: string | null) {
+  if (tier && ADVERTISER_TIERS.has(tier)) {
+    await db.from("advertisers").update({ tier }).eq("id", advertiserId);
+  }
+  await activateAdvertiserAds(db, advertiserId);
+}
+
 async function syncAdvertiserTierForSub(db: Db, subscriptionId: string, tier: string | null, active: boolean) {
   const { data: row } = await db
     .from("advertiser_subscriptions")
@@ -20,7 +35,11 @@ async function syncAdvertiserTierForSub(db: Db, subscriptionId: string, tier: st
     .eq("stripe_subscription_id", subscriptionId)
     .maybeSingle();
   if (!row?.advertiser_id) return;
-  await db.from("advertisers").update({ tier: active ? (tier ?? row.tier) : null }).eq("id", row.advertiser_id);
+  if (active) {
+    await activateAdvertiser(db, row.advertiser_id, tier ?? row.tier);
+  } else {
+    await db.from("advertisers").update({ tier: null }).eq("id", row.advertiser_id);
+  }
 }
 
 export async function POST(req: Request) {
@@ -49,9 +68,7 @@ export async function POST(req: Request) {
             status: "active",
             last_payment_at: new Date().toISOString(),
           }, { onConflict: "stripe_subscription_id" });
-          if (ADVERTISER_TIERS.has(tier)) {
-            await supabase.from("advertisers").update({ tier }).eq("id", advertiserId);
-          }
+          await activateAdvertiser(supabase, advertiserId, tier);
         } else {
           await supabase.from("subscriptions").upsert({
             provider_id: s.metadata?.providerId || null,
@@ -73,6 +90,8 @@ export async function POST(req: Request) {
           await supabase.from("advertiser_subscriptions")
             .update({ status: "active", last_payment_at: now })
             .eq("stripe_subscription_id", inv.subscription);
+          // Recurring payment for an advertiser: keep tier set and ads live.
+          await syncAdvertiserTierForSub(supabase, inv.subscription, null, true);
         }
         break;
       }

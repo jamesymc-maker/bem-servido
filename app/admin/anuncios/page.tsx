@@ -1,5 +1,6 @@
 import { adminListAds } from "@/lib/admin-data";
 import { adminToggleAd } from "@/lib/actions/advertiser";
+import { adStatus } from "@/lib/ad-status";
 
 export default async function AdminAnuncios() {
   const ads = await adminListAds();
@@ -20,7 +21,9 @@ export default async function AdminAnuncios() {
             </tr>
           </thead>
           <tbody>
-            {ads.map((ad: any) => (
+            {ads.map((ad: any) => {
+              const status = adStatus(ad, !!ad.advertisers?.tier);
+              return (
               <tr key={ad.id} style={{ borderBottom: "1px solid var(--line)" }}>
                 <td className="p-3">
                   <div className="flex items-center gap-3">
@@ -44,8 +47,8 @@ export default async function AdminAnuncios() {
                 <td className="p-3">{ad.impressions}</td>
                 <td className="p-3">{ad.clicks}</td>
                 <td className="p-3">
-                  <span className="text-xs font-semibold rounded-full px-2 py-1" style={{ color: ad.active ? "var(--sea)" : "#B7791F", background: "var(--sand)" }}>
-                    {ad.active ? "Activo" : "Pendente"}
+                  <span className="text-xs font-semibold rounded-full px-2 py-1" style={{ color: status.color, background: status.bg }}>
+                    {status.label}
                   </span>
                 </td>
                 <td className="p-3">
@@ -58,7 +61,8 @@ export default async function AdminAnuncios() {
                   </form>
                 </td>
               </tr>
-            ))}
+              );
+            })}
             {ads.length === 0 && (
               <tr><td colSpan={7} className="p-6 text-center" style={{ color: "var(--ink-soft)" }}>Nenhum anúncio submetido ainda.</td></tr>
             )}

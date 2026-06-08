@@ -68,6 +68,8 @@ function RowActions({ id, slug, status }: { id: string; slug: string; status: st
         <button onClick={() => setStatus("suspended")} disabled={pending}
           className="rounded-full px-3 py-1.5 text-xs font-semibold text-white disabled:opacity-50" style={{ background: "var(--ink-soft)" }}>Suspender</button>
       )}
+      <Link href={`/admin/providers/preview/${id}`} target="_blank"
+        className="rounded-full px-3 py-1.5 text-xs font-semibold" style={{ border: "1px solid var(--line)", color: "var(--ink)" }}>Pré-visualizar</Link>
       <Link href={`/profissional/${slug}`} target="_blank"
         className="rounded-full px-3 py-1.5 text-xs font-semibold" style={{ border: "1px solid var(--line)", color: "var(--sea)" }}>Ver perfil</Link>
     </div>
