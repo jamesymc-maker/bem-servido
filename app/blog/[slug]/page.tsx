@@ -17,16 +17,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${post.title} · Bem Servido`,
     description: post.description,
     alternates: { canonical: `/blog/${post.slug}` },
-    openGraph: {
-      ...openGraphMetadata({
-        type: "article",
-        title: post.title,
-        description: post.description,
-        url: `/blog/${post.slug}`,
-        images: post.cover ? [{ url: post.cover, width: 1200, height: 630, alt: post.title }] : undefined,
-      }),
-      publishedTime: post.date,
-    },
+    openGraph: openGraphMetadata({
+      type: "article",
+      title: post.title,
+      description: post.description,
+      url: `/blog/${post.slug}`,
+      images: post.cover ? [{ url: post.cover, width: 1200, height: 630, alt: post.title }] : undefined,
+    }),
   };
 }
 
