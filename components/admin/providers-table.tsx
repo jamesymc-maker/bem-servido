@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { setListingStatus } from "@/lib/actions/admin";
 
 const STATUS_LABEL: Record<string, string> = { pending: "Pendente", published: "Publicado", rejected: "Rejeitado", suspended: "Suspenso" };
-const STATUS_COLOR: Record<string, string> = { pending: "#B7791F", published: "var(--teal)", rejected: "var(--pink)", suspended: "var(--muted)" };
+const STATUS_COLOR: Record<string, string> = { pending: "var(--orange)", published: "var(--teal)", rejected: "var(--pink)", suspended: "var(--muted)" };
 const TIER_LABEL: Record<string, string> = { standard: "Standard", featured: "Featured", premium: "Premium" };
 
 type Filter = "todos" | "expirar" | "expirado" | "pagantes" | "pendentes";

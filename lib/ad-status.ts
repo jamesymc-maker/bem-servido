@@ -16,8 +16,8 @@ export type AdStatus = {
 };
 
 const STATUS: Record<AdStatusKey, AdStatus> = {
-  aguardando: { key: "aguardando", label: "Aguardando pagamento", color: "#B7791F", bg: "var(--sand)" },
-  revisao: { key: "revisao", label: "Em revisão", color: "#B7791F", bg: "var(--sand)" },
+  aguardando: { key: "aguardando", label: "Aguardando pagamento", color: "var(--orange)", bg: "var(--sand)" },
+  revisao: { key: "revisao", label: "Em revisão", color: "var(--orange)", bg: "var(--sand)" },
   activo: { key: "activo", label: "Activo", color: "var(--teal)", bg: "var(--sand)" },
   inactivo: { key: "inactivo", label: "Inactivo", color: "var(--muted)", bg: "var(--sand)" },
 };

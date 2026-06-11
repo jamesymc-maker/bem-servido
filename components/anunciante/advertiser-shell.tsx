@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { LayoutDashboard, Image as ImageIcon, Tag, LogOut, ExternalLink } from "lucide-react";
@@ -21,7 +22,10 @@ export function AdvertiserShell({ tier, children }: { tier?: string; children: R
     <div className="min-h-screen" style={{ background: "var(--sand)" }}>
       <header className="bg-white" style={{ borderBottom: "1px solid var(--border)" }}>
         <div className="max-w-4xl mx-auto px-5 h-14 flex items-center justify-between">
-          <span className="font-heading text-lg" style={{ fontWeight: 600 }}>Painel do anunciante</span>
+          <div className="flex items-center gap-2">
+            <Image src="/daquii_logo_mark.svg" alt="daquii" width={28} height={28} className="h-7 w-7" />
+            <span className="font-heading text-lg font-bold text-navy">Painel do anunciante</span>
+          </div>
           <div className="flex items-center gap-3">
             {tier && <span className="text-xs font-bold rounded-full px-2.5 py-1" style={{ background: "var(--teal)", color: "#fff" }}>{TIER_LABEL[tier] ?? tier}</span>}
             <Link href="/anunciar" target="_blank" className="text-sm inline-flex items-center gap-1" style={{ color: "var(--muted)" }}>

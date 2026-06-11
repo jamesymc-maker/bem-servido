@@ -17,26 +17,27 @@ export default async function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px 80px",
-          background: "linear-gradient(135deg, #0B1D3A 0%, #0B1D3A 55%, #00C2BB 100%)",
-          color: "#FFFFFF",
+          background: "#FFF7ED",
+          color: "#0B1D3A",
           fontFamily: "sans-serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 36, letterSpacing: -2 }}>
-          <span style={{ fontWeight: 800 }}>daquii</span>
+          <span style={{ fontWeight: 800, color: "#0B1D3A" }}>daquii</span>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          <div style={{ fontSize: 72, fontWeight: 800, lineHeight: 1.05, maxWidth: 980 }}>
-            Pessoas de daqui, para você.
+          <div style={{ fontSize: 72, fontWeight: 800, lineHeight: 1.05, maxWidth: 980, color: "#0B1D3A" }}>
+            Pessoas de daqui, <span style={{ color: "#FF2D6D" }}>para você.</span>
           </div>
-          <div style={{ fontSize: 32, color: "#FFF7ED", maxWidth: 900 }}>
-            Profissionais locais de confiança em {ACTIVE_LOCATION_NAME}. Gente de verdade, com rosto e nome.
+          <div style={{ fontSize: 30, color: "#5B677A", maxWidth: 900 }}>
+            Conectamos você a pessoas locais de confiança em {ACTIVE_LOCATION_NAME}.
           </div>
         </div>
 
-        <div style={{ display: "flex", fontSize: 28, color: "#FFB62B" }}>
-          daquii.com
+        <div style={{ display: "flex", fontSize: 24, fontWeight: 700 }}>
+          <span style={{ color: "#00C2BB" }}>Tudo o que você precisa, </span>
+          <span style={{ color: "#FF2D6D" }}>daqui.</span>
         </div>
       </div>
     ),

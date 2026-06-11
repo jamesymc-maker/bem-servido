@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { LayoutDashboard, Users, Tags, Settings, LogOut, ExternalLink, FileText, Megaphone, Image as ImageIcon, Star } from "lucide-react";
@@ -26,8 +27,8 @@ export function AdminShell({ email, children }: { email?: string; children: Reac
       <header className="bg-white" style={{ borderBottom: "1px solid var(--border)" }}>
         <div className="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span className="font-heading text-lg font-bold text-navy">daquii</span>
-            <span className="text-[11px] font-bold uppercase tracking-wide rounded-full px-2 py-0.5" style={{ background: "var(--teal)", color: "#fff" }}>Admin</span>
+            <Image src="/daquii_logo_horizontal.svg" alt="daquii" width={120} height={32} className="h-7 w-auto" />
+            <span className="text-[11px] font-bold uppercase tracking-wide rounded-dqfull px-2 py-0.5 bg-teal text-white">Admin</span>
           </div>
           <div className="flex items-center gap-3">
             <Link href="/" target="_blank" className="text-sm inline-flex items-center gap-1" style={{ color: "var(--muted)" }}>

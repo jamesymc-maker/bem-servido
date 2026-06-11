@@ -1,0 +1,60 @@
+:root {
+  /* Daquii corrected brand tokens - based on authoritative reference board */
+  --dq-pink: #FF2D6D;
+  --dq-orange: #FFB62B;
+  --dq-teal: #00C2BB;
+  --dq-navy: #0B1D3A;
+  --dq-sand: #FFF7ED;
+  --dq-white: #FFFFFF;
+  --dq-border: #E7EEF2;
+  --dq-muted: #5B677A;
+
+  --dq-gradient-brand: linear-gradient(135deg, #FF2D6D 0%, #FFB62B 48%, #00C2BB 100%);
+  --dq-gradient-teal: linear-gradient(135deg, #00C2BB 0%, #00AFA8 100%);
+  --dq-gradient-pink: linear-gradient(135deg, #FF2D6D 0%, #FF5C8B 100%);
+
+  --dq-font-heading: "Sora", "Montserrat", Inter, Arial, sans-serif;
+  --dq-font-body: "Sora", Inter, Arial, sans-serif;
+
+  --dq-radius-sm: 12px;
+  --dq-radius-md: 18px;
+  --dq-radius-lg: 28px;
+  --dq-radius-xl: 36px;
+  --dq-radius-pill: 999px;
+
+  --dq-shadow-card: 0 18px 50px rgba(11, 29, 58, 0.10);
+  --dq-shadow-hover: 0 24px 70px rgba(11, 29, 58, 0.14);
+  --dq-max-width: 1180px;
+}
+
+body {
+  background: var(--dq-white);
+  color: var(--dq-navy);
+  font-family: var(--dq-font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--dq-navy);
+  font-family: var(--dq-font-heading);
+  letter-spacing: -0.035em;
+}
+
+.dq-button-primary {
+  background: var(--dq-teal);
+  border-radius: var(--dq-radius-pill);
+  color: white;
+  font-weight: 800;
+}
+
+.dq-button-primary:hover {
+  background: #00AFA8;
+  box-shadow: var(--dq-shadow-hover);
+  transform: translateY(-1px);
+}
+
+.dq-card {
+  background: white;
+  border: 1px solid var(--dq-border);
+  border-radius: var(--dq-radius-lg);
+  box-shadow: var(--dq-shadow-card);
+}

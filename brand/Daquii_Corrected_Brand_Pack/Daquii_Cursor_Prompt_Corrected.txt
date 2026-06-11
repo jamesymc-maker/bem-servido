@@ -1,0 +1,130 @@
+Use the corrected Daquii brand pack and update the project to match the attached reference image exactly in direction.
+
+The authoritative visual reference is:
+
+daquii_authoritative_brand_reference.png
+
+The previous files that used a different abstract D / people logo are wrong. Do not use that direction.
+
+Correct brand direction:
+
+1. Brand name is lowercase:
+daquii
+
+2. Do not use:
+Daquii
+DAQUII
+Daqui
+Bem Servido
+
+3. Use the logo style from the reference image:
+- organic island outline
+- palm tree inside the island
+- no external dot beside the island outline
+- lowercase d wordmark
+- deep navy wordmark
+- bright gradient island outline
+- teal palm tree
+- the two i dots should be Ocean Teal and Tropical Pink
+
+4. Use this exact colour palette:
+Tropical Pink: #FF2D6D
+Sunset Orange: #FFB62B
+Ocean Teal: #00C2BB
+Deep Navy: #0B1D3A
+Sand: #FFF7ED
+White: #FFFFFF
+Soft Border: #E7EEF2
+Muted Text: #5B677A
+
+5. Make the colours pop. Do not mute them. Do not use pastel-only versions.
+
+6. The visual style should match the reference:
+- bright daytime tropical colours
+- white and sand backgrounds
+- bold navy type
+- teal and pink accent typography
+- bright service illustrations
+- rounded cards
+- modern premium island concierge feel
+
+7. Do not use:
+- abstract D with people
+- handshake logo
+- location pin logo
+- dark neon Miami Vice styling
+- black-only logo as the main brand
+- capital D
+- muted grey/pastel palette
+
+8. Replace any old generated logo files with:
+daquii_logo_mark_corrected.svg
+daquii_logo_horizontal_corrected.svg
+
+9. Add the corrected design tokens:
+daquii_design_tokens_corrected.json
+daquii_design_tokens_corrected.css
+
+10. Update Tailwind and global CSS to use the corrected colours, fonts, radii, shadows and gradients.
+
+Typography:
+Use Sora or Montserrat for headings.
+Use Sora or Inter for body copy.
+Keep headings bold and rounded like the reference.
+
+Homepage hero:
+Headline:
+Pessoas de daqui, para você.
+
+Supporting copy:
+Conectamos você a pessoas locais de confiança que tornam sua experiência incrível, sem complicação.
+
+Tagline:
+Tudo o que você precisa, daqui.
+
+Primary CTA:
+Encontrar serviços
+
+Secondary CTA:
+Anunciar na daquii
+
+Apply this branding to:
+- header
+- footer
+- homepage
+- service category pages
+- provider cards
+- provider profile pages
+- pricing page
+- recommended businesses page
+- advertiser cards
+- admin dashboard
+- provider dashboard
+- buttons
+- badges
+- tables
+- forms
+- search components
+
+Provider cards should emphasise real people:
+- large face photo
+- name
+- category
+- languages
+- price
+- trust badges
+- WhatsApp CTA
+
+Advertising should feel native:
+- bright sponsor cards
+- Sand backgrounds
+- clean logos
+- clear CTA
+- label sponsored placements as Patrocinado
+
+Run:
+npm run build
+
+Fix all TypeScript, lint and build errors.
+
+When finished, summarise the files changed and confirm that the logo, colours and wordmark now match the reference image.

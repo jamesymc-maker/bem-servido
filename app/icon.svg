@@ -1,20 +1,21 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="512" height="512" rx="96" fill="#0B1D3A"/>
   <defs>
-    <linearGradient id="daquiiGradient" x1="90" y1="75" x2="420" y2="425" gradientUnits="userSpaceOnUse">
+    <linearGradient id="dqGradient" x1="94" y1="82" x2="400" y2="430" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#FF2D6D"/>
-      <stop offset="0.45" stop-color="#FFB62B"/>
+      <stop offset="0.48" stop-color="#FFB62B"/>
       <stop offset="1" stop-color="#00C2BB"/>
     </linearGradient>
   </defs>
-  <path d="M256 54C318 54 359 88 376 133C390 171 427 185 443 224C462 270 436 315 397 337C360 358 350 399 311 425C262 458 202 443 174 399C150 362 108 358 83 326C48 282 57 224 98 196C132 173 126 128 161 94C185 70 218 54 256 54Z" stroke="url(#daquiiGradient)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M260 55C311 51 349 78 363 121C376 160 417 176 425 221C434 272 397 310 354 328C317 344 311 392 273 420C228 453 171 437 151 389C135 351 86 342 68 301C47 253 70 207 111 184C146 164 139 119 172 88C194 68 225 58 260 55Z"
+        stroke="url(#dqGradient)" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
   <g fill="#00C2BB">
-    <path d="M249 205h14v126h-14z"/>
-    <path d="M256 203c-32-36-74-33-101-11 45-2 76 16 95 45l6-34z"/>
-    <path d="M256 203c32-36 74-33 101-11-45-2-76 16-95 45l-6-34z"/>
-    <path d="M256 203c-6-43-36-68-72-73 26 29 42 60 43 96l29-23z"/>
-    <path d="M256 203c6-43 36-68 72-73-26 29-42 60-43 96l-29-23z"/>
-    <path d="M160 342c62-14 130-14 192 0v16c-62-12-130-12-192 0v-16z"/>
-    <path d="M187 377c44-8 94-8 138 0v13c-44-7-94-7-138 0v-13z"/>
+    <path d="M246 208h20v122h-20z"/>
+    <path d="M256 208c-30-38-72-41-110-18 52 0 83 19 101 52l9-34z"/>
+    <path d="M256 208c30-38 72-41 110-18-52 0-83 19-101 52l-9-34z"/>
+    <path d="M256 207c-4-46-31-75-75-86 29 31 43 65 43 103l32-17z"/>
+    <path d="M256 207c4-46 31-75 75-86-29 31-43 65-43 103l-32-17z"/>
+    <path d="M145 349c69-18 151-18 220 0v20c-69-14-151-14-220 0v-20z"/>
+    <path d="M188 389c43-8 93-8 136 0v14c-43-7-93-7-136 0v-14z"/>
   </g>
 </svg>

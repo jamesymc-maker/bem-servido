@@ -16,8 +16,8 @@ export function ListingCard({ p, i = 0 }: { p: Provider; i?: number }) {
       className="lift rise cursor-pointer rounded-dqlg overflow-hidden bg-white flex flex-col border border-border shadow-card"
       style={{ animationDelay: `${i * 60}ms` }}
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-sand">
-        <img src={p.photo_url} alt={p.name} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
+      <div className="relative aspect-[5/4] overflow-hidden bg-sand">
+        <img src={p.photo_url} alt={p.name} referrerPolicy="no-referrer" className="w-full h-full object-cover object-top" />
         <div className="absolute top-3 left-3"><TierBadge tier={p.tier} /></div>
         {p.verified && (
           <span className="absolute bottom-3 right-3 grid place-items-center w-9 h-9 rounded-full bg-teal shadow-md" style={{ boxShadow: "0 0 0 3px #fff" }}>

@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { LayoutDashboard, User, Image as ImageIcon, Video, CreditCard, Tag, LogOut, ExternalLink } from "lucide-react";
@@ -31,7 +32,10 @@ export function PainelShell({ status, slug, published, children }: { status: str
     <div className="min-h-screen" style={{ background: "var(--sand)" }}>
       <header className="bg-white" style={{ borderBottom: "1px solid var(--border)" }}>
         <div className="max-w-4xl mx-auto px-5 h-14 flex items-center justify-between">
-          <span className="font-heading text-lg" style={{ fontWeight: 600 }}>Meu painel</span>
+          <div className="flex items-center gap-2">
+            <Image src="/daquii_logo_mark.svg" alt="daquii" width={28} height={28} className="h-7 w-7" />
+            <span className="font-heading text-lg font-bold text-navy">Meu painel</span>
+          </div>
           <div className="flex items-center gap-3">
             <span className="text-xs font-semibold rounded-full px-2.5 py-1" style={{ background: "var(--sand)", color: st.color }}>{st.label}</span>
             {published && (

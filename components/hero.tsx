@@ -31,24 +31,25 @@ export function Hero() {
             className="font-heading rise leading-[1.05] tracking-tight font-extrabold text-navy"
             style={{ fontSize: "clamp(2.625rem, 6vw, 4rem)", animationDelay: "60ms" }}
           >
-            {t("hero.titleA")}
-            <br />
-            {t("hero.titleB")}
-            <br />
+            {t("hero.titleA")}{" "}
             <span className="text-pink">{t("hero.accent")}</span>
           </h1>
           <p className="rise mt-5 text-lg max-w-md text-muted" style={{ animationDelay: "140ms" }}>
-            {t("hero.taglineA")}{" "}
-            <span className="text-pink font-semibold">{loc.name}</span>{" "}
-            {t("hero.taglineB")}
+            {t("hero.tagline")}
           </p>
-          <div className="rise mt-8" style={{ animationDelay: "220ms" }}>
+          <div className="rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: "220ms" }}>
             <Link
               href={`/${loc.slug}/servicos`}
               className="inline-flex items-center justify-center rounded-dqfull px-7 py-3.5 text-white font-bold transition hover:bg-teal-dark active:scale-95 min-h-[52px] sm:min-h-[48px]"
               style={{ background: "var(--teal)" }}
             >
               {t("hero.ctaPrimary")}
+            </Link>
+            <Link
+              href={`/${loc.slug}/precos`}
+              className="inline-flex items-center justify-center rounded-dqfull px-7 py-3.5 font-bold text-navy transition active:scale-95 min-h-[52px] sm:min-h-[48px] bg-white border border-border hover:shadow-hover"
+            >
+              {t("hero.ctaSecondary")}
             </Link>
           </div>
         </div>

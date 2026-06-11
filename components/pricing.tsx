@@ -42,7 +42,7 @@ export function Pricing() {
 
       <div className="max-w-3xl mx-auto px-5 -mt-2">
         <div className="rise flex items-center justify-center gap-2.5 rounded-2xl px-5 py-4 text-center"
-          style={{ background: "var(--pink)", color: "#fff", boxShadow: "0 18px 40px -20px rgba(229,115,87,.7)" }}>
+          style={{ background: "var(--pink)", color: "#fff", boxShadow: "0 18px 40px -20px rgba(255,45,109,.45)" }}>
           <Gift size={20} strokeWidth={2.5} className="shrink-0" />
           <span className="font-semibold" style={{ fontSize: "clamp(.95rem,2.4vw,1.1rem)" }}>{t("pricing.freeBanner")}</span>
         </div>
