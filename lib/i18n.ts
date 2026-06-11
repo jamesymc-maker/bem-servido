@@ -10,8 +10,9 @@ export const DICT = {
   loc: { choose: "Escolha a região", soon: "em breve", current: "Você está vendo" },
   hero: {
     badge: "{loc} · São Paulo, Brasil",
-    titleA: "Pessoas de daqui,",
-    titleB: "para você.",
+    titleA: "As pessoas que",
+    titleB: "tornam {loc}",
+    accent: "mais fácil.",
     taglineA: "As pessoas que tornam",
     taglineB: "mais fácil.",
     ctaPrimary: "Encontrar serviços",
