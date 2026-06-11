@@ -1,4 +1,4 @@
-<svg width="1050" height="260" viewBox="0 0 1050 260" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="daquii horizontal logo">
+<svg width="680" height="260" viewBox="0 0 680 260" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="daquii horizontal logo">
   <defs>
     <linearGradient id="dqGradient" x1="30" y1="25" x2="215" y2="235" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#FF2D6D"/>
@@ -18,8 +18,8 @@
     <path d="M61 186c42-11 91-11 133 0v12c-42-9-91-9-133 0v-12z"/>
   </g>
   <text x="270" y="163" font-family="Sora, Montserrat, Inter, Arial, sans-serif" font-size="120" font-weight="800" fill="#0B1D3A" letter-spacing="-8">daqu</text>
-  <rect x="739" y="76" width="27" height="88" rx="13.5" fill="#0B1D3A"/>
-  <rect x="794" y="76" width="27" height="88" rx="13.5" fill="#0B1D3A"/>
-  <circle cx="752.5" cy="48" r="15" fill="#00C2BB"/>
-  <circle cx="807.5" cy="48" r="15" fill="#FF2D6D"/>
+  <rect x="542" y="76" width="27" height="88" rx="13.5" fill="#0B1D3A"/>
+  <rect x="581" y="76" width="27" height="88" rx="13.5" fill="#0B1D3A"/>
+  <circle cx="555.5" cy="48" r="15" fill="#00C2BB"/>
+  <circle cx="594.5" cy="48" r="15" fill="#FF2D6D"/>
 </svg>

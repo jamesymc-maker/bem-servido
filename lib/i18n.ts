@@ -13,7 +13,8 @@ export const DICT = {
     titleA: "Pessoas de daqui,",
     titleB: "",
     accent: "para você.",
-    tagline: "Conectamos você a pessoas locais de confiança que tornam sua experiência incrível, sem complicação.",
+    // LOCKED: location-specific hero tagline — do NOT replace with brand-pack marketing copy.
+    tagline: "As pessoas que tornam {loc} mais fácil.",
     ctaPrimary: "Encontrar serviços",
     ctaSecondary: "Anunciar na daquii",
     placeholder: "Chef, motorista, babá, barco...", search: "Buscar",

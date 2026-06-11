@@ -35,6 +35,7 @@ export function Hero() {
             <span className="text-pink">{t("hero.accent")}</span>
           </h1>
           <p className="rise mt-5 text-lg max-w-md text-muted" style={{ animationDelay: "140ms" }}>
+            {/* LOCKED: As pessoas que tornam {location} mais fácil. — see lib/i18n.ts hero.tagline */}
             {t("hero.tagline")}
           </p>
           <div className="rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: "220ms" }}>
