@@ -1,5 +1,5 @@
 -- ============================================================================
--- Bem Servido - ad moderation override flag
+-- Daquii - ad moderation override flag
 -- Run AFTER 0005_provider_owner_profile_fk.sql
 -- ============================================================================
 --

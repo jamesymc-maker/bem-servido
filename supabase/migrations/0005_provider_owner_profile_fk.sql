@@ -1,5 +1,5 @@
 -- ============================================================================
--- Bem Servido - fix admin listings/professionals showing zero rows
+-- Daquii - fix admin listings/professionals showing zero rows
 -- ----------------------------------------------------------------------------
 -- providers.owner_id already has a FK to auth.users(id), but PostgREST cannot
 -- embed auth.users. The admin queries embed `profiles:owner_id(...)`, which

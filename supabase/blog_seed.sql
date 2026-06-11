@@ -23,13 +23,13 @@ Um chef em casa resolve o problema mais chato das férias: pensar no que comer e
 
 Os valores variam conforme o menu e o número de convidados. Em Ilhabela é comum encontrar meio período a partir de R$320 a R$400, com a diária e ingredientes combinados à parte. O melhor é falar direto com o profissional e alinhar tudo antes.
 
-## Como escolher no Bem Servido
+## Como escolher no Daquii
 
-No Bem Servido cada chef tem um perfil com foto, idiomas, valores e um vídeo curto de apresentação. Você vê quem vai cozinhar para você antes de fechar. Compare os perfis de [chefs privativos](/servicos/private-chefs), assista aos vídeos e fale direto pelo WhatsApp.
+No Daquii cada chef tem um perfil com foto, idiomas, valores e um vídeo curto de apresentação. Você vê quem vai cozinhar para você antes de fechar. Compare os perfis de [chefs privativos](/servicos/private-chefs), assista aos vídeos e fale direto pelo WhatsApp.
 
 Bom apetite e boas férias na ilha.$content$,
   '2026-05-28',
-  'Equipe Bem Servido',
+  'Equipe Daquii',
   'https://picsum.photos/seed/blog-chef/1200/630',
   'private-chefs',
   array['chef privativo','gastronomia','casa de temporada']::text[],
@@ -58,9 +58,9 @@ Saco do Sombrio, Praia da Figueira, Saco do Eustáquio: nomes que só os locais 
 
 ## Reserve o seu passeio
 
-Compare os [capitães e passeios de barco](/servicos/boat-services) no Bem Servido. Cada perfil mostra o profissional, o tipo de embarcação e os valores. Fale direto pelo WhatsApp e garanta o seu dia no mar.$content$,
+Compare os [capitães e passeios de barco](/servicos/boat-services) no Daquii. Cada perfil mostra o profissional, o tipo de embarcação e os valores. Fale direto pelo WhatsApp e garanta o seu dia no mar.$content$,
   '2026-05-12',
-  'Equipe Bem Servido',
+  'Equipe Daquii',
   'https://picsum.photos/seed/blog-boat/1200/630',
   'boat-services',
   array['praias','passeio de barco','bonete','castelhanos']::text[],
@@ -89,9 +89,9 @@ Dentro de Ilhabela, um motorista local faz toda a diferença para conhecer as pr
 
 ## Encontre o seu motorista
 
-Veja os perfis de [motoristas e transfers](/servicos/drivers) no Bem Servido, com foto, idiomas e valores. Fale direto pelo WhatsApp e combine a busca no aeroporto ou o passeio pela ilha.$content$,
+Veja os perfis de [motoristas e transfers](/servicos/drivers) no Daquii, com foto, idiomas e valores. Fale direto pelo WhatsApp e combine a busca no aeroporto ou o passeio pela ilha.$content$,
   '2026-05-20',
-  'Equipe Bem Servido',
+  'Equipe Daquii',
   'https://picsum.photos/seed/blog-transfer/1200/630',
   'drivers',
   array['transfer','transporte','balsa','aeroporto']::text[],

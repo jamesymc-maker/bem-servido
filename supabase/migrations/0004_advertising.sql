@@ -1,5 +1,5 @@
 -- ============================================================================
--- Bem Servido - advertising system + provider trial period
+-- Daquii - advertising system + provider trial period
 -- Run AFTER 0003_blog_posts.sql
 -- ============================================================================
 

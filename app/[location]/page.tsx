@@ -16,11 +16,11 @@ export async function generateMetadata({
   const { location } = await params;
   const loc = getActiveLocationBySlug(location) ?? getActiveLocationBySlug(DEFAULT_LOCATION)!;
   return {
-    title: `Bem Servido · Serviços locais de confiança em ${loc.name}`,
+    title: `Daquii · Serviços locais de confiança em ${loc.name}`,
     description: `Chefs, motoristas, babás, capitães de barco e mais. Profissionais locais de confiança em ${loc.name}.`,
     alternates: { canonical: `/${loc.slug}` },
     openGraph: {
-      title: `Bem Servido · ${loc.name}`,
+      title: `Daquii · ${loc.name}`,
       description: `Profissionais locais de confiança em ${loc.name}. Gente de verdade, com rosto e nome.`,
     },
   };

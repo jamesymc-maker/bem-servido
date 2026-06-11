@@ -14,8 +14,8 @@ export async function generateMetadata({
   const { location } = await params;
   const loc = getActiveLocationBySlug(location) ?? getActiveLocationBySlug(DEFAULT_LOCATION)!;
   return {
-    title: `Sobre · Bem Servido · Serviços locais de confiança em ${loc.name}`,
-    description: `O Bem Servido conecta você aos melhores profissionais locais de ${loc.name}. Saiba como funciona e tire suas dúvidas.`,
+    title: `Sobre · Daquii · Serviços locais de confiança em ${loc.name}`,
+    description: `O Daquii conecta você aos melhores profissionais locais de ${loc.name}. Saiba como funciona e tire suas dúvidas.`,
     alternates: { canonical: `/${loc.slug}/sobre` },
   };
 }

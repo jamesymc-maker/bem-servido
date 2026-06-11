@@ -26,7 +26,7 @@ export function AdminShell({ email, children }: { email?: string; children: Reac
       <header className="bg-white" style={{ borderBottom: "1px solid var(--line)" }}>
         <div className="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span className="serif text-lg" style={{ fontWeight: 600 }}>Bem Servido</span>
+            <span className="serif text-lg" style={{ fontWeight: 600 }}>Daquii</span>
             <span className="text-[11px] font-bold uppercase tracking-wide rounded-full px-2 py-0.5" style={{ background: "var(--sea)", color: "#fff" }}>Admin</span>
           </div>
           <div className="flex items-center gap-3">

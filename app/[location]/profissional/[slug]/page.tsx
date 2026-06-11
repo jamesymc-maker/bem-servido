@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/json-ld";
 import { getProvider, getProviders, getReviews, summarise } from "@/lib/data";
 import { DEFAULT_LOCATION, getActiveLocationBySlug } from "@/lib/locations";
 
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://bemservido.com.br";
+const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://daquii.com";
 
 export async function generateMetadata({
   params,
@@ -15,9 +15,9 @@ export async function generateMetadata({
   const { location, slug } = await params;
   const loc = getActiveLocationBySlug(location) ?? getActiveLocationBySlug(DEFAULT_LOCATION)!;
   const p = await getProvider(slug);
-  if (!p) return { title: "Profissional não encontrado · Bem Servido" };
+  if (!p) return { title: "Profissional não encontrado · Daquii" };
   return {
-    title: `${p.name} · ${p.category_label} em ${loc.name} · Bem Servido`,
+    title: `${p.name} · ${p.category_label} em ${loc.name} · Daquii`,
     description: p.short_desc,
     alternates: { canonical: `/${loc.slug}/profissional/${p.slug}` },
     openGraph: { title: `${p.name} · ${p.category_label}`, description: p.short_desc, images: p.photo_url ? [p.photo_url] : [] },

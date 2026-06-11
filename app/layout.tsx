@@ -12,20 +12,20 @@ import { ACTIVE_LOCATION_NAME, DEFAULT_LOCATION } from "@/lib/locations";
 const fraunces = Fraunces({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-fraunces" });
 const hanken = Hanken_Grotesk({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-hanken" });
 
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://bemservido.com.br";
+const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://daquii.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: { default: `Bem Servido · Serviços locais de confiança em ${ACTIVE_LOCATION_NAME}`, template: "%s" },
+  title: { default: `Daquii · Serviços locais de confiança em ${ACTIVE_LOCATION_NAME}`, template: "%s" },
   description: `Chefs, motoristas, babás, capitães de barco e mais. Profissionais locais de confiança em ${ACTIVE_LOCATION_NAME}.`,
   openGraph: {
-    title: `Bem Servido · ${ACTIVE_LOCATION_NAME}`,
+    title: `Daquii · ${ACTIVE_LOCATION_NAME}`,
     description: `Profissionais locais de confiança em ${ACTIVE_LOCATION_NAME}. Gente de verdade, com rosto e nome.`,
-    type: "website", locale: "pt_BR", siteName: "Bem Servido", url: SITE,
+    type: "website", locale: "pt_BR", siteName: "Daquii", url: SITE,
   },
   twitter: {
     card: "summary_large_image",
-    title: `Bem Servido · ${ACTIVE_LOCATION_NAME}`,
+    title: `Daquii · ${ACTIVE_LOCATION_NAME}`,
     description: `Profissionais locais de confiança em ${ACTIVE_LOCATION_NAME}. Gente de verdade, com rosto e nome.`,
   },
   verification: {
@@ -43,7 +43,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const siteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Bem Servido",
+    name: "Daquii",
     url: SITE,
     inLanguage: "pt-BR",
     potentialAction: {

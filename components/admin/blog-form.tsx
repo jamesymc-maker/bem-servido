@@ -31,7 +31,7 @@ export function BlogForm({ post }: { post?: any }) {
         </div>
         <div>
           <label className={lbl}>Autor</label>
-          <input name="author" defaultValue={post?.author ?? "Equipe Bem Servido"} className={field} style={border} />
+          <input name="author" defaultValue={post?.author ?? "Equipe Daquii"} className={field} style={border} />
         </div>
         <div>
           <label className={lbl}>Idioma</label>

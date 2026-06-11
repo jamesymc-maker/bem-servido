@@ -1,4 +1,4 @@
--- Bem Servido seed data. Run AFTER 0001_init.sql.
+-- Daquii seed data. Run AFTER 0001_init.sql.
 insert into locations (slug,name,region,country,active,sort) values
   ('ilhabela','Ilhabela','São Paulo','Brasil',true,1),
   ('maresias','Maresias','São Paulo','Brasil',false,2),

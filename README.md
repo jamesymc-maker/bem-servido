@@ -1,4 +1,4 @@
-# Bem Servido
+# Daquii
 
 Trust-first directory of local service providers on Ilhabela, Brazil.
 Next.js (App Router) + Supabase + Stripe. UI in Brazilian Portuguese.
@@ -187,9 +187,9 @@ upserts a row in `subscriptions`.
 ```bash
 git init
 git add .
-git commit -m "Bem Servido: initial skeleton"
+git commit -m "Daquii: initial skeleton"
 git branch -M main
-git remote add origin https://github.com/YOUR-USER/bem-servido.git
+git remote add origin https://github.com/YOUR-USER/daquii.git
 git push -u origin main
 ```
 
@@ -202,7 +202,7 @@ git push -u origin main
 1. vercel.com > **Add New > Project** > import the GitHub repo.
 2. Framework preset: **Next.js** (auto-detected). No build overrides needed.
 3. Add every variable from `.env.example` under **Settings > Environment
-   Variables**, and set `NEXT_PUBLIC_SITE_URL` to your Vercel domain.
+   Variables**, and set `NEXT_PUBLIC_SITE_URL` to `https://daquii.com`.
 4. Deploy. Update the Stripe webhook URL to the live domain.
 
 Every push to `main` redeploys automatically.

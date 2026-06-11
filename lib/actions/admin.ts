@@ -96,7 +96,7 @@ export async function upsertBlogPost(formData: FormData) {
   const description = String(formData.get("description") || "").trim();
   const content = String(formData.get("content") || "").trim();
   const date = String(formData.get("date") || new Date().toISOString().slice(0, 10));
-  const author = String(formData.get("author") || "Equipe Bem Servido").trim();
+  const author = String(formData.get("author") || "Equipe Daquii").trim();
   const cover_url = String(formData.get("cover_url") || "").trim() || null;
   const category_slug = String(formData.get("category_slug") || "").trim() || null;
   const tags = String(formData.get("tags") || "").split(",").map((s) => s.trim()).filter(Boolean);

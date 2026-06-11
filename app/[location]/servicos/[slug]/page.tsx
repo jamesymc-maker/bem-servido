@@ -17,10 +17,10 @@ export async function generateMetadata({
   const label = categories.find((c) => c.slug === slug)?.label || t(`cats.${slug}`);
   const titleBase = `${label} em ${loc.name}`;
   return {
-    title: `${titleBase} · Bem Servido`,
+    title: `${titleBase} · Daquii`,
     description: `${label} em ${loc.name}: profissionais locais de confiança, com rosto, idiomas e valores. Fale direto pelo WhatsApp, sem comissão.`,
     alternates: { canonical: `/${loc.slug}/servicos/${slug}` },
-    openGraph: { title: `${titleBase} · Bem Servido` },
+    openGraph: { title: `${titleBase} · Daquii` },
   };
 }
 

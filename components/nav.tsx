@@ -24,7 +24,7 @@ export function Nav() {
               <Anchor size={18} color="#fff" />
             </span>
             <span className="serif text-lg sm:text-xl leading-none whitespace-nowrap" style={{ fontWeight: 600 }}>
-              Bem Servido<span style={{ color: "var(--coral)" }}>.</span>
+              Daquii<span style={{ color: "var(--coral)" }}>.</span>
             </span>
           </Link>
           <nav className="hidden md:flex items-center gap-7 text-sm font-medium">

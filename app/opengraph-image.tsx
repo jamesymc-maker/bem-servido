@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { ACTIVE_LOCATION_NAME } from "@/lib/locations";
 
 export const runtime = "edge";
-export const alt = `Bem Servido · Serviços locais de confiança em ${ACTIVE_LOCATION_NAME}`;
+export const alt = `Daquii · Serviços locais de confiança em ${ACTIVE_LOCATION_NAME}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -31,7 +31,7 @@ export default async function OpengraphImage() {
               background: "#E2643F",
             }}
           />
-          <span style={{ fontWeight: 600 }}>BEM SERVIDO</span>
+          <span style={{ fontWeight: 600 }}>DAQUII</span>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
@@ -44,7 +44,7 @@ export default async function OpengraphImage() {
         </div>
 
         <div style={{ display: "flex", fontSize: 28, color: "#F0A589" }}>
-          bem-servido.vercel.app
+          daquii.com
         </div>
       </div>
     ),

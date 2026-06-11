@@ -3,7 +3,7 @@ import { getCategories, getProviders } from "@/lib/data";
 import { getAllPosts } from "@/lib/blog";
 import { activeLocations } from "@/lib/locations";
 
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://bemservido.com.br";
+const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://daquii.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const categories = await getCategories();

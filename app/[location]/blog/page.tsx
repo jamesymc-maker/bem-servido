@@ -11,7 +11,7 @@ export async function generateMetadata({
   const { location } = await params;
   const loc = getActiveLocationBySlug(location) ?? getActiveLocationBySlug(DEFAULT_LOCATION)!;
   return {
-    title: `Blog · Bem Servido · Dicas e guias de ${loc.name}`,
+    title: `Blog · Daquii · Dicas e guias de ${loc.name}`,
     description: `Dicas e guias para aproveitar ${loc.name}: chefs privativos, transfers, passeios de barco e os melhores serviços locais.`,
     alternates: { canonical: `/${loc.slug}/blog` },
   };

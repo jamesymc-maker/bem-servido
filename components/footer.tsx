@@ -16,7 +16,7 @@ export function Footer({ categories }: { categories: Category[] }) {
               <Anchor size={18} color="#fff" />
             </span>
             <span className="serif text-xl text-white" style={{ fontWeight: 600 }}>
-              Bem Servido<span style={{ color: "var(--coral-soft)" }}>.</span>
+              Daquii<span style={{ color: "var(--coral-soft)" }}>.</span>
             </span>
           </div>
           <p className="text-sm max-w-xs">{t("footer.tagline")}</p>
@@ -61,7 +61,7 @@ export function Footer({ categories }: { categories: Category[] }) {
         </div>
       </div>
       <div className="text-center text-xs py-5" style={{ borderTop: "1px solid rgba(255,255,255,.12)" }}>
-        Bem Servido · v1.0
+        Daquii · v1.0
       </div>
     </footer>
   );

@@ -18,7 +18,7 @@ export async function generateMetadata({
   const { location } = await params;
   const loc = getActiveLocationBySlug(location) ?? getActiveLocationBySlug(DEFAULT_LOCATION)!;
   return {
-    title: `Anuncie no Bem Servido · Alcance turistas em ${loc.name}`,
+    title: `Anuncie no Daquii · Alcance turistas em ${loc.name}`,
     description:
       `Leve a sua marca até os turistas, donos de casa de temporada e visitantes de ${loc.name} no momento em que planeiam a estadia. Planos a partir de R$149/mês.`,
     alternates: { canonical: `/${loc.slug}/anunciar` },
@@ -79,7 +79,7 @@ export default async function AnunciarPage({
   ];
 
   const FAQ = [
-    { q: "Quem vai ver o meu anúncio?", a: `Turistas, donos de casas de temporada e veranistas que usam o Bem Servido para encontrar serviços em ${loc.name} — exatamente o público que está prestes a gastar na ilha.` },
+    { q: "Quem vai ver o meu anúncio?", a: `Turistas, donos de casas de temporada e veranistas que usam o Daquii para encontrar serviços em ${loc.name} — exatamente o público que está prestes a gastar na ilha.` },
     { q: "Onde os anúncios aparecem?", a: "Depende do plano: banners na página inicial, nas páginas de categoria e nos perfis dos profissionais, além do logótipo no rodapé e posts patrocinados no blog para os planos superiores." },
     { q: "Como envio a minha arte?", a: "Após criar a conta, no painel do anunciante você envia a imagem do banner (formato 5:1, ex. 1200×240px). A nossa equipa revê e ativa o anúncio." },
     { q: "Posso cancelar quando quiser?", a: "Sim. A assinatura é mensal e pode ser cancelada a qualquer momento, sem multa." },
@@ -108,7 +108,7 @@ export default async function AnunciarPage({
               Seja visto por quem<br /><span style={{ color: "var(--coral)" }}>chega em {loc.name}</span>
             </h1>
             <p className="mt-6 text-lg max-w-md" style={{ color: "var(--ink-soft)" }}>
-              O Bem Servido conecta turistas, donos de casa de temporada e hóspedes aos melhores serviços da ilha. Coloque a sua marca diante deles no momento em que planeiam a estadia.
+              O Daquii conecta turistas, donos de casa de temporada e hóspedes aos melhores serviços da ilha. Coloque a sua marca diante deles no momento em que planeiam a estadia.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/anunciante/criar-conta" className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 font-semibold text-white transition active:scale-95" style={{ background: "var(--sea)" }}>
@@ -130,7 +130,7 @@ export default async function AnunciarPage({
 
           {/* hero mockup */}
           <div className="hidden sm:block">
-            <BrowserFrame label="bem-servido.vercel.app">
+            <BrowserFrame label="daquii.com">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-1.5">
                   <span className="grid place-items-center w-5 h-5 rounded-md" style={{ background: "var(--sea)" }}><Anchor size={11} color="#fff" /></span>
@@ -158,7 +158,7 @@ export default async function AnunciarPage({
         <div className="text-center max-w-2xl mx-auto mb-10">
           <h2 className="serif text-3xl" style={{ fontWeight: 600 }}>Um público que está prestes a gastar na ilha</h2>
           <p className="mt-3 text-lg" style={{ color: "var(--ink-soft)" }}>
-            Quem usa o Bem Servido não está só a navegar — está a planear uma estadia em {loc.name} e a procurar em quem confiar.
+            Quem usa o Daquii não está só a navegar — está a planear uma estadia em {loc.name} e a procurar em quem confiar.
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-5">

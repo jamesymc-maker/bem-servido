@@ -32,7 +32,7 @@ export const CUSTOMER_TESTIMONIALS: Testimonial[] = [
     quote: "Fotógrafo incrível, gentil e cheio de ideias. As fotos ficaram lindas e ainda nos mostrou cantos da ilha que nem conhecíamos." },
 ];
 
-// Professionals who advertise on Bem Servido (shown on the /precos page)
+// Professionals who advertise on Daquii (shown on the /precos page)
 export const PROVIDER_TESTIMONIALS: Testimonial[] = [
   { name: "João Oliveira", meta: "Motorista · Ilhabela", avatar: face("men", 32), rating: 5,
     stat: "Vários transfers", statLabel: "todo mês",

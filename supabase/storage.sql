@@ -1,5 +1,5 @@
 -- ============================================================================
--- Bem Servido - Supabase Storage buckets + policies for provider uploads.
+-- Daquii - Supabase Storage buckets + policies for provider uploads.
 -- Run in the SQL Editor. Buckets are public-read (images are shown publicly).
 -- ============================================================================
 

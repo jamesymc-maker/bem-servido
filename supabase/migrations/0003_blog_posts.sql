@@ -1,5 +1,5 @@
 -- ============================================================================
--- Bem Servido - blog_posts table (admin-editable, Supabase-stored)
+-- Daquii - blog_posts table (admin-editable, Supabase-stored)
 -- Run AFTER 0002_auth_admin.sql
 -- ============================================================================
 create table if not exists blog_posts (
@@ -9,7 +9,7 @@ create table if not exists blog_posts (
   description  text not null default '',
   content      text not null default '',
   date         date not null default current_date,
-  author       text not null default 'Equipe Bem Servido',
+  author       text not null default 'Equipe Daquii',
   cover_url    text,
   category_slug text,
   tags         text[] not null default '{}',

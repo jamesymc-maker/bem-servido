@@ -1,5 +1,5 @@
 -- ============================================================================
--- Bem Servido - initial schema
+-- Daquii - initial schema
 -- Run in Supabase: SQL Editor > paste > Run, or via the Supabase CLI.
 -- ============================================================================
 

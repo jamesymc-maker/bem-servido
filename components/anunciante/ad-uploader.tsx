@@ -84,7 +84,7 @@ export function AdUploader({ advertiserId, adId, initialImage }: { advertiserId:
             <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#ff5f57" }} />
             <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#febc2e" }} />
             <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#28c840" }} />
-            <span className="ml-2 text-[10px] truncate" style={{ color: "var(--ink-soft)" }}>bem-servido.vercel.app</span>
+            <span className="ml-2 text-[10px] truncate" style={{ color: "var(--ink-soft)" }}>daquii.com</span>
           </div>
           <div className="p-3">
             {/* page skeleton rows */}

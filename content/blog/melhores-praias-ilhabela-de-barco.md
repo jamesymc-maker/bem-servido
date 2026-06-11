@@ -2,7 +2,7 @@
 title: "As praias de Ilhabela que só se chega de barco"
 description: "Bonete, Castelhanos e os cantos escondidos do sul da ilha: um guia das praias mais bonitas de Ilhabela e como visitá-las com um capitão local."
 date: "2026-05-12"
-author: "Equipe Bem Servido"
+author: "Equipe Daquii"
 cover: "https://picsum.photos/seed/blog-boat/1200/630"
 category: "boat-services"
 tags: ["praias", "passeio de barco", "bonete", "castelhanos"]
@@ -25,4 +25,4 @@ Saco do Sombrio, Praia da Figueira, Saco do Eustáquio: nomes que só os locais 
 
 ## Reserve o seu passeio
 
-Compare os [capitães e passeios de barco](/servicos/boat-services) no Bem Servido. Cada perfil mostra o profissional, o tipo de embarcação e os valores. Fale direto pelo WhatsApp e garanta o seu dia no mar.
+Compare os [capitães e passeios de barco](/servicos/boat-services) no Daquii. Cada perfil mostra o profissional, o tipo de embarcação e os valores. Fale direto pelo WhatsApp e garanta o seu dia no mar.

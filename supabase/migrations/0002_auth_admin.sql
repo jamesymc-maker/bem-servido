@@ -1,5 +1,5 @@
 -- ============================================================================
--- Bem Servido - auth, admin role, provider ownership extras
+-- Daquii - auth, admin role, provider ownership extras
 -- Run AFTER 0001_init.sql (and you can run it before or after seed.sql).
 -- ============================================================================
 

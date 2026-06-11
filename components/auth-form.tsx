@@ -66,12 +66,12 @@ export function AuthForm({
     <div className="max-w-md mx-auto px-5 py-16">
       <div className="flex items-center gap-2.5 mb-7">
         <span className="grid place-items-center w-9 h-9 rounded-xl" style={{ background: "var(--sea)" }}><Anchor size={18} color="#fff" /></span>
-        <span className="serif text-xl" style={{ fontWeight: 600 }}>Bem Servido<span style={{ color: "var(--coral)" }}>.</span></span>
+        <span className="serif text-xl" style={{ fontWeight: 600 }}>Daquii<span style={{ color: "var(--coral)" }}>.</span></span>
       </div>
       <h1 className="serif text-3xl mb-1" style={{ fontWeight: 600 }}>{isSignup ? "Criar conta" : "Entrar"}</h1>
       <p className="text-sm mb-7" style={{ color: "var(--ink-soft)" }}>
         {isSignup
-          ? (isAdvertiser ? "Crie a conta da sua empresa para anunciar no Bem Servido." : `Anuncie o seu serviço em ${activeLocation.name}.`)
+          ? (isAdvertiser ? "Crie a conta da sua empresa para anunciar no Daquii." : `Anuncie o seu serviço em ${activeLocation.name}.`)
           : (isAdvertiser ? "Acesse o painel do anunciante." : "Acesse o seu painel de profissional.")}
       </p>
 

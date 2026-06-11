@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/json-ld";
 import { getAllPosts, getPost } from "@/lib/blog";
 import { activeLocations, DEFAULT_LOCATION, getActiveLocationBySlug } from "@/lib/locations";
 
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://bemservido.com.br";
+const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://daquii.com";
 
 export async function generateStaticParams() {
   const params: { location: string; slug: string }[] = [];
@@ -24,9 +24,9 @@ export async function generateMetadata({
   const { location, slug } = await params;
   const loc = getActiveLocationBySlug(location) ?? getActiveLocationBySlug(DEFAULT_LOCATION)!;
   const post = await getPost(slug);
-  if (!post) return { title: "Artigo não encontrado · Bem Servido" };
+  if (!post) return { title: "Artigo não encontrado · Daquii" };
   return {
-    title: `${post.title} · Bem Servido`,
+    title: `${post.title} · Daquii`,
     description: post.description,
     alternates: { canonical: `/${loc.slug}/blog/${post.slug}` },
     openGraph: { type: "article", title: post.title, description: post.description, images: post.cover ? [post.cover] : [], publishedTime: post.date },
@@ -55,7 +55,7 @@ export default async function PostPage({
     image: post.cover || undefined,
     datePublished: post.date,
     author: { "@type": "Organization", name: post.author },
-    publisher: { "@type": "Organization", name: "Bem Servido" },
+    publisher: { "@type": "Organization", name: "Daquii" },
     mainEntityOfPage: `${SITE}/${loc.slug}/blog/${post.slug}`,
     inLanguage: "pt-BR",
   };
