@@ -10,10 +10,10 @@ export async function generateMetadata({
   const { location } = await params;
   const loc = getActiveLocationBySlug(location) ?? getActiveLocationBySlug(DEFAULT_LOCATION)!;
   return {
-    title: `Anuncie o seu serviço em ${loc.name} · daquii`,
+    title: `Anuncie o seu serviço em ${loc.name} · Daquii`,
     description: `Apareça para turistas e moradores de ${loc.name}. Comece grátis por 60 dias, sem comissão por contacto.`,
     alternates: { canonical: `/${loc.slug}/precos` },
-    openGraph: { title: `Anuncie o seu serviço em ${loc.name} · daquii` },
+    openGraph: { title: `Anuncie o seu serviço em ${loc.name} · Daquii` },
   };
 }
 

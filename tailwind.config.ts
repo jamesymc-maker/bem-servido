@@ -24,8 +24,8 @@ const config: Config = {
         muted: "#5B677A",
       },
       fontFamily: {
-        heading: ["var(--font-sora)", "var(--font-montserrat)", "Inter", "Arial", "sans-serif"],
-        body: ["var(--font-sora)", "Inter", "Arial", "sans-serif"],
+        heading: ["var(--font-montserrat)", "var(--font-sora)", "Inter", "Arial", "sans-serif"],
+        body: ["var(--font-sora)", "var(--font-inter)", "Inter", "Arial", "sans-serif"],
       },
       borderRadius: {
         dqsm: "12px",

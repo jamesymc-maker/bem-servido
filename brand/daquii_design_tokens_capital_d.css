@@ -1,5 +1,5 @@
 :root {
-  /* Daquii corrected brand tokens - based on authoritative reference board */
+  /* Daquii capital D brand tokens - based on approved reference board */
   --dq-pink: #FF2D6D;
   --dq-orange: #FFB62B;
   --dq-teal: #00C2BB;
@@ -27,34 +27,8 @@
   --dq-max-width: 1180px;
 }
 
-body {
-  background: var(--dq-white);
-  color: var(--dq-navy);
-  font-family: var(--dq-font-body);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: var(--dq-navy);
-  font-family: var(--dq-font-heading);
-  letter-spacing: -0.035em;
-}
-
-.dq-button-primary {
-  background: var(--dq-teal);
-  border-radius: var(--dq-radius-pill);
-  color: white;
-  font-weight: 800;
-}
-
-.dq-button-primary:hover {
-  background: #00AFA8;
-  box-shadow: var(--dq-shadow-hover);
-  transform: translateY(-1px);
-}
-
-.dq-card {
-  background: white;
-  border: 1px solid var(--dq-border);
-  border-radius: var(--dq-radius-lg);
-  box-shadow: var(--dq-shadow-card);
-}
+body { background: var(--dq-white); color: var(--dq-navy); font-family: var(--dq-font-body); }
+h1, h2, h3, h4, h5, h6 { color: var(--dq-navy); font-family: var(--dq-font-heading); letter-spacing: -0.035em; }
+.dq-button-primary { background: var(--dq-teal); border-radius: var(--dq-radius-pill); color: white; font-weight: 800; }
+.dq-button-primary:hover { background: #00AFA8; box-shadow: var(--dq-shadow-hover); transform: translateY(-1px); }
+.dq-card { background: white; border: 1px solid var(--dq-border); border-radius: var(--dq-radius-lg); box-shadow: var(--dq-shadow-card); }

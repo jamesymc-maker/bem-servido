@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useActiveLocation, useT } from "./location-provider";
 import { LocationBar } from "./location-bar";
+import { Wordmark } from "./wordmark";
 
 export function Nav() {
   const [open, setOpen] = useState(false);
@@ -20,7 +21,7 @@ export function Nav() {
       <header className="backdrop-blur-md bg-white/90" style={{ borderBottom: "1px solid var(--border)" }}>
         <div className="max-w-dq mx-auto px-5 h-16 flex items-center justify-between gap-3">
           <Link href={`/${slug}`} className="shrink-0">
-            <span style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700, fontSize: '1.5rem', color: '#0B1D3A', letterSpacing: '-0.02em' }}>daquii</span>
+            <Wordmark />
           </Link>
           <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-muted">
             {links.map(([label, href]) => (

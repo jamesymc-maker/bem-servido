@@ -23,7 +23,7 @@ export function ProfileView({ p, related, reviews, summary }: { p: Provider; rel
       </div>
 
       <div className="max-w-5xl mx-auto px-5 py-6">
-        <div className="rise relative aspect-[4/3] md:aspect-[21/9] rounded-dqlg overflow-hidden bg-sand shadow-card">
+        <div className="rise relative aspect-[4/3] md:aspect-[21/9] rounded-3xl overflow-hidden bg-sand shadow-card">
           <img src={p.photo_url} alt={p.name} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
           {p.verified && (
             <span className="absolute bottom-4 right-4 grid place-items-center w-11 h-11 rounded-full bg-teal" style={{ boxShadow: "0 0 0 4px #fff" }}>
@@ -93,7 +93,7 @@ export function ProfileView({ p, related, reviews, summary }: { p: Provider; rel
           </div>
 
           <aside className="md:sticky md:top-20 rise hidden md:block" style={{ animationDelay: "120ms" }}>
-            <div className="rounded-dqlg bg-white p-6 border border-border shadow-card">
+            <div className="rounded-3xl bg-white p-6 border border-border shadow-card">
               <div className="text-[11px] uppercase tracking-wide text-muted">{t("profile.rates")}</div>
               <div className="font-heading text-3xl mt-1 font-bold text-navy">
                 {brl(p.half_day_rate)}<span className="text-sm font-normal text-muted"> {t("profile.halfDay")}</span>

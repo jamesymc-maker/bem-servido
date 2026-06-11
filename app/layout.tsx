@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat, Sora } from "next/font/google";
+import { Montserrat, Sora, Inter } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
@@ -17,24 +17,30 @@ const montserrat = Montserrat({
 
 const sora = Sora({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-sora",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-inter",
 });
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://daquii.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: { default: `Serviços locais de confiança em ${ACTIVE_LOCATION_NAME} · daquii`, template: "%s" },
+  title: { default: `Serviços locais de confiança em ${ACTIVE_LOCATION_NAME} · Daquii`, template: "%s" },
   description: `Chefs, motoristas, babás, capitães de barco e mais. Profissionais locais de confiança em ${ACTIVE_LOCATION_NAME}.`,
   openGraph: {
-    title: `${ACTIVE_LOCATION_NAME} · daquii`,
+    title: `${ACTIVE_LOCATION_NAME} · Daquii`,
     description: `Profissionais locais de confiança em ${ACTIVE_LOCATION_NAME}. Gente de verdade, com rosto e nome.`,
-    type: "website", locale: "pt_BR", siteName: "daquii", url: SITE,
+    type: "website", locale: "pt_BR", siteName: "Daquii", url: SITE,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${ACTIVE_LOCATION_NAME} · daquii`,
+    title: `${ACTIVE_LOCATION_NAME} · Daquii`,
     description: `Profissionais locais de confiança em ${ACTIVE_LOCATION_NAME}. Gente de verdade, com rosto e nome.`,
   },
   verification: {
@@ -48,7 +54,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const siteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "daquii",
+    name: "Daquii",
     url: SITE,
     inLanguage: "pt-BR",
     potentialAction: {
@@ -59,7 +65,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   };
 
   return (
-    <html lang="pt-BR" className={`${montserrat.variable} ${sora.variable}`}>
+    <html lang="pt-BR" className={`${montserrat.variable} ${sora.variable} ${inter.variable}`}>
       <body className="font-body">
         <JsonLd data={siteJsonLd} />
         <LocationProvider>

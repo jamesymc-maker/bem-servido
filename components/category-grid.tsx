@@ -31,7 +31,7 @@ export function CategoryGrid({ categories }: { categories: Category[] }) {
             <Link
               key={c.slug}
               href={`/${slug}/servicos/${c.slug}`}
-              className="lift rise group rounded-dqlg p-5 text-left bg-white flex flex-col gap-5 min-h-[9rem] justify-between border border-border shadow-card"
+              className="lift rise group rounded-3xl p-5 text-left bg-white flex flex-col gap-5 min-h-[9rem] justify-between border border-border shadow-card"
               style={{ animationDelay: `${i * 40}ms` }}
             >
               <span

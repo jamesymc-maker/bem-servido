@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { LayoutDashboard, User, Image as ImageIcon, Video, CreditCard, Tag, LogOut, ExternalLink } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import { Wordmark } from "@/components/wordmark";
 
 const NAV = [
   { href: "/painel", label: "Visão geral", Icon: LayoutDashboard },
@@ -32,7 +33,7 @@ export function PainelShell({ status, slug, published, children }: { status: str
       <header className="bg-white" style={{ borderBottom: "1px solid var(--border)" }}>
         <div className="max-w-4xl mx-auto px-5 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700, fontSize: '1.5rem', color: '#0B1D3A', letterSpacing: '-0.02em' }}>daquii</span>
+            <Wordmark />
             <span className="font-heading text-lg font-bold text-navy">Meu painel</span>
           </div>
           <div className="flex items-center gap-3">

@@ -13,7 +13,7 @@ export function ListingCard({ p, i = 0 }: { p: Provider; i?: number }) {
   return (
     <article
       onClick={() => router.push(`/${slug}/profissional/${p.slug}`)}
-      className="lift rise cursor-pointer rounded-dqlg overflow-hidden bg-white flex flex-col border border-border shadow-card"
+      className="lift rise cursor-pointer rounded-3xl overflow-hidden bg-white flex flex-col border border-border shadow-card"
       style={{ animationDelay: `${i * 60}ms` }}
     >
       <div className="relative aspect-[5/4] overflow-hidden bg-sand">

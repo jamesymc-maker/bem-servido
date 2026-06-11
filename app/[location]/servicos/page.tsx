@@ -12,10 +12,10 @@ export async function generateMetadata({
   const { location } = await params;
   const loc = getActiveLocationBySlug(location) ?? getActiveLocationBySlug(DEFAULT_LOCATION)!;
   return {
-    title: `Profissionais em ${loc.name} · daquii`,
+    title: `Profissionais em ${loc.name} · Daquii`,
     description: `Encontre profissionais locais de confiança em ${loc.name}: chefs, motoristas, babás, capitães de barco e mais. Contacto direto pelo WhatsApp, sem comissão.`,
     alternates: { canonical: `/${loc.slug}/servicos` },
-    openGraph: { title: `Profissionais em ${loc.name} · daquii` },
+    openGraph: { title: `Profissionais em ${loc.name} · Daquii` },
   };
 }
 

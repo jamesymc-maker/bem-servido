@@ -1,4 +1,4 @@
-# daquii
+# Daquii
 
 Trust-first directory of local service providers on Ilhabela, Brazil.
 Next.js (App Router) + Supabase + Stripe. UI in Brazilian Portuguese.

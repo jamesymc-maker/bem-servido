@@ -5,7 +5,7 @@ import { ProfileView } from "@/components/profile-view";
 import { adminGetProviderPreview } from "@/lib/admin-data";
 import { summarise } from "@/lib/data";
 
-export const metadata = { title: "Pré-visualização · Admin · daquii", robots: { index: false } };
+export const metadata = { title: "Pré-visualização · Admin · Daquii", robots: { index: false } };
 
 const STATUS_LABEL: Record<string, string> = {
   pending: "Pendente",

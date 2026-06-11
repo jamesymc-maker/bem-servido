@@ -14,7 +14,7 @@ export function FeaturedRail({ providers }: { providers: Provider[] }) {
             <div className="text-sm font-semibold flex items-center gap-1.5 mb-1" style={{ color: "var(--pink)" }}>
               <Star size={15} fill="var(--pink)" strokeWidth={0} /> {t("featured.tag")}
             </div>
-            <h2 className="font-heading text-3xl md:text-4xl" style={{ fontWeight: 600 }}>{t("featured.heading")}</h2>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-navy">{t("featured.heading")}</h2>
           </div>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">

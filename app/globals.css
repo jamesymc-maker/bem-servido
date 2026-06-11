@@ -1,4 +1,4 @@
-@import "../brand/daquii_design_tokens_corrected.css";
+@import "../brand/daquii_design_tokens_capital_d.css";
 
 @tailwind base;
 @tailwind components;
@@ -20,8 +20,8 @@
   --gradient-teal-panel: linear-gradient(135deg, #00C2BB 0%, #00AFA8 100%);
   --gradient-pink-panel: linear-gradient(135deg, #FF2D6D 0%, #FF5C8B 100%);
   --gradient-sea-sand: linear-gradient(135deg, #00C2BB 0%, #FFF7ED 100%);
-  --font-heading: var(--font-sora), var(--font-montserrat), Inter, Arial, sans-serif;
-  --font-body: var(--font-sora), Inter, Arial, sans-serif;
+  --font-heading: var(--font-montserrat), var(--font-sora), Inter, Arial, sans-serif;
+  --font-body: var(--font-sora), var(--font-inter), Inter, Arial, sans-serif;
   --radius-sm: 12px;
   --radius-md: 18px;
   --radius-lg: 28px;

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { MapPin, MessageCircle } from "lucide-react";
 import type { Category } from "@/lib/types";
 import { useActiveLocation, useT } from "./location-provider";
+import { Wordmark } from "./wordmark";
 
 export function Footer({ categories }: { categories: Category[] }) {
   const t = useT();
@@ -12,7 +13,7 @@ export function Footer({ categories }: { categories: Category[] }) {
       <div className="max-w-dq mx-auto px-5 py-12 grid grid-cols-2 md:grid-cols-[1.6fr_1fr_1fr_1fr] gap-8">
         <div className="col-span-2 md:col-span-1">
           <div className="mb-4">
-            <span style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700, fontSize: '1.5rem', color: '#FFFFFF', letterSpacing: '-0.02em' }}>daquii</span>
+            <Wordmark dark />
           </div>
           <p className="text-sm max-w-xs">{t("footer.tagline")}</p>
           <div className="inline-flex items-center gap-1.5 mt-4 text-sm">
@@ -56,7 +57,7 @@ export function Footer({ categories }: { categories: Category[] }) {
         </div>
       </div>
       <div className="text-center text-xs py-5" style={{ borderTop: "1px solid rgba(255,255,255,.12)" }}>
-        daquii · v1.0
+        Daquii · v1.0
       </div>
     </footer>
   );

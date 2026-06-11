@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { AuthForm } from "@/components/auth-form";
-export const metadata = { title: "Entrar · Anunciante · daquii" };
+export const metadata = { title: "Entrar · Anunciante · Daquii" };
 export default function AdvertiserLogin() {
   return <Suspense><AuthForm mode="login" accountType="advertiser" redirectTo="/anunciante/painel" /></Suspense>;
 }

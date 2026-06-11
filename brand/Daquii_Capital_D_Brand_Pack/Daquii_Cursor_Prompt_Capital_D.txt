@@ -1,18 +1,18 @@
-Use the corrected Daquii brand pack and update the project to match the attached reference image exactly in direction.
+Use the Daquii capital D brand pack and update the project to match the attached reference image exactly in direction.
 
 The authoritative visual reference is:
 
-daquii_authoritative_brand_reference.png
+Daquii_Capital_D_Authoritative_Brand_Reference.png
 
-The previous files that used a different abstract D / people logo are wrong. Do not use that direction.
+The brand direction is now capital D.
 
 Correct brand direction:
 
-1. Brand name is lowercase:
-daquii
+1. Brand name is:
+Daquii
 
 2. Do not use:
-Daquii
+daquii as the main wordmark
 DAQUII
 Daqui
 Bem Servido
@@ -21,7 +21,7 @@ Bem Servido
 - organic island outline
 - palm tree inside the island
 - no external dot beside the island outline
-- lowercase d wordmark
+- capital D wordmark: Daquii
 - deep navy wordmark
 - bright gradient island outline
 - teal palm tree
@@ -49,23 +49,23 @@ Muted Text: #5B677A
 - modern premium island concierge feel
 
 7. Do not use:
+- lowercase daquii as the main logo
 - abstract D with people
 - handshake logo
 - location pin logo
 - dark neon Miami Vice styling
 - black-only logo as the main brand
-- capital D
 - muted grey/pastel palette
 
 8. Replace any old generated logo files with:
-daquii_logo_mark_corrected.svg
-daquii_logo_horizontal_corrected.svg
+daquii_logo_mark_capital_d.svg
+daquii_logo_horizontal_capital_d.svg
 
-9. Add the corrected design tokens:
-daquii_design_tokens_corrected.json
-daquii_design_tokens_corrected.css
+9. Add the capital D design tokens:
+daquii_design_tokens_capital_d.json
+daquii_design_tokens_capital_d.css
 
-10. Update Tailwind and global CSS to use the corrected colours, fonts, radii, shadows and gradients.
+10. Update Tailwind and global CSS to use the capital D brand colours, fonts, radii, shadows and gradients.
 
 Typography:
 Use Sora or Montserrat for headings.
@@ -86,7 +86,7 @@ Primary CTA:
 Encontrar serviços
 
 Secondary CTA:
-Anunciar na daquii
+Anunciar na Daquii
 
 Apply this branding to:
 - header
@@ -127,4 +127,4 @@ npm run build
 
 Fix all TypeScript, lint and build errors.
 
-When finished, summarise the files changed and confirm that the logo, colours and wordmark now match the reference image.
+When finished, summarise the files changed and confirm that the logo, colours and wordmark now match the capital D reference image.

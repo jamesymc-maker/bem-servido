@@ -12,7 +12,7 @@ function trackUrl(ad: Ad) {
 export function AdCard({ ad, size = "banner" }: { ad: Ad; size?: "banner" | "small" }) {
   if (size === "small") {
     return (
-      <div className="rounded-dqlg overflow-hidden border border-border shadow-card bg-sand">
+      <div className="rounded-3xl overflow-hidden border border-border shadow-card bg-sand">
         <a href={trackUrl(ad)} target="_blank" rel="noreferrer sponsored" className="block">
           {ad.image_url
             ? <img src={ad.image_url} alt={ad.title} className="w-full aspect-[3/1] object-cover" referrerPolicy="no-referrer" />

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { LayoutDashboard, Users, Tags, Settings, LogOut, ExternalLink, FileText, Megaphone, Image as ImageIcon, Star } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import { Wordmark } from "@/components/wordmark";
 
 const NAV = [
   { href: "/admin", label: "Painel", Icon: LayoutDashboard },
@@ -22,11 +23,11 @@ export function AdminShell({ email, children }: { email?: string; children: Reac
   const active = (href: string) => (href === "/admin" ? path === "/admin" : path.startsWith(href));
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--sand)" }}>
+    <div className="min-h-screen bg-white">
       <header className="bg-white" style={{ borderBottom: "1px solid var(--border)" }}>
         <div className="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700, fontSize: '1.5rem', color: '#0B1D3A', letterSpacing: '-0.02em' }}>daquii</span>
+            <Wordmark />
             <span className="text-[11px] font-bold uppercase tracking-wide rounded-dqfull px-2 py-0.5 bg-teal text-white">Admin</span>
           </div>
           <div className="flex items-center gap-3">
