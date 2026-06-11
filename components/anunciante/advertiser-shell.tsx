@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { LayoutDashboard, Image as ImageIcon, Tag, LogOut, ExternalLink } from "lucide-react";
@@ -23,7 +22,7 @@ export function AdvertiserShell({ tier, children }: { tier?: string; children: R
       <header className="bg-white" style={{ borderBottom: "1px solid var(--border)" }}>
         <div className="max-w-4xl mx-auto px-5 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Image src="/daquii_logo_mark.svg" alt="daquii" width={28} height={28} className="h-7 w-7" />
+            <span style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700, fontSize: '1.5rem', color: '#0B1D3A', letterSpacing: '-0.02em' }}>daquii</span>
             <span className="font-heading text-lg font-bold text-navy">Painel do anunciante</span>
           </div>
           <div className="flex items-center gap-3">

@@ -133,10 +133,7 @@ export default async function AnunciarPage({
             <BrowserFrame label="daquii.com">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-1.5">
-                  <span className="grid place-items-center w-5 h-5 rounded-md overflow-hidden" style={{ background: "var(--navy)" }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/daquii_logo_mark_white.svg" alt="" className="w-4 h-4" />
-                  </span>
+                  <span style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700, fontSize: '1.5rem', color: '#0B1D3A', letterSpacing: '-0.02em' }}>daquii</span>
                   {skel("70px", 7)}
                 </div>
                 <div className="flex gap-2">{skel("34px", 7)}{skel("44px", 7)}</div>
