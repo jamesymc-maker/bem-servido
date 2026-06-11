@@ -26,19 +26,9 @@ export function Hero() {
             className="font-heading rise leading-[1.05] tracking-tight font-bold"
             style={{ fontSize: "clamp(2.625rem, 6vw, 4rem)", animationDelay: "60ms", color: "#0B1D3A" }}
           >
-            {t("hero.titleA")}{" "}
-            <span style={{ color: "#FF2D6D" }}>{t("hero.accent")}</span>
+            As pessoas que tornam {loc.name}{" "}
+            <span style={{ color: "#00C2BB" }}>mais fácil.</span>
           </h1>
-          <p
-            className="rise mt-5 text-lg md:text-xl leading-relaxed max-w-xl text-muted"
-            style={{ animationDelay: "120ms" }}
-          >
-            {t("hero.sub")}
-          </p>
-          <p className="rise mt-4 text-base font-semibold" style={{ animationDelay: "160ms" }}>
-            <span style={{ color: "#00C2BB" }}>{t("hero.taglineA", { loc: loc.name })}</span>
-            <span style={{ color: "#FF2D6D" }}>{t("hero.taglineB")}</span>
-          </p>
           <div className="rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: "220ms" }}>
             <Link
               href={`/${loc.slug}/servicos`}

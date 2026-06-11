@@ -28,16 +28,9 @@ export default async function OpengraphImage() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           <div style={{ fontSize: 72, fontWeight: 800, lineHeight: 1.05, maxWidth: 980, color: "#0B1D3A" }}>
-            Pessoas de daqui, <span style={{ color: "#FF2D6D" }}>para você.</span>
+            As pessoas que tornam {ACTIVE_LOCATION_NAME}{" "}
+            <span style={{ color: "#00C2BB" }}>mais fácil.</span>
           </div>
-          <div style={{ fontSize: 30, color: "#5B677A", maxWidth: 900 }}>
-            Conectamos você a pessoas locais de confiança que tornam sua experiência incrível, sem complicação.
-          </div>
-        </div>
-
-        <div style={{ display: "flex", fontSize: 24, fontWeight: 700 }}>
-          <span style={{ color: "#00C2BB" }}>Tudo o que você precisa, </span>
-          <span style={{ color: "#FF2D6D" }}>daqui.</span>
         </div>
       </div>
     ),

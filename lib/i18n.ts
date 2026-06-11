@@ -9,11 +9,6 @@ export const DICT = {
   nav: { home: "Início", categories: "Categorias", servicesIn: "Serviços em {loc}", forProviders: "Para profissionais", advertise: "Anunciar serviço", findPros: "Buscar profissionais", blog: "Blog", about: "Sobre", advertise_link: "Anunciar", login: "Entrar", menu: "Menu" },
   loc: { choose: "Escolha a região", soon: "em breve", current: "Você está vendo" },
   hero: {
-    titleA: "Pessoas de daqui,",
-    accent: "para você.",
-    sub: "Conectamos você a pessoas locais de confiança que tornam sua experiência incrível, sem complicação.",
-    taglineA: "Tudo o que você precisa em {loc}, ",
-    taglineB: "daqui.",
     ctaPrimary: "Encontrar serviços",
     statLabel: "profissionais locais",
   },
