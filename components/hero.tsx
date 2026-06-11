@@ -31,13 +31,8 @@ export function Hero() {
             className="font-heading rise leading-[1.05] tracking-tight font-extrabold text-navy"
             style={{ fontSize: "clamp(2.625rem, 6vw, 4rem)", animationDelay: "60ms" }}
           >
-            {t("hero.titleA")}{" "}
-            <span className="text-pink">{t("hero.accent")}</span>
-          </h1>
-          <p className="rise mt-5 text-lg max-w-md text-muted" style={{ animationDelay: "140ms" }}>
-            {/* LOCKED: As pessoas que tornam {location} mais fácil. — see lib/i18n.ts hero.tagline */}
             {t("hero.tagline")}
-          </p>
+          </h1>
           <div className="rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: "220ms" }}>
             <Link
               href={`/${loc.slug}/servicos`}
