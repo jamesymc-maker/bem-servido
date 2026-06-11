@@ -4,12 +4,12 @@ import { getCategories } from "@/lib/data";
 export default async function PerfilPage() {
   const [p, categories]: any = await Promise.all([getOrCreateProvider(), getCategories()]);
   const field = "w-full rounded-xl px-4 py-3 text-[15px] outline-none bg-white";
-  const border = { border: "1px solid var(--line)" };
+  const border = { border: "1px solid var(--border)" };
   const label = "block text-sm font-semibold mb-1.5";
 
   return (
     <div>
-      <h1 className="serif text-2xl mb-5" style={{ fontWeight: 600 }}>Perfil</h1>
+      <h1 className="font-heading text-2xl mb-5" style={{ fontWeight: 600 }}>Perfil</h1>
       <form action={updateProviderProfile} className="flex flex-col gap-4">
         <div>
           <label className={label}>Nome</label>
@@ -56,7 +56,7 @@ export default async function PerfilPage() {
           <label className={label}>Idiomas (separados por vírgula)</label>
           <input name="languages" defaultValue={(p?.languages ?? []).join(", ")} placeholder="Português, English" className={field} style={border} />
         </div>
-        <button className="self-start rounded-full px-6 py-3 font-semibold text-white" style={{ background: "var(--sea)" }}>Salvar perfil</button>
+        <button className="self-start rounded-full px-6 py-3 font-semibold text-white" style={{ background: "var(--teal)" }}>Salvar perfil</button>
       </form>
     </div>
   );

@@ -20,7 +20,7 @@ function Logo({ url, name }: { url?: string | null; name: string }) {
   if (url) return <img src={url} alt="" className="w-9 h-9 rounded-lg object-cover shrink-0" referrerPolicy="no-referrer" />;
   return (
     <span className="w-9 h-9 rounded-lg shrink-0 inline-flex items-center justify-center text-xs font-semibold"
-      style={{ background: "var(--sand)", color: "var(--ink-soft)" }}>
+      style={{ background: "var(--sand)", color: "var(--muted)" }}>
       {name.slice(0, 1).toUpperCase()}
     </span>
   );
@@ -35,10 +35,10 @@ function RowActions({ id, active }: { id: string; active: boolean }) {
   };
   return (
     <div className="flex flex-wrap items-center gap-1.5">
-      <Link href="/admin/anuncios" className="rounded-full px-3 py-1.5 text-xs font-semibold" style={{ border: "1px solid var(--line)", color: "var(--sea)" }}>Ver anúncios</Link>
+      <Link href="/admin/anuncios" className="rounded-full px-3 py-1.5 text-xs font-semibold" style={{ border: "1px solid var(--border)", color: "var(--teal)" }}>Ver anúncios</Link>
       <button onClick={toggle} disabled={pending}
         className="rounded-full px-3 py-1.5 text-xs font-semibold text-white disabled:opacity-50"
-        style={{ background: active ? "var(--ink-soft)" : "var(--sea)" }}>
+        style={{ background: active ? "var(--muted)" : "var(--teal)" }}>
         {active ? "Suspender" : "Reativar"}
       </button>
     </div>
@@ -48,11 +48,11 @@ function RowActions({ id, active }: { id: string; active: boolean }) {
 export function AdvertisersTable({ rows }: { rows: any[] }) {
   return (
     <div>
-      <h1 className="serif text-2xl mb-5" style={{ fontWeight: 600 }}>Anunciantes ({rows.length})</h1>
-      <div className="rounded-2xl bg-white overflow-x-auto" style={{ border: "1px solid var(--line)" }}>
+      <h1 className="font-heading text-2xl mb-5" style={{ fontWeight: 600 }}>Anunciantes ({rows.length})</h1>
+      <div className="rounded-2xl bg-white overflow-x-auto" style={{ border: "1px solid var(--border)" }}>
         <table className="w-full text-sm" style={{ minWidth: 980 }}>
           <thead>
-            <tr style={{ borderBottom: "1px solid var(--line)", color: "var(--ink-soft)" }} className="text-left">
+            <tr style={{ borderBottom: "1px solid var(--border)", color: "var(--muted)" }} className="text-left">
               <th className="p-3 font-semibold">Empresa</th>
               <th className="p-3 font-semibold">Plano</th>
               <th className="p-3 font-semibold">Assinatura</th>
@@ -68,30 +68,30 @@ export function AdvertisersTable({ rows }: { rows: any[] }) {
               const sub = first<any>(a.advertiser_subscriptions);
               const tier = a.tier ?? sub?.tier;
               return (
-                <tr key={a.id} style={{ borderBottom: "1px solid var(--line)" }}>
+                <tr key={a.id} style={{ borderBottom: "1px solid var(--border)" }}>
                   <td className="p-3">
                     <div className="flex items-center gap-2.5">
                       <Logo url={a.logo_url} name={a.company_name} />
                       <span className="font-medium">{a.company_name}</span>
-                      {a.active === false && <span className="text-xs font-semibold" style={{ color: "var(--coral)" }}>(suspenso)</span>}
+                      {a.active === false && <span className="text-xs font-semibold" style={{ color: "var(--pink)" }}>(suspenso)</span>}
                     </div>
                   </td>
                   <td className="p-3">{tier ? (TIER_LABEL[tier] ?? tier) : "Sem plano"}</td>
                   <td className="p-3">
-                    <span style={{ color: sub?.status === "active" ? "var(--sea)" : "var(--ink-soft)" }}>
+                    <span style={{ color: sub?.status === "active" ? "var(--teal)" : "var(--muted)" }}>
                       {sub?.status ? (SUB_LABEL[sub.status] ?? sub.status) : "—"}
                     </span>
                   </td>
-                  <td className="p-3" style={{ color: "var(--ink-soft)" }}>{fmtDate(sub?.last_payment_at)}</td>
+                  <td className="p-3" style={{ color: "var(--muted)" }}>{fmtDate(sub?.last_payment_at)}</td>
                   <td className="p-3">{a.active_ads}</td>
-                  <td className="p-3" style={{ color: "var(--ink-soft)" }}>{fmtDate(a.created_at)}</td>
-                  <td className="p-3" style={{ color: "var(--ink-soft)" }}>{fmtDate(a.last_sign_in_at)}</td>
+                  <td className="p-3" style={{ color: "var(--muted)" }}>{fmtDate(a.created_at)}</td>
+                  <td className="p-3" style={{ color: "var(--muted)" }}>{fmtDate(a.last_sign_in_at)}</td>
                   <td className="p-3"><RowActions id={a.id} active={a.active !== false} /></td>
                 </tr>
               );
             })}
             {rows.length === 0 && (
-              <tr><td colSpan={8} className="p-6 text-center" style={{ color: "var(--ink-soft)" }}>Nenhum anunciante ainda.</td></tr>
+              <tr><td colSpan={8} className="p-6 text-center" style={{ color: "var(--muted)" }}>Nenhum anunciante ainda.</td></tr>
             )}
           </tbody>
         </table>

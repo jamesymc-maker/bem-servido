@@ -2,7 +2,7 @@
 title: "Transfer e transporte em Ilhabela: do aeroporto à balsa"
 description: "Como chegar a Ilhabela sem stress: opções de transfer dos aeroportos de São Paulo, a travessia de balsa e o motorista privado na ilha."
 date: "2026-05-20"
-author: "Equipe Daquii"
+author: "Equipe daquii"
 cover: "https://picsum.photos/seed/blog-transfer/1200/630"
 category: "drivers"
 tags: ["transfer", "transporte", "balsa", "aeroporto"]
@@ -25,4 +25,4 @@ Dentro de Ilhabela, um motorista local faz toda a diferença para conhecer as pr
 
 ## Encontre o seu motorista
 
-Veja os perfis de [motoristas e transfers](/servicos/drivers) no Daquii, com foto, idiomas e valores. Fale direto pelo WhatsApp e combine a busca no aeroporto ou o passeio pela ilha.
+Veja os perfis de [motoristas e transfers](/servicos/drivers) no daquii, com foto, idiomas e valores. Fale direto pelo WhatsApp e combine a busca no aeroporto ou o passeio pela ilha.

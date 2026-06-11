@@ -3,7 +3,7 @@ import { requireUserOrRedirect } from "@/lib/auth";
 import { getOrCreateProvider } from "@/lib/actions/provider";
 import { PainelShell } from "@/components/painel/painel-shell";
 
-export const metadata = { title: "Meu painel · Daquii", robots: { index: false } };
+export const metadata = { title: "Meu painel · daquii", robots: { index: false } };
 
 export default async function PainelLayout({ children }: { children: React.ReactNode }) {
   const user = await requireUserOrRedirect("/painel");

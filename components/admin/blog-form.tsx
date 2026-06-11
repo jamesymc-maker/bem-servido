@@ -5,7 +5,7 @@ const CATS = ["private-chefs","drivers","house-cleaning","babysitters","boat-ser
 
 export function BlogForm({ post }: { post?: any }) {
   const field = "w-full rounded-xl px-4 py-3 text-[15px] outline-none bg-white";
-  const border = { border: "1px solid var(--line)" };
+  const border = { border: "1px solid var(--border)" };
   const lbl = "block text-sm font-semibold mb-1.5";
   return (
     <form action={upsertBlogPost} className="flex flex-col gap-5">
@@ -31,7 +31,7 @@ export function BlogForm({ post }: { post?: any }) {
         </div>
         <div>
           <label className={lbl}>Autor</label>
-          <input name="author" defaultValue={post?.author ?? "Equipe Daquii"} className={field} style={border} />
+          <input name="author" defaultValue={post?.author ?? "Equipe daquii"} className={field} style={border} />
         </div>
         <div>
           <label className={lbl}>Idioma</label>
@@ -59,7 +59,7 @@ export function BlogForm({ post }: { post?: any }) {
       </div>
       <div>
         <label className={lbl}>Conteúdo (Markdown)</label>
-        <p className="text-xs mb-2" style={{ color: "var(--ink-soft)" }}>Use ## para títulos, **negrito**, [link](url), - para listas.</p>
+        <p className="text-xs mb-2" style={{ color: "var(--muted)" }}>Use ## para títulos, **negrito**, [link](url), - para listas.</p>
         <textarea name="content" rows={20} defaultValue={post?.content ?? ""} className={`${field} font-mono text-sm resize-y`} style={border} />
       </div>
       <div className="flex items-center gap-2.5">
@@ -67,7 +67,7 @@ export function BlogForm({ post }: { post?: any }) {
         <label htmlFor="published" className="text-sm font-semibold">Publicar (visível no site)</label>
       </div>
       <div>
-        <button className="rounded-full px-6 py-3 font-semibold text-white" style={{ background: "var(--sea)" }}>
+        <button className="rounded-full px-6 py-3 font-semibold text-white" style={{ background: "var(--teal)" }}>
           {post?.id ? "Salvar alterações" : "Criar post"}
         </button>
       </div>

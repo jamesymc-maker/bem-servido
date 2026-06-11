@@ -8,13 +8,13 @@ export function IntroVideo({ p }: { p: Provider }) {
   const [playing, setPlaying] = useState(false);
   const t = useT();
   return (
-    <div className="relative rounded-3xl overflow-hidden aspect-video" style={{ background: "var(--sea-deep)" }}>
+    <div className="relative rounded-3xl overflow-hidden aspect-video" style={{ background: "var(--navy)" }}>
       <img src={p.photo_url} alt="" referrerPolicy="no-referrer" className="absolute inset-0 w-full h-full object-cover"
         style={{ filter: playing ? "none" : "brightness(.6) saturate(1.1)", transform: playing ? "scale(1.04)" : "none", transition: "all .5s" }} />
       <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 40%, rgba(10,67,57,.85))" }} />
       <button onClick={() => setPlaying((v) => !v)} className="absolute inset-0 grid place-items-center group" aria-label="play">
         <span className="grid place-items-center w-16 h-16 rounded-full transition group-hover:scale-110" style={{ background: "rgba(255,255,255,.92)" }}>
-          {playing ? <Pause size={26} color="var(--sea-deep)" /> : <Play size={26} fill="var(--sea-deep)" strokeWidth={0} className="ml-1" />}
+          {playing ? <Pause size={26} color="var(--navy)" /> : <Play size={26} fill="var(--navy)" strokeWidth={0} className="ml-1" />}
         </span>
       </button>
       <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white">

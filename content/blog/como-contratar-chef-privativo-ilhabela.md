@@ -2,7 +2,7 @@
 title: "Como contratar um chef privativo em Ilhabela"
 description: "Tudo o que você precisa saber para ter um chef cozinhando na sua casa de temporada em Ilhabela: o que combinar, quanto custa e como escolher."
 date: "2026-05-28"
-author: "Equipe Daquii"
+author: "Equipe daquii"
 cover: "https://picsum.photos/seed/blog-chef/1200/630"
 category: "private-chefs"
 tags: ["chef privativo", "gastronomia", "casa de temporada"]
@@ -26,8 +26,8 @@ Um chef em casa resolve o problema mais chato das férias: pensar no que comer e
 
 Os valores variam conforme o menu e o número de convidados. Em Ilhabela é comum encontrar meio período a partir de R$320 a R$400, com a diária e ingredientes combinados à parte. O melhor é falar direto com o profissional e alinhar tudo antes.
 
-## Como escolher no Daquii
+## Como escolher no daquii
 
-No Daquii cada chef tem um perfil com foto, idiomas, valores e um vídeo curto de apresentação. Você vê quem vai cozinhar para você antes de fechar. Compare os perfis de [chefs privativos](/servicos/private-chefs), assista aos vídeos e fale direto pelo WhatsApp.
+No daquii cada chef tem um perfil com foto, idiomas, valores e um vídeo curto de apresentação. Você vê quem vai cozinhar para você antes de fechar. Compare os perfis de [chefs privativos](/servicos/private-chefs), assista aos vídeos e fale direto pelo WhatsApp.
 
 Bom apetite e boas férias na ilha.

@@ -18,7 +18,7 @@ export function CategoryActions({ id, hidden }: { id: string; hidden: boolean })
       <button className={icon} disabled={pending} style={{ background: "var(--sand)" }} onClick={() => call(moveCategory, { dir: "-1" })}><ChevronUp size={16} /></button>
       <button className={icon} disabled={pending} style={{ background: "var(--sand)" }} onClick={() => call(moveCategory, { dir: "1" })}><ChevronDown size={16} /></button>
       <button className="rounded-full px-3 py-1.5 text-xs font-semibold inline-flex items-center gap-1 disabled:opacity-50"
-        disabled={pending} style={{ border: "1px solid var(--line)", color: "var(--ink-soft)" }}
+        disabled={pending} style={{ border: "1px solid var(--border)", color: "var(--muted)" }}
         onClick={() => call(toggleCategoryHidden, { hidden: String(!hidden) })}>
         {hidden ? <><Eye size={13} /> Mostrar</> : <><EyeOff size={13} /> Ocultar</>}
       </button>

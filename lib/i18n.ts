@@ -10,8 +10,10 @@ export const DICT = {
   loc: { choose: "Escolha a região", soon: "em breve", current: "Você está vendo" },
   hero: {
     badge: "{loc} · São Paulo, Brasil",
-    titleA: "As pessoas que", titleB: "tornam {loc}", accent: "mais fácil.",
-    sub: "Chefs, motoristas, babás, capitães de barco e mais. Profissionais locais de confiança, gente de verdade com rosto e nome.",
+    title: "Pessoas de daqui, para você.",
+    sub: "Conectamos você a profissionais locais de confiança para tornar sua estadia mais fácil.",
+    ctaPrimary: "Encontrar serviços",
+    ctaSecondary: "Anunciar na daquii",
     placeholder: "Chef, motorista, babá, barco...", search: "Buscar",
     quick: ["Chef", "Motorista", "Babá", "Barco"],
     statLabel: "profissionais locais",
@@ -53,14 +55,14 @@ export const DICT = {
   },
   testimonials: {
     customersTag: "Avaliações", customersTitle: "Quem contratou, recomenda",
-    customersSub: "O que turistas e moradores dizem sobre os profissionais encontrados no Daquii.",
+    customersSub: "O que turistas e moradores dizem sobre os profissionais encontrados no daquii.",
     providersTag: "Profissionais", providersTitle: "Quem anuncia, é encontrado",
-    providersSub: "O que os profissionais do Daquii têm a dizer sobre estar na plataforma.",
+    providersSub: "O que os profissionais do daquii têm a dizer sobre estar na plataforma.",
   },
   seo: {
     heading: "Serviços de confiança em {loc}, na palma da mão",
     body: [
-      "O Daquii reúne os melhores profissionais locais de {loc} num só lugar: chefs privativos, motoristas, babás, capitães de barco, faxineiras, massoterapeutas, fotógrafos, guias e concierges. Cada perfil mostra o rosto, os idiomas e os valores de quem vai te atender.",
+      "O daquii reúne os melhores profissionais locais de {loc} num só lugar: chefs privativos, motoristas, babás, capitães de barco, faxineiras, massoterapeutas, fotógrafos, guias e concierges. Cada perfil mostra o rosto, os idiomas e os valores de quem vai te atender.",
       "Seja para um jantar na casa de temporada, um transfer do aeroporto até a balsa de São Sebastião ou um passeio de lancha até a Praia do Bonete, você encontra o profissional certo e fala direto pelo WhatsApp. Sem reservas complicadas e sem comissão.",
       "Tudo pensado para o celular: encontre, veja o vídeo de apresentação e contacte em segundos, de onde estiver na ilha.",
     ],
@@ -68,24 +70,24 @@ export const DICT = {
   },
   faq: {
     title: "Perguntas frequentes",
-    sub: "Tudo o que você precisa saber sobre o Daquii em {loc}.",
+    sub: "Tudo o que você precisa saber sobre o daquii em {loc}.",
     items: [
-      { q: "O Daquii cobra comissão em {loc}?", a: "Não. Você fala direto com o profissional pelo WhatsApp ou telefone. O Daquii apenas conecta você a quem presta o serviço em {loc}." },
+      { q: "O daquii cobra comissão em {loc}?", a: "Não. Você fala direto com o profissional pelo WhatsApp ou telefone. O daquii apenas conecta você a quem presta o serviço em {loc}." },
       { q: "Como contrato um profissional em {loc}?", a: "Busque pela categoria ou pelo nome, abra o perfil, veja o vídeo de apresentação e os valores, e toque em WhatsApp para combinar tudo direto com a pessoa." },
       { q: "Os profissionais em {loc} são verificados?", a: "Profissionais com o selo de identidade verificada passaram por checagem de documento. Todos exibem foto real e uma descrição clara do serviço que oferecem." },
       { q: "Quais serviços encontro em {loc}?", a: "Chefs privativos, motoristas e transfers, limpeza, babás, passeios de barco, bem-estar e massagem, reparos, fotografia, concierge e guias de turismo." },
       { q: "Quais profissionais estão disponíveis em {loc}?", a: "Você encontra chefs privativos, motoristas, babás, capitães de barco, faxineiras, massoterapeutas, fotógrafos, concierges e guias de turismo, todos locais e com perfil completo." },
-      { q: "É para turistas ou para moradores de {loc}?", a: "Para os dois. Turistas, donos de casas de temporada, hóspedes de Airbnb e moradores usam o Daquii para encontrar quem resolve em {loc}." },
+      { q: "É para turistas ou para moradores de {loc}?", a: "Para os dois. Turistas, donos de casas de temporada, hóspedes de Airbnb e moradores usam o daquii para encontrar quem resolve em {loc}." },
       { q: "Vão atender outras cidades além de {loc}?", a: "Começamos por {loc}. Em breve vamos expandir para outras regiões do litoral." },
     ],
   },
   sobre: {
-    title: "Sobre o Daquii em {loc}",
+    title: "Sobre o daquii em {loc}",
     lead: "O jeito mais simples de encontrar profissionais locais de confiança em {loc}.",
     body: [
-      "O Daquii nasceu de uma ideia simples: na hora de contratar um chef, um motorista ou uma babá em {loc}, as pessoas escolhem pessoas. Por isso o rosto, o nome e a voz de cada profissional vêm em primeiro lugar.",
+      "O daquii nasceu de uma ideia simples: na hora de contratar um chef, um motorista ou uma babá em {loc}, as pessoas escolhem pessoas. Por isso o rosto, o nome e a voz de cada profissional vêm em primeiro lugar.",
       "Reunimos os profissionais locais de {loc} em perfis claros, com foto, idiomas, valores e um vídeo curto de apresentação. Você compara, escolhe e fala direto pelo WhatsApp. Sem intermediários, sem comissão e sem complicação.",
-      "Estamos começando por {loc}, mas a ideia é levar o Daquii para todo o litoral. Se você é profissional na ilha, anuncie o seu serviço e seja encontrado por quem está chegando.",
+      "Estamos começando por {loc}, mas a ideia é levar o daquii para todo o litoral. Se você é profissional na ilha, anuncie o seu serviço e seja encontrado por quem está chegando.",
     ],
   },
   blog: {

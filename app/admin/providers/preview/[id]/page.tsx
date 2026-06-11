@@ -5,7 +5,7 @@ import { ProfileView } from "@/components/profile-view";
 import { adminGetProviderPreview } from "@/lib/admin-data";
 import { summarise } from "@/lib/data";
 
-export const metadata = { title: "Pré-visualização · Admin · Daquii", robots: { index: false } };
+export const metadata = { title: "Pré-visualização · Admin · daquii", robots: { index: false } };
 
 const STATUS_LABEL: Record<string, string> = {
   pending: "Pendente",
@@ -24,18 +24,18 @@ export default async function ProviderPreview({ params }: { params: Promise<{ id
   return (
     <div>
       <div className="rounded-2xl px-4 py-3 mb-5 flex flex-wrap items-center justify-between gap-3"
-        style={{ background: "var(--sand)", border: "1px solid var(--line)" }}>
+        style={{ background: "var(--sand)", border: "1px solid var(--border)" }}>
         <div className="flex items-center gap-2 text-sm">
-          <Link href="/admin/providers" className="inline-flex items-center gap-1.5 font-semibold" style={{ color: "var(--sea)" }}>
+          <Link href="/admin/providers" className="inline-flex items-center gap-1.5 font-semibold" style={{ color: "var(--teal)" }}>
             <ArrowLeft size={16} /> Voltar
           </Link>
-          <span style={{ color: "var(--ink-soft)" }}>· Pré-visualização do perfil (visível apenas para admins)</span>
+          <span style={{ color: "var(--muted)" }}>· Pré-visualização do perfil (visível apenas para admins)</span>
         </div>
-        <span className="text-xs font-semibold rounded-full px-2.5 py-1" style={{ background: "var(--cream)", color: "var(--ink-soft)" }}>
+        <span className="text-xs font-semibold rounded-full px-2.5 py-1" style={{ background: "var(--white)", color: "var(--muted)" }}>
           Status: {STATUS_LABEL[status] ?? status}
         </span>
       </div>
-      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid var(--line)", background: "var(--cream)" }}>
+      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid var(--border)", background: "var(--white)" }}>
         <ProfileView p={provider} related={related} reviews={reviews} summary={summary} />
       </div>
     </div>

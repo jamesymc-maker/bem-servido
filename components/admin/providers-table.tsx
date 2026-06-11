@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { setListingStatus } from "@/lib/actions/admin";
 
 const STATUS_LABEL: Record<string, string> = { pending: "Pendente", published: "Publicado", rejected: "Rejeitado", suspended: "Suspenso" };
-const STATUS_COLOR: Record<string, string> = { pending: "#B7791F", published: "var(--sea)", rejected: "var(--coral)", suspended: "var(--ink-soft)" };
+const STATUS_COLOR: Record<string, string> = { pending: "#B7791F", published: "var(--teal)", rejected: "var(--pink)", suspended: "var(--muted)" };
 const TIER_LABEL: Record<string, string> = { standard: "Standard", featured: "Featured", premium: "Premium" };
 
 type Filter = "todos" | "expirar" | "expirado" | "pagantes" | "pendentes";
@@ -45,7 +45,7 @@ function Avatar({ url, name }: { url?: string | null; name: string }) {
   if (url) return <img src={url} alt="" className="w-9 h-9 rounded-full object-cover shrink-0" referrerPolicy="no-referrer" />;
   return (
     <span className="w-9 h-9 rounded-full shrink-0 inline-flex items-center justify-center text-xs font-semibold"
-      style={{ background: "var(--sand)", color: "var(--ink-soft)" }}>
+      style={{ background: "var(--sand)", color: "var(--muted)" }}>
       {name.slice(0, 1).toUpperCase()}
     </span>
   );
@@ -62,16 +62,16 @@ function RowActions({ id, slug, status }: { id: string; slug: string; status: st
     <div className="flex flex-wrap items-center gap-1.5">
       {status !== "published" && (
         <button onClick={() => setStatus("published")} disabled={pending}
-          className="rounded-full px-3 py-1.5 text-xs font-semibold text-white disabled:opacity-50" style={{ background: "var(--sea)" }}>Aprovar</button>
+          className="rounded-full px-3 py-1.5 text-xs font-semibold text-white disabled:opacity-50" style={{ background: "var(--teal)" }}>Aprovar</button>
       )}
       {status !== "suspended" && (
         <button onClick={() => setStatus("suspended")} disabled={pending}
-          className="rounded-full px-3 py-1.5 text-xs font-semibold text-white disabled:opacity-50" style={{ background: "var(--ink-soft)" }}>Suspender</button>
+          className="rounded-full px-3 py-1.5 text-xs font-semibold text-white disabled:opacity-50" style={{ background: "var(--muted)" }}>Suspender</button>
       )}
       <Link href={`/admin/providers/preview/${id}`} target="_blank"
-        className="rounded-full px-3 py-1.5 text-xs font-semibold" style={{ border: "1px solid var(--line)", color: "var(--ink)" }}>Pré-visualizar</Link>
+        className="rounded-full px-3 py-1.5 text-xs font-semibold" style={{ border: "1px solid var(--border)", color: "var(--navy)" }}>Pré-visualizar</Link>
       <Link href={`/profissional/${slug}`} target="_blank"
-        className="rounded-full px-3 py-1.5 text-xs font-semibold" style={{ border: "1px solid var(--line)", color: "var(--sea)" }}>Ver perfil</Link>
+        className="rounded-full px-3 py-1.5 text-xs font-semibold" style={{ border: "1px solid var(--border)", color: "var(--teal)" }}>Ver perfil</Link>
     </div>
   );
 }
@@ -104,17 +104,17 @@ export function ProvidersTable({ rows }: { rows: any[] }) {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
-        <h1 className="serif text-2xl" style={{ fontWeight: 600 }}>Profissionais ({visible.length})</h1>
+        <h1 className="font-heading text-2xl" style={{ fontWeight: 600 }}>Profissionais ({visible.length})</h1>
         <select value={filter} onChange={(e) => setFilter(e.target.value as Filter)}
-          className="rounded-full px-3 py-2 text-sm bg-white" style={{ border: "1px solid var(--line)" }}>
+          className="rounded-full px-3 py-2 text-sm bg-white" style={{ border: "1px solid var(--border)" }}>
           {FILTERS.map((f) => <option key={f.key} value={f.key}>{f.label}</option>)}
         </select>
       </div>
 
-      <div className="rounded-2xl bg-white overflow-x-auto" style={{ border: "1px solid var(--line)" }}>
+      <div className="rounded-2xl bg-white overflow-x-auto" style={{ border: "1px solid var(--border)" }}>
         <table className="w-full text-sm" style={{ minWidth: 1040 }}>
           <thead>
-            <tr style={{ borderBottom: "1px solid var(--line)", color: "var(--ink-soft)" }} className="text-left">
+            <tr style={{ borderBottom: "1px solid var(--border)", color: "var(--muted)" }} className="text-left">
               <th className="p-3 font-semibold">Profissional</th>
               <th className="p-3 font-semibold">Categoria</th>
               <th className="p-3 font-semibold">Plano</th>
@@ -130,23 +130,23 @@ export function ProvidersTable({ rows }: { rows: any[] }) {
             {visible.map((p) => {
               const { paid, hasTrial, daysLeft, expired, planLabel } = p._info;
               return (
-                <tr key={p.id} style={{ borderBottom: "1px solid var(--line)" }}>
+                <tr key={p.id} style={{ borderBottom: "1px solid var(--border)" }}>
                   <td className="p-3">
                     <div className="flex items-center gap-2.5">
                       <Avatar url={p.photo_url} name={p.name} />
                       <span className="font-medium">{p.name}</span>
                     </div>
                   </td>
-                  <td className="p-3" style={{ color: "var(--ink-soft)" }}>{p.categories?.label ?? "—"}</td>
+                  <td className="p-3" style={{ color: "var(--muted)" }}>{p.categories?.label ?? "—"}</td>
                   <td className="p-3">{planLabel}</td>
                   <td className="p-3">
-                    {!hasTrial || paid ? <span style={{ color: "var(--ink-soft)" }}>—</span>
-                      : expired ? <span style={{ color: "var(--coral)", fontWeight: 600 }}>Expirado</span>
+                    {!hasTrial || paid ? <span style={{ color: "var(--muted)" }}>—</span>
+                      : expired ? <span style={{ color: "var(--pink)", fontWeight: 600 }}>Expirado</span>
                       : <span style={{ fontWeight: 600 }}>{daysLeft} dias</span>}
                   </td>
-                  <td className="p-3" style={{ color: "var(--ink-soft)" }}>{hasTrial ? fmtDate(p.trial_ends_at) : "—"}</td>
-                  <td className="p-3" style={{ color: "var(--ink-soft)" }}>{fmtDate(p.created_at)}</td>
-                  <td className="p-3" style={{ color: "var(--ink-soft)" }}>{fmtDate(p.last_sign_in_at)}</td>
+                  <td className="p-3" style={{ color: "var(--muted)" }}>{hasTrial ? fmtDate(p.trial_ends_at) : "—"}</td>
+                  <td className="p-3" style={{ color: "var(--muted)" }}>{fmtDate(p.created_at)}</td>
+                  <td className="p-3" style={{ color: "var(--muted)" }}>{fmtDate(p.last_sign_in_at)}</td>
                   <td className="p-3">
                     <span className="text-xs font-semibold rounded-full px-2 py-1" style={{ color: STATUS_COLOR[p.status], background: "var(--sand)" }}>
                       {STATUS_LABEL[p.status] ?? p.status}
@@ -157,7 +157,7 @@ export function ProvidersTable({ rows }: { rows: any[] }) {
               );
             })}
             {visible.length === 0 && (
-              <tr><td colSpan={9} className="p-6 text-center" style={{ color: "var(--ink-soft)" }}>Nenhum profissional neste filtro.</td></tr>
+              <tr><td colSpan={9} className="p-6 text-center" style={{ color: "var(--muted)" }}>Nenhum profissional neste filtro.</td></tr>
             )}
           </tbody>
         </table>

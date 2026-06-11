@@ -14,8 +14,8 @@ export async function generateMetadata({
   const { location } = await params;
   const loc = getActiveLocationBySlug(location) ?? getActiveLocationBySlug(DEFAULT_LOCATION)!;
   return {
-    title: `Sobre · Daquii · Serviços locais de confiança em ${loc.name}`,
-    description: `O Daquii conecta você aos melhores profissionais locais de ${loc.name}. Saiba como funciona e tire suas dúvidas.`,
+    title: `Sobre · Serviços locais de confiança em ${loc.name} · daquii`,
+    description: `O daquii conecta você aos melhores profissionais locais de ${loc.name}. Saiba como funciona e tire suas dúvidas.`,
     alternates: { canonical: `/${loc.slug}/sobre` },
   };
 }
@@ -46,12 +46,12 @@ export default async function SobrePage({
       <section className="max-w-3xl mx-auto px-5 py-10">
         <div
           className="rounded-2xl p-8 text-center"
-          style={{ background: "var(--cream)", border: "1px solid rgba(14,91,78,.12)" }}
+          style={{ background: "var(--white)", border: "1px solid rgba(14,91,78,.12)" }}
         >
-          <h2 className="serif text-2xl md:text-3xl" style={{ fontWeight: 600 }}>
+          <h2 className="font-heading text-2xl md:text-3xl" style={{ fontWeight: 600 }}>
             Fale connosco pelo WhatsApp
           </h2>
-          <p className="text-[16px] mt-3" style={{ color: "var(--ink-soft)" }}>
+          <p className="text-[16px] mt-3" style={{ color: "var(--muted)" }}>
             Tem alguma dúvida ou precisa de ajuda? Estamos disponíveis no WhatsApp.
           </p>
           <a

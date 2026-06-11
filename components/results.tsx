@@ -35,11 +35,11 @@ export function Results({
 
   return (
     <div className="max-w-6xl mx-auto px-5 py-10">
-      <div className="flex items-center gap-2 bg-white rounded-full px-4 py-1.5 max-w-xl" style={{ border: "1px solid var(--line)" }}>
-        <Search size={18} style={{ color: "var(--ink-soft)" }} />
+      <div className="flex items-center gap-2 bg-white rounded-full px-4 py-1.5 max-w-xl" style={{ border: "1px solid var(--border)" }}>
+        <Search size={18} style={{ color: "var(--muted)" }} />
         <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={t("results.placeholder")}
           className="flex-1 py-2.5 bg-transparent outline-none text-[15px]" />
-        {q && <button onClick={() => setQ("")}><X size={16} style={{ color: "var(--ink-soft)" }} /></button>}
+        {q && <button onClick={() => setQ("")}><X size={16} style={{ color: "var(--muted)" }} /></button>}
       </div>
 
       <div className="flex gap-2 overflow-x-auto hide-scroll mt-5 pb-1">
@@ -52,15 +52,15 @@ export function Results({
       </div>
 
       <div className="flex items-baseline justify-between mt-7 mb-5">
-        <h1 className="serif text-2xl md:text-3xl" style={{ fontWeight: 600 }}>{title}</h1>
-        <span className="text-sm" style={{ color: "var(--ink-soft)" }}>
+        <h1 className="font-heading text-2xl md:text-3xl" style={{ fontWeight: 600 }}>{title}</h1>
+        <span className="text-sm" style={{ color: "var(--muted)" }}>
           {filtered.length} {filtered.length === 1 ? t("results.result") : t("results.results")}
         </span>
       </div>
 
       {filtered.length === 0 ? (
-        <div className="py-20 text-center" style={{ color: "var(--ink-soft)" }}>
-          <p className="serif text-2xl mb-1" style={{ color: "var(--ink)" }}>{t("results.emptyTitle")}</p>
+        <div className="py-20 text-center" style={{ color: "var(--muted)" }}>
+          <p className="font-heading text-2xl mb-1" style={{ color: "var(--navy)" }}>{t("results.emptyTitle")}</p>
           <p className="text-sm">{t("results.emptySub")}</p>
         </div>
       ) : (
@@ -76,7 +76,7 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
   return (
     <button onClick={onClick}
       className="shrink-0 inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-medium transition"
-      style={active ? { background: "var(--sea)", color: "#fff" } : { background: "#fff", color: "var(--ink-soft)", border: "1px solid var(--line)" }}>
+      style={active ? { background: "var(--teal)", color: "#fff" } : { background: "#fff", color: "var(--muted)", border: "1px solid var(--border)" }}>
       {children}
     </button>
   );

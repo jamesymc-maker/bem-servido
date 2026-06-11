@@ -23,17 +23,17 @@ export function AdminShell({ email, children }: { email?: string; children: Reac
 
   return (
     <div className="min-h-screen" style={{ background: "var(--sand)" }}>
-      <header className="bg-white" style={{ borderBottom: "1px solid var(--line)" }}>
+      <header className="bg-white" style={{ borderBottom: "1px solid var(--border)" }}>
         <div className="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span className="serif text-lg" style={{ fontWeight: 600 }}>Daquii</span>
-            <span className="text-[11px] font-bold uppercase tracking-wide rounded-full px-2 py-0.5" style={{ background: "var(--sea)", color: "#fff" }}>Admin</span>
+            <span className="font-heading text-lg font-bold text-navy">daquii</span>
+            <span className="text-[11px] font-bold uppercase tracking-wide rounded-full px-2 py-0.5" style={{ background: "var(--teal)", color: "#fff" }}>Admin</span>
           </div>
           <div className="flex items-center gap-3">
-            <Link href="/" target="_blank" className="text-sm inline-flex items-center gap-1" style={{ color: "var(--ink-soft)" }}>
+            <Link href="/" target="_blank" className="text-sm inline-flex items-center gap-1" style={{ color: "var(--muted)" }}>
               Ver site <ExternalLink size={13} />
             </Link>
-            <button onClick={signOut} className="text-sm inline-flex items-center gap-1" style={{ color: "var(--ink-soft)" }}>
+            <button onClick={signOut} className="text-sm inline-flex items-center gap-1" style={{ color: "var(--muted)" }}>
               <LogOut size={14} /> Sair
             </button>
           </div>
@@ -42,7 +42,7 @@ export function AdminShell({ email, children }: { email?: string; children: Reac
           {NAV.map(({ href, label, Icon }) => (
             <Link key={href} href={href}
               className="shrink-0 inline-flex items-center gap-1.5 px-3 py-2.5 text-sm font-medium border-b-2 transition"
-              style={active(href) ? { borderColor: "var(--sea)", color: "var(--sea)" } : { borderColor: "transparent", color: "var(--ink-soft)" }}>
+              style={active(href) ? { borderColor: "var(--teal)", color: "var(--teal)" } : { borderColor: "transparent", color: "var(--muted)" }}>
               <Icon size={15} /> {label}
             </Link>
           ))}

@@ -7,7 +7,7 @@ export default async function FotosPage() {
   const gallery = (p?.provider_gallery ?? []).map((g: any) => ({ id: g.id, url: g.url }));
   return (
     <div>
-      <h1 className="serif text-2xl mb-5" style={{ fontWeight: 600 }}>Fotos</h1>
+      <h1 className="font-heading text-2xl mb-5" style={{ fontWeight: 600 }}>Fotos</h1>
       <PhotoUploader userId={user?.id ?? ""} providerId={p?.id ?? ""} initialPhoto={p?.photo_url ?? null} gallery={gallery} />
     </div>
   );

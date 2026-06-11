@@ -18,8 +18,8 @@ export type AdStatus = {
 const STATUS: Record<AdStatusKey, AdStatus> = {
   aguardando: { key: "aguardando", label: "Aguardando pagamento", color: "#B7791F", bg: "var(--sand)" },
   revisao: { key: "revisao", label: "Em revisão", color: "#B7791F", bg: "var(--sand)" },
-  activo: { key: "activo", label: "Activo", color: "var(--sea)", bg: "var(--sand)" },
-  inactivo: { key: "inactivo", label: "Inactivo", color: "var(--ink-soft)", bg: "var(--sand)" },
+  activo: { key: "activo", label: "Activo", color: "var(--teal)", bg: "var(--sand)" },
+  inactivo: { key: "inactivo", label: "Inactivo", color: "var(--muted)", bg: "var(--sand)" },
 };
 
 export function adStatus(ad: { active?: boolean; admin_blocked?: boolean }, hasActivePlan: boolean): AdStatus {

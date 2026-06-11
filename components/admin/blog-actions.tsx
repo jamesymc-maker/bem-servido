@@ -15,12 +15,12 @@ export function BlogActions({ id, published }: { id: string; published: boolean 
     <div className="flex items-center gap-2">
       <button onClick={() => run(toggleBlogPublished, { published: String(!published) })} disabled={pending}
         className="rounded-full px-3 py-1.5 text-xs font-semibold disabled:opacity-50"
-        style={published ? { border: "1px solid var(--line)", color: "var(--ink-soft)" } : { background: "var(--sea)", color: "#fff" }}>
+        style={published ? { border: "1px solid var(--border)", color: "var(--muted)" } : { background: "var(--teal)", color: "#fff" }}>
         {published ? "Despublicar" : "Publicar"}
       </button>
       <button onClick={() => { if (window.confirm("Excluir este post?")) run(deleteBlogPost, {}); }} disabled={pending}
         className="rounded-full px-3 py-1.5 text-xs font-semibold disabled:opacity-50"
-        style={{ border: "1px solid var(--coral)", color: "var(--coral)" }}>Excluir</button>
+        style={{ border: "1px solid var(--pink)", color: "var(--pink)" }}>Excluir</button>
     </div>
   );
 }

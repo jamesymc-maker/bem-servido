@@ -60,16 +60,16 @@ export function PhotoUploader({ userId, providerId, initialPhoto, gallery }: {
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h2 className="serif text-xl mb-1" style={{ fontWeight: 600 }}>Foto de perfil</h2>
-        <p className="text-sm mb-4" style={{ color: "var(--ink-soft)" }}>Um rosto claro recebe muito mais contactos. Mostre o seu sorriso.</p>
+        <h2 className="font-heading text-xl mb-1" style={{ fontWeight: 600 }}>Foto de perfil</h2>
+        <p className="text-sm mb-4" style={{ color: "var(--muted)" }}>Um rosto claro recebe muito mais contactos. Mostre o seu sorriso.</p>
         <div className="flex items-center gap-5">
           <div className="w-28 h-28 rounded-full overflow-hidden grid place-items-center ring-photo" style={{ background: "var(--sand-deep)" }}>
-            {photo ? <img src={photo} alt="" referrerPolicy="no-referrer" className="w-full h-full object-cover" /> : <Upload size={22} style={{ color: "var(--ink-soft)" }} />}
+            {photo ? <img src={photo} alt="" referrerPolicy="no-referrer" className="w-full h-full object-cover" /> : <Upload size={22} style={{ color: "var(--muted)" }} />}
           </div>
           <div>
             <input ref={profileRef} type="file" accept="image/*" hidden onChange={onProfile} />
             <button onClick={() => profileRef.current?.click()} disabled={busy === "profile"}
-              className="rounded-full px-5 py-2.5 text-sm font-semibold text-white inline-flex items-center gap-2 disabled:opacity-60" style={{ background: "var(--sea)" }}>
+              className="rounded-full px-5 py-2.5 text-sm font-semibold text-white inline-flex items-center gap-2 disabled:opacity-60" style={{ background: "var(--teal)" }}>
               {busy === "profile" ? <><Loader2 size={15} className="animate-spin" /> Enviando...</> : <><Upload size={15} /> Enviar foto</>}
             </button>
           </div>
@@ -77,8 +77,8 @@ export function PhotoUploader({ userId, providerId, initialPhoto, gallery }: {
       </div>
 
       <div>
-        <h2 className="serif text-xl mb-1" style={{ fontWeight: 600 }}>Galeria (até 10 fotos)</h2>
-        <p className="text-sm mb-4" style={{ color: "var(--ink-soft)" }}>Mostre o seu trabalho.</p>
+        <h2 className="font-heading text-xl mb-1" style={{ fontWeight: 600 }}>Galeria (até 10 fotos)</h2>
+        <p className="text-sm mb-4" style={{ color: "var(--muted)" }}>Mostre o seu trabalho.</p>
         <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
           {items.map((it) => (
             <div key={it.id} className="relative aspect-square rounded-2xl overflow-hidden" style={{ background: "var(--sand-deep)" }}>
@@ -89,14 +89,14 @@ export function PhotoUploader({ userId, providerId, initialPhoto, gallery }: {
           ))}
           {items.length < 10 && (
             <button onClick={() => galleryRef.current?.click()} disabled={busy === "gallery"}
-              className="aspect-square rounded-2xl grid place-items-center disabled:opacity-60" style={{ border: "1.5px dashed var(--line)", color: "var(--ink-soft)" }}>
+              className="aspect-square rounded-2xl grid place-items-center disabled:opacity-60" style={{ border: "1.5px dashed var(--border)", color: "var(--muted)" }}>
               {busy === "gallery" ? <Loader2 size={20} className="animate-spin" /> : <Upload size={20} />}
             </button>
           )}
         </div>
         <input ref={galleryRef} type="file" accept="image/*" multiple hidden onChange={onGallery} />
       </div>
-      {err && <p className="text-sm" style={{ color: "var(--coral)" }}>{err}</p>}
+      {err && <p className="text-sm" style={{ color: "var(--pink)" }}>{err}</p>}
     </div>
   );
 }

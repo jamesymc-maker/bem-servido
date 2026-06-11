@@ -1,0 +1,21 @@
+<svg width="980" height="260" viewBox="0 0 980 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="daquiiGradient" x1="20" y1="20" x2="220" y2="230" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FF2D6D"/>
+      <stop offset="0.45" stop-color="#FFB62B"/>
+      <stop offset="1" stop-color="#00C2BB"/>
+    </linearGradient>
+  </defs>
+  <path d="M126 22C163 22 187 42 197 69C205 91 227 100 237 123C248 150 233 177 210 190C188 202 182 227 158 242C129 260 93 251 76 225C62 203 37 201 22 182C1 156 6 122 31 105C51 91 48 65 69 44C83 30 104 22 126 22Z" stroke="url(#daquiiGradient)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#00C2BB">
+    <path d="M122 100h8v70h-8z"/>
+    <path d="M126 99c-18-20-41-18-56-6 25-1 42 9 53 25l3-19z"/>
+    <path d="M126 99c18-20 41-18 56-6-25-1-42 9-53 25l-3-19z"/>
+    <path d="M126 99c-3-24-20-38-40-41 14 16 23 34 24 54l16-13z"/>
+    <path d="M126 99c3-24 20-38 40-41-14 16-23 34-24 54l-16-13z"/>
+    <path d="M73 177c35-8 72-8 107 0v9c-35-7-72-7-107 0v-9z"/>
+  </g>
+  <text x="290" y="163" font-family="Montserrat, Sora, Arial, sans-serif" font-size="122" font-weight="800" fill="#0B1D3A" letter-spacing="-6">daquii</text>
+  <circle cx="785" cy="65" r="13" fill="#00C2BB"/>
+  <circle cx="839" cy="65" r="13" fill="#FF2D6D"/>
+</svg>

@@ -23,7 +23,7 @@ export default async function LocationLayout({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": `${SITE}/${loc.slug}/#business`,
-    name: `Daquii · ${loc.name}`,
+    name: `daquii · ${loc.name}`,
     url: `${SITE}/${loc.slug}`,
     description: `Diretório de profissionais locais de confiança em ${loc.name}, ${loc.country}.`,
     image: `${SITE}/opengraph-image`,

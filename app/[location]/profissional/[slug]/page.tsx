@@ -15,9 +15,9 @@ export async function generateMetadata({
   const { location, slug } = await params;
   const loc = getActiveLocationBySlug(location) ?? getActiveLocationBySlug(DEFAULT_LOCATION)!;
   const p = await getProvider(slug);
-  if (!p) return { title: "Profissional não encontrado · Daquii" };
+  if (!p) return { title: "Profissional não encontrado · daquii" };
   return {
-    title: `${p.name} · ${p.category_label} em ${loc.name} · Daquii`,
+    title: `${p.name} · ${p.category_label} em ${loc.name} · daquii`,
     description: p.short_desc,
     alternates: { canonical: `/${loc.slug}/profissional/${p.slug}` },
     openGraph: { title: `${p.name} · ${p.category_label}`, description: p.short_desc, images: p.photo_url ? [p.photo_url] : [] },

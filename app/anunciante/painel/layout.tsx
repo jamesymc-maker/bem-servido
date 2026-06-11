@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { requireAdvertiserUserOrRedirect } from "@/lib/auth";
 import { getOrCreateAdvertiser } from "@/lib/actions/advertiser";
 import { AdvertiserShell } from "@/components/anunciante/advertiser-shell";
-export const metadata = { title: "Painel do anunciante · Daquii", robots: { index: false } };
+export const metadata = { title: "Painel do anunciante · daquii", robots: { index: false } };
 export default async function AdvertiserLayout({ children }: { children: React.ReactNode }) {
   const user = await requireAdvertiserUserOrRedirect();
   const adv: any = await getOrCreateAdvertiser();

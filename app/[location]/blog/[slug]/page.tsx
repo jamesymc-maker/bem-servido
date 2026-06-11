@@ -24,9 +24,9 @@ export async function generateMetadata({
   const { location, slug } = await params;
   const loc = getActiveLocationBySlug(location) ?? getActiveLocationBySlug(DEFAULT_LOCATION)!;
   const post = await getPost(slug);
-  if (!post) return { title: "Artigo não encontrado · Daquii" };
+  if (!post) return { title: "Artigo não encontrado · daquii" };
   return {
-    title: `${post.title} · Daquii`,
+    title: `${post.title} · daquii`,
     description: post.description,
     alternates: { canonical: `/${loc.slug}/blog/${post.slug}` },
     openGraph: { type: "article", title: post.title, description: post.description, images: post.cover ? [post.cover] : [], publishedTime: post.date },
@@ -55,7 +55,7 @@ export default async function PostPage({
     image: post.cover || undefined,
     datePublished: post.date,
     author: { "@type": "Organization", name: post.author },
-    publisher: { "@type": "Organization", name: "Daquii" },
+    publisher: { "@type": "Organization", name: "daquii" },
     mainEntityOfPage: `${SITE}/${loc.slug}/blog/${post.slug}`,
     inLanguage: "pt-BR",
   };
