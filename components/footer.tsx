@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import { MapPin, MessageCircle } from "lucide-react";
 import type { Category } from "@/lib/types";
@@ -13,13 +12,7 @@ export function Footer({ categories }: { categories: Category[] }) {
       <div className="max-w-dq mx-auto px-5 py-12 grid grid-cols-2 md:grid-cols-[1.6fr_1fr_1fr_1fr] gap-8">
         <div className="col-span-2 md:col-span-1">
           <div className="mb-4">
-            <Image
-              src="/daquii_logo_mark_white.svg"
-              alt="daquii"
-              width={48}
-              height={48}
-              className="h-12 w-12"
-            />
+            <span style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700, fontSize: '1.5rem', color: '#FFFFFF', letterSpacing: '-0.02em' }}>daquii</span>
           </div>
           <p className="text-sm max-w-xs">{t("footer.tagline")}</p>
           <div className="inline-flex items-center gap-1.5 mt-4 text-sm">
